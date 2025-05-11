@@ -1,0 +1,36 @@
+{
+  "name": "cartera-frontend",
+  "version": "0.1.0",
+  "repository": "https://github.com/ccqueiroz/cartera-backend",
+  "author": "Caio Queiroz <caio.cezar.dequeiroz@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --silent --colors --runInBand",
+    "test:unit": "npx jest --watch"
+  },
+  "dependencies": {
+    "next": "14.2.28",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.28",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "typescript": "^5"
+  }
+}
