@@ -3,15 +3,78 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import MainProvider from "./_providers/main/main.provider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const quicksand = localFont({
+  src: [
+    {
+      path: "./fonts/quicksand-v36-latin-regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/quicksand-v36-latin-500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/quicksand-v36-latin-600.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/quicksand-v36-latin-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-quicksand",
+  display: "swap",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const raleway = localFont({
+  src: [
+    {
+      path: "./fonts/raleway-v34-latin-300.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-300italic.woff2",
+      weight: "300",
+      style: "italic",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-500italic.woff2",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-600.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-600italic.woff2",
+      weight: "600",
+      style: "italic",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/raleway-v34-latin-700italic.woff2",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-raleway",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +89,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${quicksand.variable} ${raleway.variable}`}>
         <MainProvider>{children}</MainProvider>
       </body>
     </html>
