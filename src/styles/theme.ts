@@ -36,7 +36,7 @@ const theme = {
       border: "#6B21A8",
     },
     animation: {
-      background: "animatedGradient 8s ease infinite",
+      background: "animatedGradient 5s ease infinite",
     },
   },
   spacing: {
