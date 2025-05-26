@@ -9,7 +9,12 @@ const createJestConfig = nextJest({
 
 const configJest = {
   collectCoverage: true,
-  collectCoverageFrom: ["**/src/**/*.ts", "!**/*.gateway.ts", "!**/*.dto.ts"],
+  collectCoverageFrom: [
+    "**/src/**/*.ts",
+    "!**/*.gateway.ts",
+    "!**/*.dto.ts",
+    "!**/src/**/*.stories.tsx",
+  ],
   coverageDirectory: "coverage",
   coveragePathIgnorePatterns: ["/node_modules/"],
   setupFilesAfterEnv: ["<rootDir>/src/test/setup/jest.setup.ts"],
