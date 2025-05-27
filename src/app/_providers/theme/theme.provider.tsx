@@ -27,7 +27,7 @@ export default function ThemeProvider({
           width: ${theme.width.full};
           background: ${theme.dark.background.gradient};
           height: ${theme.height.screen};
-          color: ${theme.dark.colors.primary};
+          color: ${theme.dark.colors.textPrimary};
           background-size: 600% 600%;
           animation: ${theme.dark.animation.background};
           font-family: var(--font-quicksand);
