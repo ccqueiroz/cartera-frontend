@@ -10,16 +10,30 @@ const createJestConfig = nextJest({
 const configJest = {
   collectCoverage: true,
   collectCoverageFrom: [
-    "**/src/**/*.ts",
+    "src/**/*.ts",
     "!**/*.gateway.ts",
     "!**/*.dto.ts",
-    "!**/src/**/*.stories.tsx",
+    "!src/**/*.stories.tsx",
+    "!src/**/mock.{ts,tsx}",
+    "!src/middleware.ts'",
+    "!src/@types/**",
+    "!src/constants/**",
+    "!src/styles/**",
+    "!src/infra/**/index.ts",
   ],
   coverageDirectory: "coverage",
+  moduleDirectories: ["node_modules", "<rootDir>/"],
   coveragePathIgnorePatterns: ["/node_modules/"],
   setupFilesAfterEnv: ["<rootDir>/src/test/setup/jest.setup.ts"],
   testEnvironment: "jest-environment-jsdom",
-  testPathIgnorePatterns: ["/node_modules/"],
+  testMatch: [
+    "<rootDir>/src/**/*.test.{ts,tsx}",
+    "<rootDir>/src/**/*.spec.{ts,tsx}",
+  ],
+  transformIgnorePatterns: [
+    "/node_modules/(?!(string-width|ansi-regex|strip-ansi|cliui|wrap-ansi|yargs|@cspotcode|@jridgewell)/)",
+  ],
+  testPathIgnorePatterns: ["/node_modules/", "/.next/"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
