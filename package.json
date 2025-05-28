@@ -5,15 +5,20 @@
   "author": "Caio Queiroz <caio.cezar.dequeiroz@gmail.com>",
   "license": "MIT",
   "private": false,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --silent --colors --runInBand",
-    "test:unit": "npx jest --watch",
+    "test:unit": "yarn test",
+    "test:unit:watch": "yarn test:unit --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   },
   "dependencies": {
     "next": "14.2.28",
@@ -38,6 +43,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "storybook": "8.x",
     "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
