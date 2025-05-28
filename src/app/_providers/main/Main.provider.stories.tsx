@@ -3,13 +3,6 @@ import MainProvider from "./main.provider";
 
 const meta: Meta<typeof MainProvider> = {
   component: MainProvider,
-  decorators: [
-    (Story) => (
-      <MainProvider>
-        <Story />
-      </MainProvider>
-    ),
-  ],
 };
 
 export default meta;

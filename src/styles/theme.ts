@@ -1,8 +1,8 @@
 const theme = {
   light: {
     background: {
-      gradient: "linear-gradient(135deg, #E5E0F7, #F1EEFA)",
-      glassEffect: "blur(12px)",
+      gradient: "linear-gradient(-45deg, #E5E0F7, #F1EEFA, #FFFFFF, #EDE9FE)",
+      glassEffect: "blur(20px)",
       background: "rgba(255, 255, 255, 0.5)",
     },
     colors: {
@@ -16,14 +16,14 @@ const theme = {
       border: "#D8B4FE",
     },
     animation: {
-      background: "animatedGradient 8s ease infinite",
+      background: "animatedGradientLight 10s ease infinite",
     },
   },
   dark: {
     background: {
-      gradient: "linear-gradient(135deg, #1F1B2E, #2E1A47)",
-      glassEffect: "blur(12px)",
-      background: "rgba(31, 27, 46, 0.7)",
+      gradient: "linear-gradient(-45deg, #1A1626, #251A35, #321E4C, #251A35)",
+      glassEffect: "blur(20px)",
+      background: "rgba(26, 22, 38, 0.5)",
     },
     colors: {
       primary: "#A78BFA",
@@ -36,7 +36,7 @@ const theme = {
       border: "#6B21A8",
     },
     animation: {
-      background: "animatedGradient 5s ease infinite",
+      background: "animatedGradientDark 10s ease infinite",
     },
   },
   spacing: {

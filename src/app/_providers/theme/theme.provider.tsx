@@ -1,40 +1,19 @@
 "use client";
 
-import { theme } from "@/styles/theme";
+import ThemeComponentProvider from "./theme.component.provider";
+import {
+  ThemeProviderClient,
+  ThemeProviderClientInterface,
+} from "./theme.context.provider";
 
 export default function ThemeProvider({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <main>
-      {children}
-      <style jsx>{`
-        @keyframes animatedGradient {
-          0% {
-            background-position: 0% 0%;
-          }
-          50% {
-            background-position: 100% 100%;
-          }
-          100% {
-            background-position: 0% 0%;
-          }
-        }
+  initialTheme,
+}: ThemeProviderClientInterface) {
 
-        main {
-          width: ${theme.width.full};
-          background: ${theme.dark.background.gradient};
-          height: ${theme.height.screen};
-          color: ${theme.dark.colors.textPrimary};
-          background-size: 600% 600%;
-          animation: ${theme.dark.animation.background};
-          font-family: var(--font-quicksand);
-          font-weight: 400;
-          font-size: 1.4rem;
-        }
-      `}</style>
-    </main>
+  return (
+    <ThemeProviderClient initialTheme={initialTheme}>
+      <ThemeComponentProvider>{children}</ThemeComponentProvider>
+    </ThemeProviderClient>
   );
 }
