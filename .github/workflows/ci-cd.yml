@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: "🚀 Build & Test"
+    name: "🚀 Build & Test - Next 14"
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -42,6 +42,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
 
+      - name: Remoção do yarn.lock
+        run: rm -rf yarn.lock
+
+      - name: remoção da node_modules
+        run: rm -rf node_modules
 
       - name: Instalando as dependências
         run: yarn install --frozen-lockfile
