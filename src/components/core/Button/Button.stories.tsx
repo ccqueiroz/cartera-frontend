@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DefaultButton } from ".";
+import { Button } from ".";
 
-const meta: Meta<typeof DefaultButton> = {
-  component: DefaultButton,
+const meta: Meta<typeof Button> = {
+  component: Button,
   decorators: [
     (Story) => (
       <div
@@ -22,12 +22,12 @@ const meta: Meta<typeof DefaultButton> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DefaultButton>;
+type Story = StoryObj<typeof Button>;
 
 export const Playground: Story = {
   args: {
     variant: "primary",
-    hasBoder: true,
+    disabled: true,
     children: <span>Salvar</span>,
   },
 };
