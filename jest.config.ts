@@ -20,6 +20,8 @@ const configJest = {
     "!src/constants/**",
     "!src/styles/**",
     "!src/infra/**/index.ts",
+    "!src/**/*.style.ts",
+    "!src/lib/cn.utils.ts",
   ],
   coverageDirectory: "coverage",
   moduleDirectories: ["node_modules", "<rootDir>/"],
