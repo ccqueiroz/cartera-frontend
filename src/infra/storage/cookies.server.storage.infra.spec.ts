@@ -26,7 +26,7 @@ describe("Cookies Server Storage", () => {
     const result = storageMock.recover<{ user: string }>("session");
 
     expect(mockCookieStore.get).toHaveBeenCalledWith("session");
-    expect(result).toEqual({ user: "john" });
+    expect(result).toEqual('{"user":"john"}');
   });
 
   it("should return null if cookie not found", () => {
