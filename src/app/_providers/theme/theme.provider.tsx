@@ -4,7 +4,7 @@ import {
   ThemeProviderClient,
   ThemeProviderClientInterface,
 } from "./theme.context.provider";
-import s from "./theme.module.css";
+import { mergeClass } from "./theme.style";
 
 export default function ThemeProvider({
   children,
@@ -12,7 +12,7 @@ export default function ThemeProvider({
 }: ThemeProviderClientInterface) {
   return (
     <ThemeProviderClient initialTheme={initialTheme}>
-      <main className={s.main}>{children}</main>
+      <main className={mergeClass}>{children}</main>
     </ThemeProviderClient>
   );
 }
