@@ -11,7 +11,7 @@ export class CookieServerStorage implements CookiesGateway {
 
     if (!data || !data?.value) return null;
 
-    return JSON.parse(JSON.stringify(data?.value));
+    return JSON.parse(data?.value);
   }
 
   save<T>(key: string, data: T, options?: Partial<CookieOptions>): void {
