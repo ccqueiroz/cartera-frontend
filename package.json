@@ -18,7 +18,8 @@
     "build-storybook": "storybook build"
   },
   "resolutions": {
-    "string-width": "4.2.3"
+    "string-width": "4.2.3",
+    "wrap-ansi": "7.0.0"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
