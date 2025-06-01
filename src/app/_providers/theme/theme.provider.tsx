@@ -1,19 +1,18 @@
 "use client";
 
-import ThemeComponentProvider from "./theme.component.provider";
 import {
   ThemeProviderClient,
   ThemeProviderClientInterface,
 } from "./theme.context.provider";
+import { mergeClass } from "./theme.style";
 
 export default function ThemeProvider({
   children,
   initialTheme,
 }: ThemeProviderClientInterface) {
-
   return (
     <ThemeProviderClient initialTheme={initialTheme}>
-      <ThemeComponentProvider>{children}</ThemeComponentProvider>
+      <main className={mergeClass}>{children}</main>
     </ThemeProviderClient>
   );
 }

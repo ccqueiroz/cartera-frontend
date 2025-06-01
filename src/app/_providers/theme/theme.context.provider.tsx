@@ -1,15 +1,11 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { KEY_THEME_COOKIE, ThemeMode } from "@/domain/core/Theme/theme.dto";
-import { theme } from "@/styles/theme";
-
-type SelectedThemeType = typeof theme.dark | typeof theme.light;
 
 type ThemeContextType = {
   themeMode: ThemeMode;
   swithTheme: () => void;
-  selectedTheme: SelectedThemeType;
 };
 
 export interface ThemeProviderClientInterface {
@@ -28,15 +24,13 @@ export function ThemeProviderClient({
   const swithTheme = () =>
     setThemeMode((prev) => (prev === "dark" ? "light" : "dark"));
 
-  const selectedTheme = useMemo(() => theme[themeMode], [themeMode]);
-
   useEffect(() => {
     document.cookie = `${KEY_THEME_COOKIE}=${themeMode}; path=/`;
-    document.documentElement.setAttribute("data-theme", themeMode);
+    document.documentElement.setAttribute("class", themeMode);
   }, [themeMode]);
 
   return (
-    <ThemeContext.Provider value={{ themeMode, swithTheme, selectedTheme }}>
+    <ThemeContext.Provider value={{ themeMode, swithTheme }}>
       {children}
     </ThemeContext.Provider>
   );

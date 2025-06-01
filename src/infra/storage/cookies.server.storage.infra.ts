@@ -1,4 +1,3 @@
-"use server";
 import { cookies as nextCookies } from "next/headers";
 
 import { CookiesGateway } from "@/domain/core/Storage/gateway/cookies.gateway";
