@@ -11,8 +11,8 @@ import {
 export function SwitchThemeButton() {
   const { swithTheme, themeMode } = useTheme();
   return (
-    <div className={mergeClassWrapperComponent}>
-      <button onClick={swithTheme} className={mergeClassButton}>
+    <button onClick={swithTheme} className={mergeClassButton}>
+      <div className={mergeClassWrapperComponent}>
         {themeMode === "dark" ? (
           <>
             <svg
@@ -23,7 +23,7 @@ export function SwitchThemeButton() {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
@@ -49,7 +49,7 @@ export function SwitchThemeButton() {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
@@ -58,7 +58,7 @@ export function SwitchThemeButton() {
             <span className={mergeClassSpan}>Dark</span>
           </>
         )}
-      </button>
-    </div>
+      </div>
+    </button>
   );
 }

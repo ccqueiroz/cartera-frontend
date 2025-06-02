@@ -1,31 +1,30 @@
 import { clsx } from "clsx";
 
-const mergeClassWrapperComponent = clsx(
+const mergeClassButton = clsx(
   "w-24 h-10 rounded-full px-1",
-  "bg-gradient-to-br from-[#dcdcdc] to-[#dcdcdc]",
-  "shadow-inner border border-border",
+  "bg-transparent bg-gradient-to-bl	from-[#FFFFFF3B] to-[#FFFFFF0F] blur-[0.5px]",
+  "rounded-[0.625rem] cursor-pointer border-solid border-secondary",
   "relative flex items-center gap-1 transition-all duration-300 ease-in-out",
-  "rotate-[1deg] scale-[0.98]",
-  "before:absolute before:inset-0 before:border-2 before:border-[#bfb8cc] before:rounded-full before:content-['']",
-  "shadow-[0.5px_0.5px_4px_rgba(--foreground)] shadow-foreground",
-  "hover:brightness-95"
+  "before:absolute before:inset-0 before:border-2 before:border-[#b294ea00] before:rounded-full before:content-['']",
+  "shadow-[0px_0.5px_4px] shadow-contrastTheme",
+  "hover:bg-accent/80"
 );
 
-const mergeClassButton = clsx(
+const mergeClassWrapperComponent = clsx(
   "w-full h-full flex items-center justify-start gap-2 px-2",
   "active:scale-[0.98] transition-transform"
 );
 
 const mergeClassSvg = clsx(
   "size-7 rounded-full p-1",
-  "bg-gradient-to-tl from-[#807984b8] to-[#cccccc]",
-  "shadow-[inset_2px_2px_5px_rgba(0,0,0,0.1),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]",
+  "bg-gradient-to-tl from-[#FFFFFF3B] to-[#FFFFFF0F] blur-[0.2px] brightness-100",
+  "shadow-[inset_2px_2px_5px_rgba(109,103,101,0.4),inset_-2px_-2px_5px_rgba(253,253,253,0.1)]",
   "border border-[#aaa]",
-  "z-10 fill-fillPrimary"
+  "z-10 fill-contrastTheme"
 );
 
 const mergeClassSpan = clsx(
-  "text-sm font-semibold text-primary translate-y-[2px] mb-[3px]"
+  "text-sm font-semibold text-contrastTheme translate-y-[2px] mb-[3px]"
 );
 
 export {
