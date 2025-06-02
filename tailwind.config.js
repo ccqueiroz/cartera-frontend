@@ -58,9 +58,12 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        contrastTheme: "hsl(var(--text-contrast-theme))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        fillPrimary: "hsl(var(--fill-primary))",
+        fillPrimaryBorder: "hsl(var(--fill-primary-border))",
         chart: {
           1: "hsl(var(--chart-1))",
           2: "hsl(var(--chart-2))",
