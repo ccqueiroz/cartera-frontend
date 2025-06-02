@@ -16,7 +16,6 @@ export const Header = () => {
     <header className={mergeClassHeader}>
       <nav
         aria-label="Menu de navegação"
-        aria-braillelabel="Menu de navegação"
         data-orientation="horizontal"
         dir="ltr"
         className={mergeClassNav}
@@ -40,7 +39,7 @@ export const Header = () => {
               </a>
             </li>
             <li>
-              <ul className="flex items-stretch gap-2 pl-4">
+              <ul className="flex items-stretch gap-6 pl-2">
                 <li className="mr-2">
                   <SwitchThemeButton />
                 </li>
