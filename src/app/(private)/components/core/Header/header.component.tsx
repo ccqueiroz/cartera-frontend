@@ -8,9 +8,9 @@ import {
   mergeClassUlHeader,
 } from "./header.style";
 import minLogoCartera from "@/assets/min-logo-cartera.png";
-import GlassComponent from "../GlassComponent";
+import GlassComponent from "../GlassComponent/glass-component.component";
 import { SwitchThemeButton } from "@/components/core/SwitchThemeButton";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../Avatar/avatar.component";
 
 export function HeaderPrivate() {
   return (
