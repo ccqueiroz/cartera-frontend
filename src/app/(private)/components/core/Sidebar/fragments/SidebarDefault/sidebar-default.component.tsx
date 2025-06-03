@@ -31,7 +31,7 @@ export const SidebarDefault = ({ items, settings }: SidebarProps) => {
         <div
           className={`w-16 h-[calc(100vh-2rem)] max-h-[calc(100vh-2rem)] flex flex-col ${
             open ? "items-start" : "items-center"
-          } gap-6 relative`}
+          } gap-6 relative overflow-x-hidden`}
         >
           <div
             className={`${

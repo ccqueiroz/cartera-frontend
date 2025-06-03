@@ -25,10 +25,10 @@ export const SidebarMobile = ({ items, settings }: SidebarProps) => {
       <div
         className={`${
           openMobile ? "hidden" : "block"
-        } absolute transition-[display] duration-200 ease-linear`}
+        } absolute transition-[display] duration-200 ease-linear z-10`}
       >
         <Menu
-          className="fixed top-4 left-4 text-contrastTheme"
+          className="fixed top-2 left-2 text-contrastTheme"
           onClick={toggleSidebar}
         />
       </div>
@@ -37,13 +37,13 @@ export const SidebarMobile = ({ items, settings }: SidebarProps) => {
         aria-expanded={openMobile}
         className={`w-dvw ${
           openMobile ? "left-0" : "-left-full"
-        } absolute h-screen transition-[width] duration-200 ease-linear`}
+        } absolute h-screen transition-[width] duration-200 ease-linear z-10`}
       >
         <GlassComponent>
           <div
             className={`w-dvw h-screen flex flex-col ${
               openMobile ? "items-start" : "items-center"
-            } gap-6 relative`}
+            } gap-6 relative overflow-x-hidden`}
           >
             <div
               className={`${
