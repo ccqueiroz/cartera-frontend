@@ -93,7 +93,6 @@ describe("use is mobile hook", () => {
     expect(result.current).toBe(false);
 
     act(() => {
-      // Simula mudança de tamanho de tela
       width = 500;
       Object.defineProperty(window, "innerWidth", {
         configurable: true,
@@ -111,9 +110,8 @@ describe("use is mobile hook", () => {
   it("should clean up event listener on unmount", () => {
     const removeListener = jest.fn();
     const addListener = jest.fn(
-      (_event: string, cb: (e: MediaQueryListEvent) => void) => {
-        // Save the callback for verification later
-      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      (_: string, __: (e: MediaQueryListEvent) => void) => {}
     );
 
     window.matchMedia = () =>

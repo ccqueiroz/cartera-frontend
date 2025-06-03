@@ -17,7 +17,7 @@ import { SidebarProps } from "../../sidebar.component";
 import { Menu } from "lucide-react";
 
 export const SidebarMobile = ({ items, settings }: SidebarProps) => {
-  const { openMobile, isMobile, open, toggleSidebar } = useSidebar();
+  const { openMobile, toggleSidebar } = useSidebar();
   const pathname = usePathname();
 
   return (
