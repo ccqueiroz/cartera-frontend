@@ -4,7 +4,7 @@ const mergeClassHeader = clsx(
   "relative left-[5rem] w-[calc(100%-5rem)] h-28",
   "flex",
   "p-4",
-  "[&>div]:hidden [&>div]:md:block"
+  "hidden md:block"
 );
 
 const mergeClassNav = clsx(
