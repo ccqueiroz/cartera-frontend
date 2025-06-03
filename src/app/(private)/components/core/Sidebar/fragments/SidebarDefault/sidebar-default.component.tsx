@@ -25,13 +25,13 @@ export const SidebarDefault = ({ items, settings }: SidebarProps) => {
       aria-expanded={open}
       className={`${
         open ? "w-[15rem]" : "w-[4rem]"
-      } absolute top-4 left-4 h-[96%] max-h-[calc(100vh-2rem)] transition-[width] duration-200 ease-linear`}
+      } absolute top-4 left-4 h-[96%] max-h-[calc(100vh-2rem)] transition-[width] duration-200 ease-linear z-10`}
     >
       <GlassComponent>
         <div
           className={`w-16 h-[calc(100vh-2rem)] max-h-[calc(100vh-2rem)] flex flex-col ${
             open ? "items-start" : "items-center"
-          } gap-6 relative overflow-x-hidden`}
+          } gap-6 relative`}
         >
           <div
             className={`${
@@ -51,13 +51,15 @@ export const SidebarDefault = ({ items, settings }: SidebarProps) => {
                     <SidebarMenuItem
                       key={item.title}
                       className="w-full flex flex-col items-center text-contrastTheme mt-5"
+                      title="Botão mil grau"
                     >
                       <SidebarMenuButton
                         asChild
                         className="hover:bg-accent hover:text-accent-foreground"
                         isActive={pathname === item.url}
+                        title="Botão mil grau"
                       >
-                        <a href={item.url}>
+                        <a href={item.url} title="Botão mil grau">
                           <item.icon className="ml-2" />
                           {open && <span>{item.title}</span>}
                         </a>
