@@ -1,17 +1,10 @@
 import clsx from "clsx";
 
-const mergeClassHeader = clsx(
-  "w-full h-28",
-  "flex",
-  "p-4",
-  "shadow-[0px_-18px_30px] shadow-ring/70",
-  "bg-transparent bg-gradient-to-bl from-[#2d2c2c00] to-[#61478e3b] backdrop-blur-md",
-  "fixed z-40 lg:top-0"
-);
+const mergeClassHeader = clsx("w-full h-28", "flex", "p-4", "[&>div]:hidden [&>div]:md:block");
 
 const mergeClassNav = clsx(
-  "w-full max-w-[1700px] mx-auto px-4",
-  "hidden overflow-x-clip xl:block"
+  "w-full max-w-[2100px] mx-auto px-0 md:px-4",
+  "hidden overflow-x-clip md:block"
 );
 
 const mergeClassUlHeader = clsx(
@@ -19,10 +12,24 @@ const mergeClassUlHeader = clsx(
   "px-5 py-4"
 );
 
+const mergeClassContainerLogo = clsx(
+  "w-[60px] h-[60px]",
+  " flex items-center justify-center",
+  "rounded-full",
+  "bg-transparent bg-gradient-to-bl	from-[#FFFFFF3B] to-[#FFFFFF0F] blur-[0.3px]",
+  "shadow-[0px_0.5px_4px] shadow-contrastTheme/80",
+  "mr-4"
+);
+
 const mergeClassImageLogo = clsx(
-  "brightness-90 drop-shadow-[0_0_4px_rgba(234,228,246,0.1)]", //mudar esse cara para dar mais efeito no tema light.
+  "-rotate-12",
   "hover:brightness-95",
   "transition duration-300"
+);
+
+const mergeClassGreetingsUser = clsx(
+  "text-contrastTheme leading-4",
+  "flex flex-col items-baseline"
 );
 
 const mergeClassSigInLink = clsx(
@@ -42,4 +49,6 @@ export {
   mergeClassUlHeader,
   mergeClassImageLogo,
   mergeClassSigInLink,
+  mergeClassContainerLogo,
+  mergeClassGreetingsUser,
 };

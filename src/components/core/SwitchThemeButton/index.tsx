@@ -10,6 +10,7 @@ import {
 
 export function SwitchThemeButton() {
   const { swithTheme, themeMode } = useTheme();
+
   return (
     <button onClick={swithTheme} className={mergeClassButton}>
       <div className={mergeClassWrapperComponent}>
@@ -23,9 +24,9 @@ export function SwitchThemeButton() {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <circle cx="12" cy="12" r="4"></circle>
               <path d="M12 2v2"></path>
@@ -49,9 +50,9 @@ export function SwitchThemeButton() {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
             </svg>

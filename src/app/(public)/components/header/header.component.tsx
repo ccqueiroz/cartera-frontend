@@ -13,7 +13,7 @@ import { SwitchThemeButton } from "@/components/core/SwitchThemeButton";
 
 export const Header = () => {
   return (
-    <header className={mergeClassHeader}>
+    <header aria-label="Header da página" className={mergeClassHeader}>
       <nav
         aria-label="Menu de navegação"
         data-orientation="horizontal"
@@ -33,22 +33,18 @@ export const Header = () => {
                   width={120}
                   height={60}
                   alt="Logo do sistema Cartera: uma carteira acima do nome Cartera."
-                  aria-braillelabel="Logo do sistema Cartera: uma carteira acima do nome Cartera."
                   className={mergeClassImageLogo}
                 />
               </a>
             </li>
             <li>
-              <ul className="flex items-stretch gap-6 pl-2">
+              <ul className="flex items-center gap-6 pl-2">
                 <li className="mr-2">
                   <SwitchThemeButton />
                 </li>
-                <li className="flex items-stretch gap-2 pl-4 border-l min-w-44">
+                <li className="flex items-stretch gap-2 pl-6 border-l min-w-44">
                   <a className={mergeClassSigInLink}>
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      aria-braillelabel="Ícone de usuário"
-                    />
+                    <FontAwesomeIcon icon={faUser} />
                     Entrar
                   </a>
                 </li>
