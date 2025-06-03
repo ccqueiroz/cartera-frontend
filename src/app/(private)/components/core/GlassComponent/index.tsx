@@ -1,6 +1,6 @@
-import { mergeClassContainerChildren, mergeClassWrapperComponent } from "./glassMainComponent.style";
+import { mergeClassContainerChildren, mergeClassWrapperComponent } from "./glassComponent.style";
 
-export default function GlassMainComponent({
+export default function GlassComponent({
   children,
 }: Readonly<{
   children: React.ReactNode;
