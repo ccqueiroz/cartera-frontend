@@ -14,6 +14,7 @@
     "test": "jest --silent --colors --runInBand",
     "test:unit": "yarn test",
     "test:unit:watch": "yarn test:unit --watch",
+    "test:coverage": "yarn test:unit --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -26,7 +27,10 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",

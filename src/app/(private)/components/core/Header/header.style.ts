@@ -1,6 +1,11 @@
 import clsx from "clsx";
 
-const mergeClassHeader = clsx("w-full h-28", "flex", "p-4", "[&>div]:hidden [&>div]:md:block");
+const mergeClassHeader = clsx(
+  "relative left-[5rem] w-[calc(100%-5rem)] h-28",
+  "flex",
+  "p-4",
+  "[&>div]:hidden [&>div]:md:block"
+);
 
 const mergeClassNav = clsx(
   "w-full max-w-[2100px] mx-auto px-0 md:px-4",
@@ -9,7 +14,7 @@ const mergeClassNav = clsx(
 
 const mergeClassUlHeader = clsx(
   "flex items-center justify-between",
-  "px-5 py-4"
+  "px-5 py-2"
 );
 
 const mergeClassContainerLogo = clsx(
@@ -29,18 +34,7 @@ const mergeClassImageLogo = clsx(
 
 const mergeClassGreetingsUser = clsx(
   "text-contrastTheme leading-4",
-  "flex flex-col items-baseline"
-);
-
-const mergeClassSigInLink = clsx(
-  "group flex w-full items-center justify-center gap-5",
-  "rounded-[0.625rem] cursor-pointer border-solid border-secondary",
-  "uppercase text-contrastTheme transition-colors ease-in-out duration-300 text-md font-bold",
-  "disabled:cursor-not-allowed disabled:opacity-75",
-  "px-4 py-[0.875rem]",
-  "max-h-11 md:w-full bg-transparent bg-gradient-to-bl from-[#FFFFFF3B] to-[#FFFFFF0F] backdrop-blur-sm",
-  "hover:bg-accent/80",
-  "shadow-[0.5px_0.5px_4px] shadow-contrastTheme/80"
+  "flex flex-col items-baseline mt-2"
 );
 
 export {
@@ -48,7 +42,6 @@ export {
   mergeClassNav,
   mergeClassUlHeader,
   mergeClassImageLogo,
-  mergeClassSigInLink,
   mergeClassContainerLogo,
   mergeClassGreetingsUser,
 };
