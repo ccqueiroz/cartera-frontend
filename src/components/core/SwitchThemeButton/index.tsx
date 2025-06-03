@@ -24,7 +24,7 @@ export function SwitchThemeButton() {
               viewBox="0 0 24 24"
               fill="currentColor"
               stroke="currentColor"
-              strokeWidth="3"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             >

@@ -20,7 +20,8 @@ const mergeClassSvg = clsx(
   "bg-gradient-to-tl from-[#FFFFFF3B] to-[#FFFFFF0F] blur-[0.2px] brightness-100",
   "shadow-[inset_2px_2px_5px_rgba(109,103,101,0.4),inset_-2px_-2px_5px_rgba(253,253,253,0.1)]",
   "border border-[#aaa]",
-  "z-10 fill-contrastTheme/80"
+  "z-10 fill-contrastTheme/80",
+  "text-contrastTheme/80"
 );
 
 const mergeClassSpan = clsx(
