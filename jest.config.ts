@@ -11,6 +11,10 @@ const configJest = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.ts",
+    "src/**/*.tsx",
+    "!src/app/**/*.tsx",
+    "!src/components/**/*.tsx",
+    "!src/ui/**/*.tsx",
     "!**/*.gateway.ts",
     "!**/*.dto.ts",
     "!src/**/*.stories.tsx",
