@@ -39,11 +39,11 @@ export const Header = () => {
               </a>
             </li>
             <li>
-              <ul className="flex items-stretch gap-6 pl-2">
+              <ul className="flex items-center gap-6 pl-2">
                 <li className="mr-2">
                   <SwitchThemeButton />
                 </li>
-                <li className="flex items-stretch gap-2 pl-4 border-l min-w-44">
+                <li className="flex items-stretch gap-2 pl-6 border-l min-w-44">
                   <a className={mergeClassSigInLink}>
                     <FontAwesomeIcon
                       icon={faUser}

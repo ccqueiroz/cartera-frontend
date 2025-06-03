@@ -4,11 +4,15 @@ const mergeClassHeader = clsx(
   "w-full h-28",
   "flex",
   "p-4",
-  "shadow-[0px_-30px_50px_rgba(--foreground)] shadow-foreground",
+  "shadow-[0px_-18px_30px] shadow-ring/70",
+  "bg-transparent bg-gradient-to-bl from-[#2d2c2c00] to-[#61478e3b] backdrop-blur-md",
   "fixed z-40 lg:top-0"
 );
 
-const mergeClassNav = clsx("w-full max-w-[1700px] mx-auto px-4", "hidden overflow-x-clip xl:block");
+const mergeClassNav = clsx(
+  "w-full max-w-[1700px] mx-auto px-4",
+  "hidden overflow-x-clip xl:block"
+);
 
 const mergeClassUlHeader = clsx(
   "flex items-center justify-between",
@@ -27,9 +31,9 @@ const mergeClassSigInLink = clsx(
   "uppercase text-contrastTheme transition-colors ease-in-out duration-300 text-md font-bold",
   "disabled:cursor-not-allowed disabled:opacity-75",
   "px-4 py-[0.875rem]",
-  "max-h-11 md:w-full bg-transparent bg-gradient-to-bl	from-[#FFFFFF3B] to-[#FFFFFF0F] backdrop-blur-sm",
+  "max-h-11 md:w-full bg-transparent bg-gradient-to-bl from-[#FFFFFF3B] to-[#FFFFFF0F] backdrop-blur-sm",
   "hover:bg-accent/80",
-  "shadow-[0.5px_0.5px_4px] shadow-contrastTheme"
+  "shadow-[0.5px_0.5px_4px] shadow-contrastTheme/80"
 );
 
 export {
