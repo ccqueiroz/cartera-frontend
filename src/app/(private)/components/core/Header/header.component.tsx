@@ -9,7 +9,6 @@ import {
 } from "./header.style";
 import minLogoCartera from "@/assets/min-logo-cartera.png";
 import GlassComponent from "../GlassComponent/glass-component.component";
-import { SwitchThemeButton } from "@/components/core/SwitchThemeButton";
 import { Avatar } from "../Avatar/avatar.component";
 
 export function HeaderPrivate() {
@@ -54,9 +53,6 @@ export function HeaderPrivate() {
                 </div>
               </li>
               <ul className={mergeClassUlHeader}>
-                <li className="mr-6">
-                  <SwitchThemeButton />
-                </li>
                 <li>
                   <Avatar src="https://avatars.githubusercontent.com/u/61844259?s=96&v=4" />
                 </li>

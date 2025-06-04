@@ -9,7 +9,6 @@ import {
 import logoCartera from "@/assets/logo-cartera.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { SwitchThemeButton } from "@/components/core/SwitchThemeButton";
 
 export const Header = () => {
   return (
@@ -39,9 +38,6 @@ export const Header = () => {
             </li>
             <li>
               <ul className="flex items-center gap-6 pl-2">
-                <li className="mr-2">
-                  <SwitchThemeButton />
-                </li>
                 <li className="flex items-stretch gap-2 pl-6 border-l min-w-44">
                   <a className={mergeClassSigInLink}>
                     <FontAwesomeIcon icon={faUser} />
