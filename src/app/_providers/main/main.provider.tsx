@@ -3,5 +3,5 @@ export default function MainProvider({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="min-h-screen">{children}</div>;
 }
