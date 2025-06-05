@@ -14,10 +14,10 @@ export default function LandingPage() {
             "w-24 h-10 sm:w-32 sm:h-12 flex items-center justify-center text-md sm:text-lg",
             "rounded-md cursor-pointer border border-neon-purple/40",
             "hover:neon-shadow-purple glass-light transition-shadow duration-300",
-            "absolute -top-14 right-4 sm:-top-14 sm:right-4 md:-top-14 md:right-16"
+            "absolute -top-14 right-4 sm:-top-14 sm:right-4 md:-top-14 xl:-top-[5%] xl:right-[5%]"
           )}
         >
-          <Link href={"#"}>Entrar</Link>
+          <Link href={"/"}>Entrar</Link>
         </div>
 
         <Logo size="xl" />
@@ -46,7 +46,9 @@ export default function LandingPage() {
           style={{ animationDelay: "1200ms" }}
         >
           <ArrowDown className="mx-auto text-white/50" size={24} />
-          <p className="text-white/50 text-sm mt-2">Explore o dashboard</p>
+          <p className="text-white/50 text-sm mt-2 underline">
+            Click aqui para Entrar
+          </p>
         </div>
       </div>
     </LayoutPublic>

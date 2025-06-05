@@ -1,3 +1,4 @@
+import defaultTheme from "tailwindcss/defaultTheme";
 /* eslint-disable import/no-anonymous-default-export */
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,6 +16,10 @@ export default {
       screens: {
         "2xl": "1400px",
       },
+    },
+    screens: {
+      ...defaultTheme.screens,
+      hsm: { raw: "(max-height: 760px) and (min-width: 768px)" },
     },
     extend: {
       colors: {
