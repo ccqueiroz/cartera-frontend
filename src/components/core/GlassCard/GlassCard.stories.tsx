@@ -35,8 +35,8 @@ export const Playground: Story = {
     ),
   },
 };
-// //relative min-h-screen flex items-center justify-center py-20 overflow-hidden
-export const PlaygroundLigh: Story = {
+
+export const PlaygroundLight: Story = {
   args: {
     variant: "light",
     animate: true,
