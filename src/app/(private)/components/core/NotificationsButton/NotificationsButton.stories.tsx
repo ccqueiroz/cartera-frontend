@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { SwitchThemeButton } from ".";
+import { NotificationsButtons } from "./notifications-button.component";
 
-const meta: Meta<typeof SwitchThemeButton> = {
-  component: SwitchThemeButton,
+const meta: Meta<typeof NotificationsButtons> = {
+  component: NotificationsButtons,
   decorators: [
     (Story) => (
       <div
@@ -22,7 +22,7 @@ const meta: Meta<typeof SwitchThemeButton> = {
 
 export default meta;
 
-type Story = StoryObj<typeof SwitchThemeButton>;
+type Story = StoryObj<typeof NotificationsButtons>;
 
 export const Playground: Story = {
   args: {},
