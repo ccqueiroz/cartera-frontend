@@ -6,7 +6,11 @@ import "./storybook.css";
 import MainProvider from "../src/app/_providers/main/main.provider";
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
-  return <MainProvider>{children}</MainProvider>;
+  return (
+    <div className="min-h-screen flex items-center justify-center py-20 bg-background">
+      <MainProvider>{children}</MainProvider>
+    </div>
+  );
 }
 
 const preview: Preview = {
