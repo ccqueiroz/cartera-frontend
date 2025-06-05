@@ -4,12 +4,9 @@ import {
   AvatarUi,
 } from "@/components/ui/Avatar/avatar";
 import * as React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import {
-  mergeClassWrapperAvatar,
-  mergeClassWrapperAvatarFallback,
-} from "./avatar.style";
+
+import { UserCircle } from "lucide-react";
+import { cn } from "@/lib/cn.utils";
 
 export interface AvatarCoreProps {
   src?: string;
@@ -18,12 +15,25 @@ export interface AvatarCoreProps {
 const Avatar = React.forwardRef<HTMLSpanElement, AvatarCoreProps>(
   ({ ...props }, ref) => {
     return (
-      <div className={mergeClassWrapperAvatar}>
-        <AvatarUi ref={ref} {...props}>
+      <div
+        className={cn(
+          "w-12 h-12",
+          "rounded-full cursor-pointer",
+          "bg-neon-blue/20 border border-neon-blue/30",
+          "flex items-center justify-center animate-pulse-neon"
+        )}
+      >
+        <AvatarUi ref={ref} {...props} className="w-10 h-10">
           <AvatarImage src={props.src} />
           <AvatarFallback>
-            <div className={mergeClassWrapperAvatarFallback}>
-              <FontAwesomeIcon icon={faUser} className="w-[25px] h-[25px]" />
+            <div
+              className={cn(
+                "w-8 h-8 ",
+                "text-contrastTheme",
+                "flex justify-center items-center "
+              )}
+            >
+              <UserCircle size={24} className="text-white" />
             </div>
           </AvatarFallback>
         </AvatarUi>
