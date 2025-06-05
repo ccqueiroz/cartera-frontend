@@ -39,7 +39,7 @@ export const GreetingComponent = () => {
         <h2 className="text-xl md:text-2xl font-semibold text-white animate-fade-in-up">
           {getGreeting()}, <span className="text-neon-blue">Caio Queiroz</span>
         </h2>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <span
             className="text-white/70 digital animate-fade-in-up"
             style={{ animationDelay: "50ms" }}
