@@ -2,11 +2,24 @@ import { LayoutPublic } from "../components/layout/layout.view";
 import { Logo } from "../components/Logo/logo.component";
 import { ArrowDown } from "lucide-react";
 import { FeaturesPreview } from "./fragments/FeaturesPreview/features-preview.components";
+import { cn } from "@/lib/cn.utils";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
     <LayoutPublic>
       <div className="max-w-4xl mx-auto text-center">
+        <div
+          className={cn(
+            "w-24 h-10 sm:w-32 sm:h-12 flex items-center justify-center text-md sm:text-lg",
+            "rounded-md cursor-pointer border border-neon-purple/40",
+            "hover:neon-shadow-purple glass-light transition-shadow duration-300",
+            "absolute -top-14 right-4 sm:-top-14 sm:right-4 md:-top-14 md:right-16"
+          )}
+        >
+          <Link href={"#"}>Entrar</Link>
+        </div>
+
         <Logo size="xl" />
         <h1
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up"
