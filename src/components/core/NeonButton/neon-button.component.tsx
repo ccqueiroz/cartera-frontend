@@ -44,3 +44,5 @@ export const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
     );
   }
 );
+
+NeonButton.displayName = NeonButton.displayName;
