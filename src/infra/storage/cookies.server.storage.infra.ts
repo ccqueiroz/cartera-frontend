@@ -1,4 +1,3 @@
-"use server";
 import { cookies as nextCookies } from "next/headers";
 
 import { CookiesGateway } from "@/domain/core/Storage/gateway/cookies.gateway";
@@ -12,7 +11,7 @@ export class CookieServerStorage implements CookiesGateway {
 
     if (!data || !data?.value) return null;
 
-    return JSON.parse(data?.value);
+    return JSON.parse(JSON.stringify(data?.value));
   }
 
   save<T>(key: string, data: T, options?: Partial<CookieOptions>): void {

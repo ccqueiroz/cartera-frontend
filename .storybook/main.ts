@@ -4,7 +4,7 @@ const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
   addons: ["@storybook/addon-essentials"],
   framework: "@storybook/nextjs",
-  staticDirs: ["../src/app/fonts"],
+  staticDirs: [],
   features: { backgroundsStoryGlobals: false },
 };
 
