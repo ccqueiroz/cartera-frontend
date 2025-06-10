@@ -1,16 +1,14 @@
-import { Avatar } from "../Avatar/avatar.component";
 import { Logo } from "@/app/(public)/components/Logo/logo.component";
 import { cn } from "@/lib/cn.utils";
-import { NotificationsButtons } from "../NotificationsButton/notifications-button.component";
-import { GreetingComponent } from "../GreetingComponent/greeting-component.component";
+import { Avatar } from "../../components/core/Avatar/avatar.component";
+import { NotificationsButtons } from "../../components/core/NotificationsButton/notifications-button.component";
+import { GreetingComponent } from "../../components/core/GreetingComponent/greeting-component.component";
 
 export function HeaderPrivate() {
   return (
     <header
       aria-label="Header da página"
-      className={cn(
-        "flex flex-col justify-between p-4 mt-2 gap-5"
-      )}
+      className={cn("flex flex-col justify-between p-4 mt-2 gap-5")}
     >
       <div className={cn("flex justify-between items-center")}>
         <div className="flex items-center [&>div]:mb-0">
