@@ -10,7 +10,7 @@ import {
   SingleOrRange,
 } from "@/components/core/DatePicker/date-picker.component";
 import { Label } from "@/components/ui/Label/label";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/components/ui/Checkbox/checkbox";
 import { cn } from "@/lib/cn.utils";
 import { useState } from "react";
 import { CheckedState } from "@radix-ui/react-checkbox";
