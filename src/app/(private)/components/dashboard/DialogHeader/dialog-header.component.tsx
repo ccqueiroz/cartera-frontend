@@ -2,7 +2,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogHeader as DialogHeaderShadcn,
-} from "@/components/ui/dialog";
+} from "@/components/ui/Dialog/dialog";
 import { cn } from "@/lib/cn.utils";
 
 interface DialogHeaderProps {

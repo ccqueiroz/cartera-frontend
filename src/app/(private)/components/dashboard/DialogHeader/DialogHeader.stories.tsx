@@ -1,6 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DialogHeader } from "./dialog-header.component";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/Dialog/dialog";
 
 const meta: Meta<typeof DialogHeader> = {
   component: DialogHeader,
