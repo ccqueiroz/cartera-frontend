@@ -29,7 +29,6 @@ export const GlassCard = ({
       className={cn(
         baseStyles,
         variantStyles[variant],
-
         animationStyles,
         className
       )}
