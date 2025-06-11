@@ -12,7 +12,6 @@ interface BillCardPayableMonthProps {
 }
 export const BillCardPayableMonth = memo(
   ({ bill, index }: BillCardPayableMonthProps) => {
-    console.log("bill", bill);
     return (
       <BillingCard index={index}>
         {!bill && <p>Sem informações</p>}
