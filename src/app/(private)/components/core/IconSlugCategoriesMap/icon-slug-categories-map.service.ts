@@ -3,7 +3,7 @@ export const adapterCategoryDescriptioToSlug = (description: string) =>
     .trim()
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // remove acentos
-    .replace(/\s+/g, "-") // espaços para hífens
-    .replace(/[^\w-]+/g, "") // remove não alfanuméricos
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-");
