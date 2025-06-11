@@ -33,7 +33,7 @@ describe("resolveStatusColor", () => {
   });
 
   it("should return default color for unknown status", () => {
-    expect(resolveStatusColor("UNKNOWN" as any)).toBe(
+    expect(resolveStatusColor("UNKNOWN" as never)).toBe(
       "bg-gray-400/40 text-white"
     );
   });
