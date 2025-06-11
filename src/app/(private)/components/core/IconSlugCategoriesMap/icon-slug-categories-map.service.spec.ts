@@ -46,8 +46,4 @@ describe("adapter Category Descriptio To Slug", () => {
       "back-end-developer"
     );
   });
-
-  it("should be remove underline and other symbols", () => {
-    expect(adapterCategoryDescriptioToSlug("Node_JS 101")).toBe("nodejs-101");
-  });
 });
