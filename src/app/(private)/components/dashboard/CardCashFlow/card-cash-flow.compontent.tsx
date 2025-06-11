@@ -16,31 +16,31 @@ interface CardCashFlowProps {
   proventType: (typeof ProventTypeEnum)[keyof typeof ProventTypeEnum];
   totalAmount: number;
   financialEvents: number;
-  IncomeFixedCosts: number;
+  incomeFixedCosts: number;
 }
 
 const textsByType = {
   receivable: {
     cashFlow: "Entrada de caixa",
     financialEvents: "Receita",
-    IncomeFixedCosts: "Investimentos",
+    incomeFixedCosts: "Investimentos",
   },
   bill: {
     cashFlow: "Saída de caixa",
     financialEvents: "Fixas",
-    IncomeFixedCosts: "Variáveis",
+    incomeFixedCosts: "Variáveis",
   },
 } as const;
 
 export const CardCashFlow = ({
   proventType,
   totalAmount,
-  IncomeFixedCosts,
+  incomeFixedCosts,
   financialEvents,
 }: CardCashFlowProps) => {
   return (
     <GlassCard
-      className="w-full max-w-[330px] max-h-[200px] sm:max-h-[162px] p-5 animate-fade-in-up"
+      className="w-full max-w-[465px] max-h-[220px] sm:max-h-[162px] p-5 animate-fade-in-up"
       style={{ animationDelay: "250ms" }}
     >
       <div className="w-full flex flex-col justify-between items-between gap-3 flex-wrap">
@@ -92,7 +92,7 @@ export const CardCashFlow = ({
                 <CreditCard size={16} className="text-white/70" />
               )}
               <span className="text-white/70">
-                {textsByType[proventType].IncomeFixedCosts}
+                {textsByType[proventType].incomeFixedCosts}
               </span>
             </div>
             <p className="digital text-white">
@@ -101,7 +101,7 @@ export const CardCashFlow = ({
                 style: "currency",
                 currency: "BRL",
                 minimumFractionDigits: 2,
-              }).format(IncomeFixedCosts)}
+              }).format(incomeFixedCosts)}
             </p>
           </div>
           <div>

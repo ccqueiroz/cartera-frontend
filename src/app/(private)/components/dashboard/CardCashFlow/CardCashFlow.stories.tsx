@@ -29,6 +29,6 @@ export const Playground: Story = {
     proventType: "receivable",
     totalAmount: 8219.89,
     financialEvents: 1432.92,
-    IncomeFixedCosts: 5672.82,
+    incomeFixedCosts: 5672.82,
   },
 };
