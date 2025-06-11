@@ -33,7 +33,7 @@ export const FormBillsPayableMonth = ({ bill }: FormBillsPayableMonthProps) => {
   const handleOnChangeDatePick = (date: SingleOrRange) => {
     setIncludePaymentDate(date as Date | undefined);
   };
-  console.log("FormBillsPayableMonth");
+
   return (
     <div className="flex flex-col gap-2 justify-center">
       <fieldset className="border-t border-neon-purple/30 pt-4 mt-1 px-[5px]">
