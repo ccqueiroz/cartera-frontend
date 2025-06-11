@@ -9,11 +9,12 @@
     --background: 240 10% 3.9%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 100% / 0.08;
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100% / 0.15;
+    --popover: 0 0% 100%;
     --popover-foreground: 0 0% 100%;
+    --popover-solid: 270 4% 22%;
 
     --primary: 192 96% 73%;
     --primary-foreground: 0 0% 100%;
@@ -21,28 +22,28 @@
     --secondary: 270 94% 93%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 100% / 0.1;
-    --muted-foreground: 0 0% 100% / 0.7;
+    --muted: 0 0% 100%;
+    --muted-foreground: 0 0% 100%;
 
-    --accent: 0 0% 100% / 0.08;
+    --accent: 0 0% 100%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 100% / 0.08;
-    --input: 0 0% 100% / 0.1;
+    --border: 0 0% 100% ;
+    --input: 0 0% 100%;
     --ring: 192 96% 73%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 100% / 0.1;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 192 96% 73%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 270 94% 93%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 100% / 0.08;
+    --sidebar-border: 0 0% 100%;
     --sidebar-ring: 192 96% 73%;
   }
 }
@@ -89,6 +90,14 @@
     box-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
   }
 
+  .neon-shadow-blue-attenuated {
+    box-shadow: 0 0 12px rgba(125, 249, 255, 0.13);
+  }
+
+  .neon-shadow-purple-attenuated {
+    box-shadow: 0 0 12px rgba(192, 132, 252, 0.13);
+  }
+
   .neon-border {
     @apply border border-neon-blue/50;
   }
@@ -98,7 +107,7 @@
   }
 
   .digital {
-    font-family: "Space Mono", monospace;
+    font-family: "IBM Plex Mono", monospace;
   }
 
   .card-hover {

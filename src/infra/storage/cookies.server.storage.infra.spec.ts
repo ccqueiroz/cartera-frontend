@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 
-import { KEY_THEME_COOKIE } from "@/domain/core/Theme/theme.dto";
 import { CookieServerStorage } from "./cookies.server.storage.infra";
 
 describe("Cookies Server Storage", () => {
@@ -38,10 +37,10 @@ describe("Cookies Server Storage", () => {
   });
 
   it("should save value to cookies", () => {
-    storageMock.save(KEY_THEME_COOKIE, "dark");
+    storageMock.save("KEY_THEME_COOKIE", "dark");
 
     expect(mockCookieStore.set).toHaveBeenCalledWith(
-      KEY_THEME_COOKIE,
+      "KEY_THEME_COOKIE",
       JSON.stringify("dark"),
       undefined
     );
