@@ -1,8 +1,5 @@
 import React from "react";
-import { HeaderPrivate } from "./components/core/Header/header.component";
-import {
-  SidebarProvider,
-} from "@/components/ui/Sidebar/sidebar";
+import { HeaderPrivate } from "./_views/Header/header.view";
 
 export default function LayoutPrivateDashboard({
   children,
@@ -10,11 +7,9 @@ export default function LayoutPrivateDashboard({
   children: React.ReactNode;
 }>) {
   return (
-    <SidebarProvider defaultOpen={false}>
-      <div className="container w-full h-full flex flex-col gap-4">
-        <HeaderPrivate />
-        {children}
-      </div>
-    </SidebarProvider>
+    <div className="container w-full h-full flex flex-col gap-4">
+      <HeaderPrivate />
+      {children}
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn.utils";
+import React from "react";
 
 interface NeonButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,26 +24,25 @@ const variantStyles = {
 const sizeStyles = {
   sm: "text-xs px-3 py-1.5",
   md: "text-sm px-4 py-2",
-  lg: "text-base px-6 py-3",
+  lg: "text-base px-[26px] py-[0.6rem]",
 } as const;
 
-export const NeonButton = ({
-  variant = "blue",
-  size = "md",
-  className,
-  children,
-  ...props
-}: NeonButtonProps) => {
-  const applyVariant = props.disabled
-    ? variantStyles[variant].replace(/hover:[^ ]+/g, "")
-    : variantStyles[variant];
+export const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
+  ({ variant = "blue", size = "md", className, children, ...props }, ref) => {
+    const applyVariant = props.disabled
+      ? variantStyles[variant].replace(/hover:[^ ]+/g, "")
+      : variantStyles[variant];
 
-  return (
-    <button
-      className={cn(baseStyles, applyVariant, sizeStyles[size], className)}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        className={cn(baseStyles, applyVariant, sizeStyles[size], className)}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+NeonButton.displayName = NeonButton.displayName;

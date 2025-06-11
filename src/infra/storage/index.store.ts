@@ -1,4 +1,4 @@
-import { CookieServerStorage } from "../storage/cookies.server.storage.infra";
+import { CookieServerStorage } from "./cookies.server.storage.infra";
 
 const cookiesStorage = new CookieServerStorage();
 

@@ -1,11 +1,11 @@
-import { LayoutPublic } from "../components/layout/layout.view";
+import { LayoutPublic } from "../_views/layout/layout.view";
 import { Logo } from "../components/Logo/logo.component";
 import { ArrowDown } from "lucide-react";
-import { FeaturesPreview } from "./fragments/FeaturesPreview/features-preview.components";
+import { FeaturesPreview } from "./components/FeaturesPreview/features-preview.components";
 import { cn } from "@/lib/cn.utils";
 import Link from "next/link";
 
-export default function LandingPage() {
+export default function HomeView() {
   return (
     <LayoutPublic>
       <div className="max-w-4xl mx-auto text-center">

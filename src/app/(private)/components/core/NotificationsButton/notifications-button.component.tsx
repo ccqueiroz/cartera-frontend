@@ -26,7 +26,7 @@ export const NotificationsButtons = ({
 
   const showAmountNotifications = useMemo(() => {
     return notifications > 0 && !disabled;
-  }, []);
+  }, [disabled]);
 
   return (
     <DropdownMenu>
