@@ -32,14 +32,7 @@ export default function DashBoardView() {
         <FilterSearchReportsByPeriod />
       </div>
 
-      <div
-        className={cn(
-          "grid grid-cols-1 gap-5 my-6",
-          "sm:gap-6",
-          "md:grid-cols-2",
-          "lg:grid-cols-3"
-        )}
-      >
+      <div className={cn("grid grid-cols-1 gap-3 my-6", "lg:grid-cols-3")}>
         <div className="col-span-3 xl:col-span-1">
           <Suspense>
             <BillsPayableMonth />
@@ -48,17 +41,15 @@ export default function DashBoardView() {
 
         <div
           className={cn(
-            "col-span-3 grid grid-cols-3 gap-3",
-            "md:col-span-3",
-            "xl:col-span-2"
+            "col-span-3 grid-flow-col grid-rows-3 gap-3",
+            "xl:col-span-2",
+            "border"
           )}
         >
           <div
             className={cn(
-              "col-span-3 flex flex-col gap-5 py-0 pr-0",
-              "sm:gap-7 sm-pr-1",
-              "md:flex-row md:justify-between",
-              "xl:col-span-1 xl:flex-col xl:gap-9 xl:py-6"
+              "rol-span-1 col-span-2 flex flex-col gap-5",
+              "md:flex-row md:justify-between md:items-center"
             )}
           >
             <Suspense>
@@ -67,7 +58,7 @@ export default function DashBoardView() {
                   proventType: "receivable",
                   totalAmount: 8219.89,
                   financialEvents: 1432.92,
-                  IncomeFixedCosts: 5672.82,
+                  incomeFixedCosts: 5672.82,
                 }}
               />
             </Suspense>
@@ -78,12 +69,20 @@ export default function DashBoardView() {
                   proventType: "bill",
                   totalAmount: 8219.89,
                   financialEvents: 1432.92,
-                  IncomeFixedCosts: 5672.82,
+                  incomeFixedCosts: 5672.82,
                 }}
               />
             </Suspense>
           </div>
-          <div className="border col-span-3 xl:col-span-2">cards gráfico</div>
+          <div
+            className={cn(
+              "rol-span-2 col-span-2 flex flex-col gap-5",
+              "md:flex-row md:justify-between"
+            )}
+          >
+            card gráfico e outra informação que possa ser relevante e caiba no
+            layout e não perca a estética clean(?)
+          </div>
         </div>
       </div>
     </section>
