@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { FilterSearchReportsByPeriod } from "../_views/dashboard/FilterSearchReportsByPeriod/filter-search-reports-by-period.view";
 import { cn } from "@/lib/cn.utils";
+import { GlassCard } from "@/components/core/GlassCard/glass-card.component";
 
 const BillsPayableMonth = dynamic(
   () =>
@@ -23,12 +24,21 @@ const CardCashFlow = dynamic(
   }
 );
 
+const CashFlowGaugeChart = dynamic(
+  () =>
+    import(
+      "../components/dashboard/CashFlowGaugeChart/cash-flow-gauge-chart.component"
+    ).then((mod) => mod.CashFlowGaugeChart),
+  {
+    ssr: false,
+  }
+);
+
 export default function DashBoardView() {
   return (
     <section className="container mx-auto p-4">
       <div className="flex flex-col sm:flex-row items-center gap-3 mt-3 md:mt-0 justify-between">
         <h2 className="text-xl font-semibold text-white">Painel Financeiro</h2>
-
         <FilterSearchReportsByPeriod />
       </div>
 
@@ -39,51 +49,53 @@ export default function DashBoardView() {
           </Suspense>
         </div>
 
-        <div
-          className={cn(
-            "col-span-3 grid-flow-col grid-rows-3 gap-3",
-            "xl:col-span-2",
-            "border"
-          )}
+        <GlassCard
+          className={cn("col-span-3 w-full h-full p-1", "xl:col-span-2")}
+          variant="blue"
+          animatePulse
         >
           <div
             className={cn(
-              "rol-span-1 col-span-2 flex flex-col gap-5",
-              "md:flex-row md:justify-between md:items-center"
+              "w-full h-full grid grid-cols-1 grid-rows-subgrid gap-3",
+              "sm:grid-cols-2 sm:grid-rows-[0.5fr_1fr] sm:gap-1"
             )}
           >
-            <Suspense>
-              <CardCashFlow
-                {...{
-                  proventType: "receivable",
-                  totalAmount: 8219.89,
-                  financialEvents: 1432.92,
-                  incomeFixedCosts: 5672.82,
-                }}
-              />
-            </Suspense>
-
-            <Suspense>
-              <CardCashFlow
-                {...{
-                  proventType: "bill",
-                  totalAmount: 8219.89,
-                  financialEvents: 1432.92,
-                  incomeFixedCosts: 5672.82,
-                }}
-              />
-            </Suspense>
+            <div className="w-full h-full">
+              <Suspense>
+                <CardCashFlow
+                  {...{
+                    proventType: "receivable",
+                    totalAmount: 8219.89,
+                    financialEvents: 1432.92,
+                    incomeFixedCosts: 5672.82,
+                  }}
+                />
+              </Suspense>
+            </div>
+            <div className="w-full h-full">
+              <Suspense>
+                <CardCashFlow
+                  {...{
+                    proventType: "bill",
+                    totalAmount: 8219.89,
+                    financialEvents: 1432.92,
+                    incomeFixedCosts: 672.82,
+                  }}
+                />
+              </Suspense>
+            </div>
+            <div className="w-full h-full">
+              <Suspense>
+                <CashFlowGaugeChart bill={21002.08} receivable={2509.19} />
+              </Suspense>
+            </div>
+            <div className="w-full h-full">
+              <Suspense>
+                <CashFlowGaugeChart bill={122.08} receivable={2509.19} />
+              </Suspense>
+            </div>
           </div>
-          <div
-            className={cn(
-              "rol-span-2 col-span-2 flex flex-col gap-5",
-              "md:flex-row md:justify-between"
-            )}
-          >
-            card gráfico e outra informação que possa ser relevante e caiba no
-            layout e não perca a estética clean(?)
-          </div>
-        </div>
+        </GlassCard>
       </div>
     </section>
   );
