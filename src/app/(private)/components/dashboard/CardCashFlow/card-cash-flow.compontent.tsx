@@ -40,8 +40,9 @@ export const CardCashFlow = ({
 }: CardCashFlowProps) => {
   return (
     <GlassCard
-      className="w-full max-w-[465px] max-h-[220px] sm:max-h-[162px] p-5 animate-fade-in-up"
+      className="w-full max-w-[600px] max-h-[220px] sm:max-h-[162px] p-5 animate-fade-in-up"
       style={{ animationDelay: "250ms" }}
+      variant="dark"
     >
       <div className="w-full flex flex-col justify-between items-between gap-3 flex-wrap">
         <div className="flex gap-4 items-center justify-start">
@@ -77,9 +78,8 @@ export const CardCashFlow = ({
         </div>
         <div
           className={cn(
-            "flex flex-col gap-1 items-center justify-between text-sm mt-4 flex-wrap",
-            "xs:flex-row xs:gap-6",
-            "sm:flex-row sm:gap-16",
+            "flex gap-1 items-start justify-between text-sm mt-4 flex-wrap",
+            "sm:gap-16",
             "2xl:gap-x-12"
           )}
         >
