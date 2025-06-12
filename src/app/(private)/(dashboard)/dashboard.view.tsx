@@ -50,14 +50,14 @@ export default function DashBoardView() {
         </div>
 
         <GlassCard
-          className={cn("col-span-3 w-full h-full p-1", "xl:col-span-2")}
+          className={cn("col-span-3 w-full h-full p-5", "xl:col-span-2")}
           variant="blue"
           animatePulse
         >
           <div
             className={cn(
-              "w-full h-full grid grid-cols-1 grid-rows-subgrid gap-3",
-              "sm:grid-cols-2 sm:grid-rows-[0.5fr_1fr] sm:gap-1"
+              "w-full h-full grid grid-cols-1 grid-rows-subgrid gap-5",
+              "sm:grid-cols-2 sm:grid-rows-[0.5fr_1fr]"
             )}
           >
             <div className="w-full h-full">
