@@ -1,4 +1,4 @@
-import { CookieOptions } from "../cookies.dto";
+import { CookieOptions } from "./cookies.dto";
 
 export interface CookiesGateway {
   recover(key: string): string | null;
