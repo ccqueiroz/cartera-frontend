@@ -23,6 +23,16 @@ const CashFlowGaugeChart = dynamic(
   }
 );
 
+const CardRecentTransactions = dynamic(
+  () =>
+    import(
+      "@/app/(private)/components/dashboard/CardRecentTransactions/card-recent-transactions.component"
+    ).then((mod) => mod.CardRecentTransactions),
+  {
+    ssr: false,
+  }
+);
+
 export default async function CashFlowMonth() {
   return (
     <GlassCard
@@ -67,7 +77,7 @@ export default async function CashFlowMonth() {
         </div>
         <div className="w-full h-full">
           <Suspense>
-            <CashFlowGaugeChart bill={122.08} receivable={2509.19} />
+            <CardRecentTransactions />
           </Suspense>
         </div>
       </div>
