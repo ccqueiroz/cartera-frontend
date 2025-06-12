@@ -35,7 +35,9 @@ const formatNotificationMessage = ({
     style: "percent",
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
-  }).format(percentBalance);
+  })
+    .format(percentBalance)
+    .replace("%", "");
 
   const formattedBalance = totalBalance.toLocaleString("pt-BR", {
     style: "currency",
@@ -163,7 +165,6 @@ export const CashFlowGaugeChart = ({
               cornerRadius={2}
               isAnimationActive
               forceCornerRadius
-              cornerIsExternal
             />
           </RadialBarChart>
         </ChartContainer>
