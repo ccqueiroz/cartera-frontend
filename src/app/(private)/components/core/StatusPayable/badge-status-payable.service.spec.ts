@@ -1,33 +1,33 @@
+import { StatusTransaction } from "@/domain/StatusTransaction/status-transaction.dto";
 import { resolveStatusColor } from "./badge-status-payable.service";
-import { StatusBill } from "@/domain/Bill/bill.dto";
 
 describe("resolveStatusColor", () => {
   it("should return the correct color for PAID", () => {
-    expect(resolveStatusColor(StatusBill.PAID)).toBe(
+    expect(resolveStatusColor(StatusTransaction.PAID)).toBe(
       "bg-green-400/40 text-neon-white"
     );
   });
 
   it("should return the correct color for DUE_DAY", () => {
-    expect(resolveStatusColor(StatusBill.DUE_DAY)).toBe(
+    expect(resolveStatusColor(StatusTransaction.DUE_DAY)).toBe(
       "bg-orange-500/40 text-neon-white"
     );
   });
 
   it("should return the correct color for DUE_SOON", () => {
-    expect(resolveStatusColor(StatusBill.DUE_SOON)).toBe(
+    expect(resolveStatusColor(StatusTransaction.DUE_SOON)).toBe(
       "bg-yellow-400/40 text-neon-white"
     );
   });
 
   it("should return the correct color for OVERDUE", () => {
-    expect(resolveStatusColor(StatusBill.OVERDUE)).toBe(
+    expect(resolveStatusColor(StatusTransaction.OVERDUE)).toBe(
       "bg-red-500/40 text-neon-white"
     );
   });
 
   it("should return the correct color for PENDING", () => {
-    expect(resolveStatusColor(StatusBill.PENDING)).toBe(
+    expect(resolveStatusColor(StatusTransaction.PENDING)).toBe(
       "bg-neon-purple/40 text-neon-white"
     );
   });

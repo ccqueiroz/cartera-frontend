@@ -1,4 +1,5 @@
 import { BaseDto } from "../core/BaseDto/base-dto.dto";
+import { StatusTransaction } from "../StatusTransaction/status-transaction.dto";
 
 export type BillDTO = {
   id?: string;
@@ -32,22 +33,6 @@ export type InvoiceCardData = {
   invoiceCardId: string;
 };
 
-export const StatusBill = {
-  PENDING: "PENDING",
-  DUE_SOON: "DUE_SOON",
-  DUE_DAY: "DUE_DAY",
-  OVERDUE: "OVERDUE",
-  PAID: "PAID",
-} as const;
-
-export const StatusBillLabel = {
-  PENDING: "Pendente",
-  DUE_SOON: "Próximo ao vencimento",
-  DUE_DAY: "Dia do vencimento",
-  OVERDUE: "Atrasado",
-  PAID: "Pago",
-} as const;
-
 export type BillsPayableMonthOutPutDTO = {
   id: string;
   amount: number;
@@ -55,5 +40,5 @@ export type BillsPayableMonthOutPutDTO = {
   billDate: number;
   categoryId: string;
   categoryDescription: string;
-  status: (typeof StatusBill)[keyof typeof StatusBill];
+  status: (typeof StatusTransaction)[keyof typeof StatusTransaction];
 };
