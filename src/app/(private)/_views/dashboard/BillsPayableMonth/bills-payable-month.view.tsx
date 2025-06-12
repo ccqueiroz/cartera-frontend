@@ -101,11 +101,11 @@ const BILLS_DATA: BillsPayableMonthOutPutDTO[] = [
 
 export default async function BillsPayableMonth() {
   return (
-    <GlassCard className="p-5 h-[500px] overflow-y-auto w-full">
+    <GlassCard className="p-5 h-[500px] overflow-y-auto w-full" variant="blue">
       <h2 className="text-lg font-semibold text-white mb-4">
         Contas a Pagar do Mês
       </h2>
-      <div id="teste" className="space-y-3">
+      <div className="space-y-3">
         {BILLS_DATA.map((bill, index) => (
           <Dialog key={bill.id}>
             <DialogTrigger asChild>
