@@ -1,7 +1,9 @@
 import { cn } from "@/lib/cn.utils";
 
+export type VariantGlassType = "default" | "light" | "dark" | "blue" | "purple";
+
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "light" | "dark" | "blue" | "purple";
+  variant?: VariantGlassType;
   className?: string;
   children: React.ReactNode;
   animate?: boolean;
