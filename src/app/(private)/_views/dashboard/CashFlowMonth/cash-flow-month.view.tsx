@@ -23,11 +23,11 @@ const CashFlowGaugeChart = dynamic(
   }
 );
 
-const CardRecentTransactions = dynamic(
+const RecentTransactions = dynamic(
   () =>
-    import(
-      "@/app/(private)/components/dashboard/CardRecentTransactions/card-recent-transactions.component"
-    ).then((mod) => mod.CardRecentTransactions),
+    import("../RecentTransactions/recent-transactions.view").then(
+      (mod) => mod.default
+    ),
   {
     ssr: false,
   }
@@ -77,7 +77,7 @@ export default async function CashFlowMonth() {
         </div>
         <div className="w-full h-full">
           <Suspense>
-            <CardRecentTransactions />
+            <RecentTransactions />
           </Suspense>
         </div>
       </div>
