@@ -7,7 +7,7 @@ export default function LayoutPrivateDashboard({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="container w-full h-full flex flex-col gap-4">
+    <div className="container w-full h-full flex flex-col gap-4 p-1 sm:p-4">
       <HeaderPrivate />
       {children}
     </div>

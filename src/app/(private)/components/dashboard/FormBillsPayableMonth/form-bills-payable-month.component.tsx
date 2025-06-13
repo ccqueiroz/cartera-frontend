@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  BillsPayableMonthOutPutDTO,
-  StatusBillLabel,
-} from "@/domain/Bill/bill.dto";
+import { StatusTransactionLabel } from "@/domain/StatusTransaction/status-transaction.dto";
 import { resolveIcon } from "../../core/IconSlugCategoriesMap/icon-slug-categories-map.component";
 import {
   DatePicker,
@@ -14,6 +11,7 @@ import { Checkbox } from "@/components/ui/Checkbox/checkbox";
 import { cn } from "@/lib/cn.utils";
 import { useState } from "react";
 import { CheckedState } from "@radix-ui/react-checkbox";
+import { BillsPayableMonthOutPutDTO } from "@/domain/Bill/bill.dto";
 
 interface FormBillsPayableMonthProps {
   bill: BillsPayableMonthOutPutDTO;
@@ -33,7 +31,7 @@ export const FormBillsPayableMonth = ({ bill }: FormBillsPayableMonthProps) => {
   const handleOnChangeDatePick = (date: SingleOrRange) => {
     setIncludePaymentDate(date as Date | undefined);
   };
-  console.log("FormBillsPayableMonth");
+
   return (
     <div className="flex flex-col gap-2 justify-center">
       <fieldset className="border-t border-neon-purple/30 pt-4 mt-1 px-[5px]">
@@ -67,7 +65,7 @@ export const FormBillsPayableMonth = ({ bill }: FormBillsPayableMonthProps) => {
           <div className="flex justify-start items-center gap-2">
             <span className="text-sm">Status: </span>
             <span className="text-sm text-muted-foreground">
-              {StatusBillLabel[bill.status]}
+              {StatusTransactionLabel[bill.status]}
             </span>
           </div>
         </div>

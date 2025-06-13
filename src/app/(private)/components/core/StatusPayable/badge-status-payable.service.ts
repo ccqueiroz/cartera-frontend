@@ -1,7 +1,7 @@
-import { StatusBill } from "@/domain/Bill/bill.dto";
+import { StatusTransaction } from "@/domain/StatusTransaction/status-transaction.dto";
 
 const ColorStatusPayable: Record<
-  (typeof StatusBill)[keyof typeof StatusBill],
+  (typeof StatusTransaction)[keyof typeof StatusTransaction],
   string
 > = {
   PAID: "bg-green-400/40 text-neon-white",
@@ -12,12 +12,12 @@ const ColorStatusPayable: Record<
 };
 
 export function resolveStatusColor(
-  status: (typeof StatusBill)[keyof typeof StatusBill]
+  status: (typeof StatusTransaction)[keyof typeof StatusTransaction]
 ): string {
   return (
     (
       ColorStatusPayable as Record<
-        (typeof StatusBill)[keyof typeof StatusBill],
+        (typeof StatusTransaction)[keyof typeof StatusTransaction],
         string
       >
     )[status] ?? "bg-gray-400/40 text-white"
