@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CardNotFoundData } from "./card-not-found-data.component";
-import { text } from "stream/consumers";
 
 const meta: Meta<typeof CardNotFoundData> = {
   component: CardNotFoundData,
