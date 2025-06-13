@@ -12,7 +12,7 @@ export const BillingCard = memo(({ children, index = 0 }: BillingCardProps) => {
     <GlassCard
       variant="dark"
       className={cn(
-        "w-full h-full flex items-start justify-between p-3 rounded-lg animate-fade-in-up card-hover cursor-pointer",
+        "w-full h-full flex flex-col items-start justify-between p-3 rounded-lg animate-fade-in-up card-hover cursor-pointer",
         "md:flex-row md:items-center"
       )}
       style={{ animationDelay: `${index * 50}ms` }}
