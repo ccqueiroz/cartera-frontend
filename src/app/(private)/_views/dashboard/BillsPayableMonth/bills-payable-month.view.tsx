@@ -2,7 +2,6 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { GlassCard } from "@/components/core/GlassCard/glass-card.component";
 import { BillsPayableMonthOutPutDTO } from "@/domain/Bill/bill.dto";
-import { convertTimeStampInDateHelper } from "@/infra/helpers/index.helpers";
 import {
   Dialog,
   DialogClose,
@@ -16,6 +15,7 @@ import { DialogHeader } from "@/app/(private)/components/dashboard/DialogHeader/
 import { FormBillsPayableMonth } from "@/app/(private)/components/dashboard/FormBillsPayableMonth/form-bills-payable-month.component";
 import { updateBillPayable } from "./bills-payable-month.service";
 import { CardNotFoundData } from "@/app/(private)/components/dashboard/CardFoundData/card-not-found-data.component";
+import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.infra.factory";
 
 const DialogContent = dynamic(
   () =>
@@ -119,7 +119,7 @@ export default async function BillsPayableMonth() {
                   <span className="hidden sm:block">-</span>
                   <span>
                     Data de vencimento:{" "}
-                    {convertTimeStampInDateHelper(bill.billDate, "DD/MM/AAAA")}
+                    {convertTimeStampInDateFactory(bill.billDate, "DD/MM/AAAA")}
                   </span>
                 </DialogHeader>
                 <form
