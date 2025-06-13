@@ -54,7 +54,27 @@ describe("create Transaction Factory", () => {
       transactionType: "bill",
     });
 
-    expect(result).toEqual(bill);
+    expect(result).toEqual({
+      type: "bill",
+      id: bill.id,
+      personUserId: bill.personUserId,
+      userId: bill.userId,
+      descriptionTransaction: bill.descriptionBill,
+      fixedTransaction: bill.fixedBill,
+      dueDateTransaction: bill.billDate,
+      settledDate: bill.payDate,
+      settledOut: bill.payOut,
+      icon: bill.icon,
+      amount: bill.amount,
+      paymentStatusId: bill.paymentStatusId,
+      paymentStatusDescription: bill.paymentStatusDescription,
+      categoryId: bill.categoryId,
+      categoryDescription: bill.categoryDescription,
+      paymentMethodId: bill.paymentMethodId,
+      paymentMethodDescription: bill.paymentMethodDescription,
+      updatedAt: bill.updatedAt,
+      createdAt: bill.createdAt,
+    });
   });
 
   it("should create a transaction from a ReceivableDTO", () => {
@@ -63,7 +83,27 @@ describe("create Transaction Factory", () => {
       transactionType: "receivable",
     });
 
-    expect(result).toEqual(receivable);
+    expect(result).toEqual({
+      type: "receivable",
+      id: receivable.id,
+      personUserId: receivable.personUserId,
+      userId: receivable.userId,
+      descriptionTransaction: receivable.descriptionReceivable,
+      fixedTransaction: receivable.fixedReceivable,
+      dueDateTransaction: receivable.receivableDate,
+      settledDate: receivable.receivalDate,
+      settledOut: receivable.receival,
+      icon: receivable.icon,
+      amount: receivable.amount,
+      paymentStatusId: receivable.paymentStatusId,
+      paymentStatusDescription: receivable.paymentStatusDescription,
+      categoryId: receivable.categoryId,
+      categoryDescription: receivable.categoryDescription,
+      paymentMethodId: receivable.paymentMethodId,
+      paymentMethodDescription: receivable.paymentMethodDescription,
+      updatedAt: receivable.updatedAt,
+      createdAt: receivable.createdAt,
+    });
   });
 
   it("should throw an error if transaction is neither BillDTO nor ReceivableDTO", () => {
