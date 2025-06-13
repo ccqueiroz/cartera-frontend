@@ -2,7 +2,7 @@
 
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
 import { ChartConfig, ChartContainer } from "@/components/ui/Chart/chart";
-import { NotificationCashFlowHealth } from "@/domain/CashFlow/cash-flow.dto";
+import { NotificationCashFlowHealth } from "@/domain/CashFlow/cash-flow.constants";
 import { useMemo } from "react";
 import { GlassCard } from "@/components/core/GlassCard/glass-card.component";
 import { cn } from "@/lib/cn.utils";
