@@ -1,5 +1,5 @@
 import { BillDTO } from "../Bill/bill.dto";
-import { DomainMessageList } from "../core/Constants/domain-message-list";
+import { DomainMessageList } from "../core/Constants/domain-message-list.constants";
 import { ReceivableDTO } from "../Receivable/receivable.dto";
 import { TransactionDTO, TransactionFactoryProps } from "./transaction.dto";
 
