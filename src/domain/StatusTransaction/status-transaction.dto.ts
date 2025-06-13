@@ -13,3 +13,13 @@ export const StatusTransactionLabel = {
   OVERDUE: "Atrasado",
   PAID: "Pago",
 } as const;
+
+export const StatusByTransactionType = {
+  BILL: "BILL",
+  RECEIVABLE: "RECEIVABLE",
+} as const;
+
+export const StatusByTransactionTypeLabel = {
+  BILL: "Pagamento",
+  RECEIVABLE: "Recebimento",
+} as const;
