@@ -23,6 +23,16 @@ const CashFlowMonth = dynamic(
   }
 );
 
+const CashFlowByYearChart = dynamic(
+  () =>
+    import(
+      "../_views/dashboard/CashFlowByYearChart/cash-flow-by-year-chart.view"
+    ).then((mod) => mod.default),
+  {
+    ssr: false,
+  }
+);
+
 export default function DashBoardView() {
   return (
     <section className="container mx-auto p-4">
@@ -40,6 +50,12 @@ export default function DashBoardView() {
 
         <Suspense>
           <CashFlowMonth />
+        </Suspense>
+      </div>
+
+      <div>
+        <Suspense>
+          <CashFlowByYearChart />
         </Suspense>
       </div>
     </section>
