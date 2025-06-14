@@ -2,7 +2,7 @@ import {
   FormatDates,
   FormatDateValues,
 } from "@/domain/core/Helpers/convert-timestamp-in-date.dto";
-import { ConvertTimestampInDateGateway } from "@/domain/core/Helpers/gateway/convert-timestamp-in-date.gateway";
+import { ConvertTimestampInDateGateway } from "@/domain/core/Helpers/convert-timestamp-in-date.gateway";
 
 export class ConvertTimestampInDateHelper
   implements ConvertTimestampInDateGateway

@@ -16,7 +16,6 @@ describe("Convert Timestamp In Date Helper", () => {
 
   it("should format date as MM/AAAA", () => {
     const result = helper.execute(timestamp, FormatDates["MM/AAAA"]);
-    console.log(result);
     expect(result).toMatch(/^\d{2}\/\d{4}$/);
   });
 

@@ -127,6 +127,16 @@ export default {
             boxShadow: "0 0 18px rgba(192, 132, 252, 0.8)",
           },
         },
+        "pulse-neon-card": {
+          "0%, 100%": {
+            opacity: "1",
+            boxShadow: "0 0 12px rgba(125, 249, 255, 0.20)",
+          },
+          "50%": {
+            opacity: "0.8",
+            boxShadow: "0 0 18px rgba(192, 132, 252, 0.20)",
+          },
+        },
         "fade-in-up": {
           "0%": {
             opacity: "0",
@@ -147,6 +157,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-neon": "pulse-neon 3s ease-in-out infinite",
+        "pulse-neon-card": "pulse-neon-card 4s ease-in-out infinite",
         "fade-in-up": "fade-in-up 0.15s ease-out",
         "gradient-flow": "gradient-flow 8s ease infinite",
       },

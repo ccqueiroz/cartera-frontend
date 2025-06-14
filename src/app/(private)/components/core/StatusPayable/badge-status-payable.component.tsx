@@ -1,11 +1,14 @@
 import { cn } from "@/lib/cn.utils";
 import { resolveStatusColor } from "./badge-status-payable.service";
-import { StatusBill, StatusBillLabel } from "@/domain/Bill/bill.dto";
+import {
+  StatusTransaction,
+  StatusTransactionLabel,
+} from "@/domain/StatusTransaction/status-transaction.dto";
 
 export const BadgeStatusPayable = ({
   status,
 }: {
-  status: (typeof StatusBill)[keyof typeof StatusBill];
+  status: (typeof StatusTransaction)[keyof typeof StatusTransaction];
 }) => {
   return (
     <span
@@ -14,7 +17,7 @@ export const BadgeStatusPayable = ({
         resolveStatusColor(status)
       )}
     >
-      {StatusBillLabel[status]}
+      {StatusTransactionLabel[status]}
     </span>
   );
 };

@@ -1,6 +1,6 @@
 import { cookies as nextCookies } from "next/headers";
 
-import { CookiesGateway } from "@/domain/core/Storage/gateway/cookies.gateway";
+import { CookiesGateway } from "@/domain/core/Storage/cookies.gateway";
 import { CookieOptions } from "@/domain/core/Storage/cookies.dto";
 
 export class CookieServerStorage implements CookiesGateway {

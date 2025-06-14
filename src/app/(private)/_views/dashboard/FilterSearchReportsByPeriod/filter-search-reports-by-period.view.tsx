@@ -6,7 +6,7 @@ export const FilterSearchReportsByPeriod = () => {
     <div className="flex flex-col-reverse sm:flex-row items-center gap-3 mt-3 md:mt-0">
       <DatePicker mode="range" />
 
-      <NeonButton variant="blue">Nova Transação</NeonButton>
+      <NeonButton variant="blue" className="w-full">Nova Transação</NeonButton>
     </div>
   );
 };
