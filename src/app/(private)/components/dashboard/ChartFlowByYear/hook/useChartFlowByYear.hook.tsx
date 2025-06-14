@@ -58,7 +58,7 @@ export function useChartCashFlowByYear() {
 
   const handleChangeYearComparisonCashFlow = useCallback(
     (value: string) => {
-      //validação básica.
+      if (!/[0-9]{4}/.test(value) && value !== '') return;
 
       setSummary((prev) => ({
         ...prev,
