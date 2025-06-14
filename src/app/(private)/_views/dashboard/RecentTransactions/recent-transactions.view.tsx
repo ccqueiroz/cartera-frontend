@@ -14,6 +14,7 @@ import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timesta
 import { CardRecentTransaction } from "@/app/(private)/components/dashboard/CardRecentTransaction/card-recent-transaction.component";
 import { NeonButton } from "@/components/core/NeonButton/neon-button.component";
 import { ModalFormRecentTransaction } from "@/app/(private)/components/dashboard/ModalFormRecentTransaction/modal-form-recent-transaction.component";
+import { cn } from "@/lib/cn.utils";
 
 const getTypeTransaction = (type: TransactionsType) => {
   if (type === "bill") return "Pagamento";
@@ -27,10 +28,18 @@ export default async function RecentTransactions() {
   return (
     <GlassCard
       variant="dark"
-      className="w-full max-w-[600px] p-5 animate-fade-in-up h-[276px] overflow-y-auto"
+      className={cn(
+        "w-full max-w-[600px] p-1 animate-fade-in-up h-[276px] overflow-y-auto",
+        "lg:p-5"
+      )}
       style={{ animationDelay: "250ms" }}
     >
-      <h2 className="text-lg font-semibold text-white mb-4">
+      <h2
+        className={cn(
+          "text-lg font-semibold text-white mb-4 mt-4 ml-2",
+          "lg:mt-0 ml-0"
+        )}
+      >
         Transações recentes
       </h2>
       {transactions?.length > 0 ? (

@@ -2,7 +2,7 @@
 
 import { BillDTO } from "@/domain/Bill/bill.dto";
 import { ReceivableDTO } from "@/domain/Receivable/receivable.dto";
-import { convertBillsAndReceivablesIntoTransactionsFactory } from "@/factories/usecase/convert-bills-and-receivables-into-transactions.factory";
+import { convertBillsAndReceivablesIntoTransactionsFactoryUseCase } from "@/factories/usecase/usecase.factories";
 
 const billsList: Array<BillDTO> = [
   {
@@ -96,7 +96,7 @@ const receivablesList: Array<ReceivableDTO> = [
 
 export default async function getRecentTransactions() {
   const transactions =
-    convertBillsAndReceivablesIntoTransactionsFactory().execute({
+    convertBillsAndReceivablesIntoTransactionsFactoryUseCase().execute({
       billsList,
       receivablesList,
     });

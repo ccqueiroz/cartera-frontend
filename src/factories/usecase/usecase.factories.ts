@@ -1,3 +1,7 @@
-import { convertBillsAndReceivablesIntoTransactionsFactory } from "./convert-bills-and-receivables-into-transactions.factory";
+import { convertBillsAndReceivablesIntoTransactionsFactoryUseCase } from "./convert-bills-and-receivables-into-transactions.factory";
+import { TransformCashFlowByYearToSummaryFactoryUseCase } from "./transform-cash-flow-by-year-to-summary.factory";
 
-export { convertBillsAndReceivablesIntoTransactionsFactory };
+export {
+  convertBillsAndReceivablesIntoTransactionsFactoryUseCase,
+  TransformCashFlowByYearToSummaryFactoryUseCase,
+};

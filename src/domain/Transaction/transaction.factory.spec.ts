@@ -1,5 +1,5 @@
 import { createTransactionFactory } from "@/domain/Transaction/transaction.factory";
-import { DomainMessageList } from "@/domain/core/Constants/domain-message-list";
+import { DomainMessageList } from "@/domain/core/Constants/domain-message-list.constants";
 import { BillDTO } from "@/domain/Bill/bill.dto";
 import { ReceivableDTO } from "@/domain/Receivable/receivable.dto";
 

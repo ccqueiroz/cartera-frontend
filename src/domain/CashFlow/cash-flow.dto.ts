@@ -1,20 +1,32 @@
-export const NotificationCashFlowHealthKeys = {
-  "hight-surplus": "hight-surplus",
-  "modarate-surplus": "modarate-surplus",
-  balance: "balance",
-  "moderate-deficit": "moderate-deficit",
-  "severe-deficit": "severe-deficit",
-  fallback: "fallback",
+export type CashFlowByYear = {
+  year: number;
+  month: string;
+  generalIncomes: number;
+  paidIncomes: number;
+  generalExpenses: number;
+  paidExpenses: number;
+  generalProfit: number;
+  paidProfit: number;
+};
+
+export const typeComparisonCashFlow = {
+  PAID_PROFIT: "PAID_PROFIT",
+  PROFIT: "PROFIT",
+  INCOMES: "INCOMES",
+  EXPENSES: "EXPENSES",
 } as const;
 
-export const NotificationCashFlowHealth = {
-  "hight-surplus": "Excelente! Saldo positivo de R$ {totalBalance}.",
-  "modarate-surplus":
-    "Bom trabalho! Saldo permanece positivo R$ {totalBalance}.",
-  balance: "Saldo está equilibrado em R$ {totalBalance}.",
-  "moderate-deficit":
-    "⚠️ Atenção: suas despesas ultrapassaram as receitas em {percentBalance}%. Saldo atual de –R$ {totalBalance}.",
-  "severe-deficit":
-    "🚨 Cuidado! Suas despesas foram {percentBalance}% maiores que a receita. Déficit de R$ {totalBalance}.",
-  fallback: "Não foi possível identificar a saúde do seu fluxo de caixa.",
+export const typeComparisonCashFlowLabel = {
+  PAID_PROFIT: "Lucro Real",
+  PROFIT: "Lucro Previsto",
+  INCOMES: "Entradas",
+  EXPENSES: "Saídas",
 } as const;
+
+export type CashFlowByYearDTOSumary = {
+  typeComparison: (typeof typeComparisonCashFlow)[keyof typeof typeComparisonCashFlow];
+  year: number;
+  month: string;
+  expenses: number;
+  paid: number;
+};

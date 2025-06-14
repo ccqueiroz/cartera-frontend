@@ -2,9 +2,11 @@
 
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
 import { ChartConfig, ChartContainer } from "@/components/ui/Chart/chart";
-import { NotificationCashFlowHealth } from "@/domain/CashFlow/cash-flow.dto";
+import { NotificationCashFlowHealth } from "@/domain/CashFlow/cash-flow.constants";
 import { useMemo } from "react";
 import { GlassCard } from "@/components/core/GlassCard/glass-card.component";
+import { cn } from "@/lib/cn.utils";
+import { useIsMobile } from "@/hooks/use-mobile.hook";
 
 const chartConfig = {
   desktop: {
@@ -56,6 +58,7 @@ export const CashFlowGaugeChart = ({
 }: CashFlowGaugeChartProps) => {
   const totalBalance = receivable - bill;
   const percentBalance = bill / (bill + receivable);
+  const isMobile = useIsMobile();
 
   const notificationCashFlowHealth = useMemo(() => {
     if (percentBalance >= 0 && percentBalance <= 0.2)
@@ -64,12 +67,16 @@ export const CashFlowGaugeChart = ({
       return NotificationCashFlowHealth["modarate-surplus"];
     else if (percentBalance > 0.4 && percentBalance <= 0.6)
       return NotificationCashFlowHealth["balance"];
-    else if (percentBalance > 0.6 && percentBalance <= 0.8)
+    else if (percentBalance > 0.6 && percentBalance <= 0.8 && !isMobile)
       return NotificationCashFlowHealth["moderate-deficit"];
-    else if (percentBalance > 0.8 && percentBalance <= 100)
+    else if (percentBalance > 0.8 && percentBalance <= 100 && !isMobile)
       return NotificationCashFlowHealth["severe-deficit"];
+    else if (percentBalance > 0.6 && percentBalance <= 0.8 && isMobile)
+      return NotificationCashFlowHealth["moderate-deficit-mobile"];
+    else if (percentBalance > 0.8 && percentBalance <= 100 && isMobile)
+      return NotificationCashFlowHealth["severe-deficit-mobile"];
     else return NotificationCashFlowHealth.fallback;
-  }, [percentBalance]);
+  }, [percentBalance, isMobile]);
 
   const notificationLines = useMemo(() => {
     return formatNotificationMessage({
@@ -91,7 +98,10 @@ export const CashFlowGaugeChart = ({
       <div className="w-full flex flex-col justify-between items-between ">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square w-full h-full max-w-[600px] max-h-[190px]"
+          className={cn(
+            "mx-auto aspect-square w-full h-full max-w-[600px] max-h-[200px]",
+            "sm:max-h-[190px]"
+          )}
         >
           <RadialBarChart
             data={[{ month: "Junho", receivable, bill }]}

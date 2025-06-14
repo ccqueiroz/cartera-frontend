@@ -4,7 +4,7 @@ import { ConvertBillsAndReceivablesIntoTransactionsUseCase } from "@/usecases/Tr
 let convertBillsAndReceivablesIntoTransactions: ConvertBillsAndReceivablesIntoTransactionsUseCase | null =
   null;
 
-export const convertBillsAndReceivablesIntoTransactionsFactory =
+export const convertBillsAndReceivablesIntoTransactionsFactoryUseCase =
   (): ConvertBillsAndReceivablesIntoTransactionsUseCase => {
     if (!convertBillsAndReceivablesIntoTransactions) {
       convertBillsAndReceivablesIntoTransactions =
