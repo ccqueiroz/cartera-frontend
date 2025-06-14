@@ -75,6 +75,7 @@ export const ChartFlowByYear = () => {
               items={[{ value: "2025", label: "2025" }]}
               value={summary.yearComparison}
               onValueChange={handleChangeYearComparisonCashFlow}
+              disabled={isPending}
             />
           </div>
           <div className="w-full md:w-56">
@@ -82,6 +83,7 @@ export const ChartFlowByYear = () => {
               items={itemsTypeComparisonCashFlowChart}
               value={summary.typeComparison}
               onValueChange={handleChangeTypeComparisonCashFlow}
+              disabled={isPending}
             />
           </div>
         </div>
