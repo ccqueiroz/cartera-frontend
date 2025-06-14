@@ -2,7 +2,6 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { useChartCashFlowByYear } from "./useChartFlowByYear.hook";
 import * as service from "@/app/(private)/_views/dashboard/CashFlowByYearChart/cash-flow-by-year-chart.service";
 import { typeComparisonCashFlow } from "@/domain/CashFlow/cash-flow.dto";
-import getDataCashFlowByYear from "@/app/(private)/_views/dashboard/CashFlowByYearChart/cash-flow-by-year-chart.service";
 
 jest.mock(
   "@/app/(private)/_views/dashboard/CashFlowByYearChart/cash-flow-by-year-chart.service"
