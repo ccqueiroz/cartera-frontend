@@ -1,6 +1,6 @@
 import { ConvertTimestampInDateHelper } from "@/infra/helpers/convert-timestamp-in-date.infra";
 
-const convertTimeStampInDateFactory = new ConvertTimestampInDateHelper()
+const convertTimeStampInDate = new ConvertTimestampInDateHelper()
   .execute;
 
-export { convertTimeStampInDateFactory };
+export { convertTimeStampInDate };

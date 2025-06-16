@@ -4,7 +4,7 @@ import { BillingCard } from "../BillingCard/billing-card.component";
 import { resolveIcon } from "../../core/IconSlugCategoriesMap/icon-slug-categories-map.component";
 import { TextEllipsis } from "../../core/TextEllipsis/text-ellipsis.component";
 import { BadgeStatusPayable } from "../../core/StatusPayable/badge-status-payable.component";
-import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.infra.factory";
+import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
 
 interface BillCardPayableMonthProps {
   bill: BillsPayableMonthOutPutDTO;

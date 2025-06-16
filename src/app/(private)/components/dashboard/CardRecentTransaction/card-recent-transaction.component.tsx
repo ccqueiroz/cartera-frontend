@@ -1,7 +1,5 @@
-import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.infra.factory";
-import {
-  TransactionDTO,
-} from "@/domain/Transaction/transaction.dto";
+import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
+import { TransactionDTO } from "@/domain/Transaction/transaction.dto";
 import { BillingCard } from "../BillingCard/billing-card.component";
 import { resolveIcon } from "../../core/IconSlugCategoriesMap/icon-slug-categories-map.component";
 import { TextEllipsis } from "../../core/TextEllipsis/text-ellipsis.component";
