@@ -75,6 +75,10 @@ export class HttpInfra implements HttpGateway {
     return this.request<T>(path, "PUT", options);
   }
 
+  patch<T>(path: string, options?: HttpOptions) {
+    return this.request<T>(path, "PATCH", options);
+  }
+
   delete<T>(path: string, options?: HttpOptions) {
     return this.request<T>(path, "DELETE", options);
   }
