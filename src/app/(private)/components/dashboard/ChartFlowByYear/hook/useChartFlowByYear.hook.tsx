@@ -5,7 +5,6 @@ import {
 } from "@/domain/CashFlow/cash-flow.dto";
 import {
   useCallback,
-  useEffect,
   useMemo,
   useState,
   useTransition,
@@ -17,10 +16,14 @@ interface StateDataProps {
   yearComparison: string;
 }
 
-export function useChartCashFlowByYear() {
+export function useChartCashFlowByYear({
+  summaryCashFlow = [],
+}: {
+  summaryCashFlow: Array<CashFlowByYearDTOSumary>;
+}) {
   const [isPending, startTransition] = useTransition();
   const [summary, setSummary] = useState<StateDataProps>({
-    summaryCashFlow: [],
+    summaryCashFlow: summaryCashFlow,
     typeComparison: typeComparisonCashFlow.PAID_PROFIT,
     yearComparison: new Date().getFullYear()?.toString(),
   });
@@ -58,7 +61,7 @@ export function useChartCashFlowByYear() {
 
   const handleChangeYearComparisonCashFlow = useCallback(
     (value: string) => {
-      if (!/[0-9]{4}/.test(value) && value !== '') return;
+      if (!/[0-9]{4}/.test(value) && value !== "") return;
 
       setSummary((prev) => ({
         ...prev,
@@ -112,13 +115,6 @@ export function useChartCashFlowByYear() {
       legendExpenses,
     };
   }, [summary.typeComparison]);
-
-  useEffect(() => {
-    handleGetDataCashFlowByYear(
-      typeComparisonCashFlow.PAID_PROFIT,
-      new Date().getFullYear()?.toString()
-    );
-  }, []);
 
   return {
     isPending,

@@ -12,6 +12,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/Chart/chart";
 import {
+  CashFlowByYearDTOSumary,
   typeComparisonCashFlow,
   typeComparisonCashFlowLabel,
 } from "@/domain/CashFlow/cash-flow.dto";
@@ -53,7 +54,11 @@ const itemsTypeComparisonCashFlowChart: Array<SelectItemsType> = [
   },
 ];
 
-export const ChartFlowByYear = () => {
+export const ChartFlowByYear = ({
+  summaryCashFlow = [],
+}: {
+  summaryCashFlow: Array<CashFlowByYearDTOSumary>;
+}) => {
   const {
     isPending,
     handleChangeTypeComparisonCashFlow,
@@ -61,7 +66,7 @@ export const ChartFlowByYear = () => {
     normalizeNameChartTooltip,
     summary,
     chartLegends,
-  } = useChartCashFlowByYear();
+  } = useChartCashFlowByYear({ summaryCashFlow });
 
   return (
     <div>

@@ -24,16 +24,18 @@ describe("useChartCashFlowByYear", () => {
   });
 
   it("should initialize with default state and fetch data on mount", async () => {
-    const { result } = renderHook(() => useChartCashFlowByYear());
+    const { result } = renderHook(() =>
+      useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+    );
 
     expect(result.current.summary).toEqual({
-      summaryCashFlow: [],
+      summaryCashFlow: mockSummary,
       typeComparison: typeComparisonCashFlow.PAID_PROFIT,
       yearComparison: new Date().getFullYear().toString(),
     });
 
     await waitFor(() => {
-      expect(service.default).toHaveBeenCalledWith(
+      expect(service.default).not.toHaveBeenCalledWith(
         typeComparisonCashFlow.PAID_PROFIT,
         new Date().getFullYear().toString()
       );
@@ -43,9 +45,9 @@ describe("useChartCashFlowByYear", () => {
   });
 
   it("should change typeComparison and fetch data", async () => {
-    const { result } = renderHook(() => useChartCashFlowByYear());
-
-    await waitFor(() => expect(service.default).toHaveBeenCalledTimes(1));
+    const { result } = renderHook(() =>
+      useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+    );
 
     act(() => {
       result.current.handleChangeTypeComparisonCashFlow(
@@ -67,9 +69,9 @@ describe("useChartCashFlowByYear", () => {
   });
 
   it("should change yearComparison and fetch data", async () => {
-    const { result } = renderHook(() => useChartCashFlowByYear());
-
-    await waitFor(() => expect(service.default).toHaveBeenCalledTimes(1));
+    const { result } = renderHook(() =>
+      useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+    );
 
     act(() => {
       result.current.handleChangeYearComparisonCashFlow("2026");
@@ -87,7 +89,9 @@ describe("useChartCashFlowByYear", () => {
   });
 
   it("should not change year if input is invalid", async () => {
-    const { result } = renderHook(() => useChartCashFlowByYear());
+    const { result } = renderHook(() =>
+      useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+    );
 
     const currentYear = new Date().getFullYear().toString();
 
@@ -96,12 +100,13 @@ describe("useChartCashFlowByYear", () => {
     });
 
     expect(result.current.summary.yearComparison).toBe(currentYear);
-    expect(service.default).toHaveBeenCalledTimes(1); // Apenas chamada inicial
   });
 
   describe("normalizeNameChartTooltip", () => {
     it("should return correct label for PAID_PROFIT", async () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       expect(result.current.normalizeNameChartTooltip("paid")).toBe(
         "Lucro Real"
@@ -109,7 +114,9 @@ describe("useChartCashFlowByYear", () => {
     });
 
     it("should return correct label for PROFIT", async () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       act(() => {
         result.current.handleChangeTypeComparisonCashFlow(
@@ -126,7 +133,9 @@ describe("useChartCashFlowByYear", () => {
     });
 
     it("should return correct label for INCOMES", async () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       act(() => {
         result.current.handleChangeTypeComparisonCashFlow(
@@ -143,7 +152,9 @@ describe("useChartCashFlowByYear", () => {
     });
 
     it("should return correct label for EXPENSES", async () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       act(() => {
         result.current.handleChangeTypeComparisonCashFlow(
@@ -162,7 +173,9 @@ describe("useChartCashFlowByYear", () => {
 
   describe("chartLegends", () => {
     it("should return correct legends for PAID_PROFIT", () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
       expect(result.current.chartLegends).toEqual({
         legendPaid: "Lucro Real",
         legendExpenses: null,
@@ -170,7 +183,9 @@ describe("useChartCashFlowByYear", () => {
     });
 
     it("should return correct legends for PROFIT", () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       act(() => {
         result.current.handleChangeTypeComparisonCashFlow(
@@ -185,7 +200,9 @@ describe("useChartCashFlowByYear", () => {
     });
 
     it("should return correct legends for INCOMES", () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       act(() => {
         result.current.handleChangeTypeComparisonCashFlow(
@@ -200,7 +217,9 @@ describe("useChartCashFlowByYear", () => {
     });
 
     it("should return correct legends for EXPENSES", () => {
-      const { result } = renderHook(() => useChartCashFlowByYear());
+      const { result } = renderHook(() =>
+        useChartCashFlowByYear({ summaryCashFlow: mockSummary })
+      );
 
       act(() => {
         result.current.handleChangeTypeComparisonCashFlow(
