@@ -15,7 +15,7 @@ import { DialogHeader } from "@/app/(private)/components/dashboard/DialogHeader/
 import { FormBillsPayableMonth } from "@/app/(private)/components/dashboard/FormBillsPayableMonth/form-bills-payable-month.component";
 import { updateBillPayable } from "./bills-payable-month.service";
 import { CardNotFoundData } from "@/app/(private)/components/dashboard/CardFoundData/card-not-found-data.component";
-import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.infra.factory";
+import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
 
 const DialogContent = dynamic(
   () =>
@@ -124,7 +124,7 @@ export default async function BillsPayableMonth() {
                 </DialogHeader>
                 <form
                   id={`form-update-bill-payable-${bill.id}`}
-                  action={updateBillPayable}
+                  action={updateBillPayable.bind(null)}
                 >
                   <FormBillsPayableMonth bill={bill} />
                 </form>
