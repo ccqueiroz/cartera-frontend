@@ -40,7 +40,7 @@ export class HttpInfra implements HttpGateway {
     method: HttpMethod,
     options: HttpOptions = {}
   ): Promise<T> {
-    const { body, cache, headers, tags, params, signal } = options;
+    const { body, cache, headers, tags, params, signal, revalidate } = options;
     const buildurl = this.buildUrl(path, params);
 
     const response = await fetch(buildurl, {
@@ -50,7 +50,10 @@ export class HttpInfra implements HttpGateway {
         : undefined,
       headers: this.buildHeaders(headers),
       signal,
-      next: tags ? { tags } : undefined,
+      next:
+        tags || revalidate
+          ? { ...(tags ? { tags } : {}), ...(revalidate ? { revalidate } : {}) }
+          : undefined,
       cache: cache ?? "force-cache",
     });
 
