@@ -133,7 +133,6 @@ export default async function getDataCashFlowByYear(
   typeComparison: (typeof typeComparisonCashFlow)[keyof typeof typeComparisonCashFlow],
   yearComparison: string
 ) {
-  await new Promise((r) => setTimeout(r, 2000));
   const summaryList = TransformCashFlowByYearToSummaryFactoryUseCase().execute({
     cashflowList: CashFlowByYearList,
     typeComparison,

@@ -4,7 +4,7 @@ import {
   StatusByTransactionType,
   StatusByTransactionTypeLabel,
 } from "@/domain/StatusTransaction/status-transaction.dto";
-import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.infra.factory";
+import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
 
 interface ModalFormRecentTransaction {
   transaction: TransactionDTO;
@@ -89,7 +89,7 @@ export const ModalFormRecentTransaction = ({
               :{" "}
             </span>
             <span className="text-sm text-muted-foreground">
-              {transaction.fixedTransaction ? 'Recorrente' : 'Variável'}
+              {transaction.fixedTransaction ? "Recorrente" : "Variável"}
             </span>
           </div>
         </div>
