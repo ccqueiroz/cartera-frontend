@@ -4,7 +4,7 @@ import {
   CashFlowByYear,
   typeComparisonCashFlow,
 } from "@/domain/CashFlow/cash-flow.dto";
-import { TransformCashFlowByYearToSummaryFactoryUseCase } from "@/factories/usecase/usecase.factories";
+import { TransformCashFlowByYearToSummaryFactoryUseCase } from "@/factories/usecase/transform-cash-flow-by-year-to-summary.factory";
 
 const CashFlowByYearList: Array<CashFlowByYear> = [
   {

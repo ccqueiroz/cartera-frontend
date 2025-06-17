@@ -1,5 +1,5 @@
 import { HandleRequestInfra } from "@/infra/api/handle-request.infra";
 
-const handleRequest = new HandleRequestInfra().execute;
+const handleRequestFactory = new HandleRequestInfra().execute;
 
-export { handleRequest };
+export { handleRequestFactory };

@@ -1,5 +1,5 @@
 import { HttpInfra } from "@/infra/http/http.infra";
-import { cookiesStorageFactory } from "./cookies.infra.factory";
+import { cookiesStorageFactory } from "./cookies.factory";
 import { DomainMessageList } from "@/domain/core/Constants/domain-message-list.constants";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
