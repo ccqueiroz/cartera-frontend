@@ -1,5 +1,6 @@
 import { cn } from "@/lib/cn.utils";
 import React from "react";
+import { NeonSpinner } from "../NeonSpinner/neon-spinner.component";
 
 interface NeonButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,6 +8,7 @@ interface NeonButtonProps
   size?: "sm" | "md" | "lg";
   className?: string;
   children: React.ReactNode;
+  isLoading?: boolean;
 }
 
 const baseStyles =
@@ -39,7 +41,13 @@ export const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
         className={cn(baseStyles, applyVariant, sizeStyles[size], className)}
         {...props}
       >
-        {children}
+        {props.isLoading ? (
+          <div className="w-7 h-7 flex items-center justify-center opacity-85">
+            <NeonSpinner />
+          </div>
+        ) : (
+          children
+        )}
       </button>
     );
   }

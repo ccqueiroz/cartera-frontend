@@ -32,5 +32,6 @@ export const Playground: Story = {
         Salvar
       </div>
     ),
+    isLoading: true,
   },
 };
