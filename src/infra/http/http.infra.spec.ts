@@ -152,37 +152,38 @@ describe("HttpInfra", () => {
       })
     );
 
-    expect(result).toEqual({ data: 123 });
+    expect(result).toEqual(123);
   });
 
   it("should stringify body for POST, PUT, PATCH", async () => {
     storageMock.recover.mockReturnValue(null);
     const fakeResponse = {
       ok: true,
-      json: jest.fn().mockResolvedValue({ success: true }),
+      json: jest.fn().mockResolvedValue({ data: true }),
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
 
     const body = { foo: "bar" };
 
-    const methodMap = {
-      POST: http.post.bind(http),
-      PUT: http.put.bind(http),
-      PATCH: http.patch.bind(http),
-    } as const;
+    const resultPost = await http.post(path, body);
 
-    for (const method of ["POST", "PUT", "PATCH"] as const) {
-      const result = await methodMap[method](path, { body });
+    expect(resultPost).toEqual(true);
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        fullUrl,
-        expect.objectContaining({
-          method,
-          body: JSON.stringify(body),
-        })
-      );
-      expect(result).toEqual({ success: true });
-    }
+    const resultPut = await http.put(path, body);
+
+    expect(resultPut).toEqual(true);
+
+    const resultPatch = await http.patch(path, body);
+
+    expect(resultPatch).toEqual(true);
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      fullUrl,
+      expect.objectContaining({
+        method: "POST",
+        body: JSON.stringify(body),
+      })
+    );
   });
 
   it("should throw HttpError on non-ok response", async () => {
@@ -190,8 +191,9 @@ describe("HttpInfra", () => {
     const fakeResponse = {
       ok: false,
       status: 400,
-      json: jest.fn().mockResolvedValue({ message: "Bad request" }),
+      json: jest.fn().mockRejectedValue({ message: "Bad request" }),
     };
+
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
 
     await expect(http.get(path)).rejects.toBeInstanceOf(HttpError);
@@ -229,16 +231,16 @@ describe("HttpInfra", () => {
       })
     );
 
-    expect(result).toEqual({ data: 123 });
+    expect(result).toEqual(123);
   });
 
   it("post calls request with POST", async () => {
     const fakeResponse = {
       ok: true,
-      json: jest.fn().mockResolvedValue(null),
+      json: jest.fn().mockResolvedValue({ data: null }),
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.post("path", { body: { id: 1 } });
+    const result = await http.post("path", { id: 1 });
 
     expect(global.fetch).toHaveBeenCalledWith(
       "https://api.example.com/path",
@@ -263,10 +265,13 @@ describe("HttpInfra", () => {
       }),
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.put("path", {
-      params: { id: 2 },
-      body: { id: 1 },
-    });
+    const result = await http.put(
+      "path",
+      { id: 1 },
+      {
+        params: { id: 2 },
+      }
+    );
 
     expect(global.fetch).toHaveBeenCalledWith(
       "https://api.example.com/path?id=2",
@@ -280,7 +285,7 @@ describe("HttpInfra", () => {
       })
     );
 
-    expect(result).toEqual({ data: "ok" });
+    expect(result).toEqual("ok");
   });
 
   it("put calls request with PATCH", async () => {
@@ -291,10 +296,13 @@ describe("HttpInfra", () => {
       }),
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.patch("path", {
-      params: { id: 2 },
-      body: { id: 1 },
-    });
+    const result = await http.patch(
+      "path",
+      { id: 1 },
+      {
+        params: { id: 2 },
+      }
+    );
 
     expect(global.fetch).toHaveBeenCalledWith(
       "https://api.example.com/path?id=2",
@@ -308,7 +316,7 @@ describe("HttpInfra", () => {
       })
     );
 
-    expect(result).toEqual({ data: "ok" });
+    expect(result).toEqual("ok");
   });
 
   it("delete calls request with DELETE", async () => {
