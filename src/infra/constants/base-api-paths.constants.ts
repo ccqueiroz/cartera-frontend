@@ -7,6 +7,7 @@ export const BASE_API_PATHS = {
   },
   PERSON_USER: {
     edit: "person-user/edit/",
+    list_by_user_id: "/api/person-user/list-by-user-id/",
   },
   PAYMENT_METHOD: {
     list_all: "payment-method/list-all",
