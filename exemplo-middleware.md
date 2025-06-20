@@ -1,6 +1,0 @@
-- pensar num loading para as telas com respostas mais longas
-- integração de serviço com a tela de recuperação de senha.
-- gerar o fluxo de análise de sessão e checkout
-- fez login -> dashboard -> chamar dados do usuário.
-- criar skeleton para respostas dos componentes
-- renderizar gráficos somente após de montados
