@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/Dialog/dialog";
 import { DialogHeader } from "@/app/(private)/components/dashboard/DialogHeader/dialog-header.component";
 import { CardNotFoundData } from "@/app/(private)/components/dashboard/CardFoundData/card-not-found-data.component";
-import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
+import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.factory";
 import { CardRecentTransaction } from "@/app/(private)/components/dashboard/CardRecentTransaction/card-recent-transaction.component";
 import { NeonButton } from "@/components/core/NeonButton/neon-button.component";
 import { ModalFormRecentTransaction } from "@/app/(private)/components/dashboard/ModalFormRecentTransaction/modal-form-recent-transaction.component";

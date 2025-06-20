@@ -2,7 +2,7 @@
 
 import { BillDTO } from "@/domain/Bill/bill.dto";
 import { ReceivableDTO } from "@/domain/Receivable/receivable.dto";
-import { convertBillsAndReceivablesIntoTransactionsFactoryUseCase } from "@/factories/usecase/usecase.factories";
+import { convertBillsAndReceivablesIntoTransactionsFactoryUseCase } from "@/factories/usecase/convert-bills-and-receivables-into-transactions.factory";
 
 const billsList: Array<BillDTO> = [
   {

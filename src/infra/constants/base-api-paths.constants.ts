@@ -1,4 +1,4 @@
-export const API_PATHS = {
+export const BASE_API_PATHS = {
   AUTH: {
     login: "auth/login",
     signout: "auth/signout",
