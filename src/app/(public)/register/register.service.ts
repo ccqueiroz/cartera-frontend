@@ -13,7 +13,6 @@ import {
   RegisterSchemaType,
 } from "@/infra/schemas/auth/register.schema";
 import { formatErrorsZod } from "@/infra/schemas/format-errors-zod.schema";
-import { CookieServerStorage } from "@/infra/storage/cookies.server.storage.infra";
 import { redirect } from "next/navigation";
 
 export async function register(
