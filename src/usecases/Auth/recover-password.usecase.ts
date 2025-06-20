@@ -13,11 +13,16 @@ export class RecoverPasswordUseCase
     private readonly recoverPasswordService: RecoverPasswordService
   ) {}
 
-  async execute({ email }: InputDTO): Promise<HandleRequestDTO<{ email: string }>> {
+  async execute({
+    email,
+  }: InputDTO): Promise<HandleRequestDTO<{ email: string }>> {
     const response = await this.handleRequestGateway.execute(() =>
       this.recoverPasswordService.execute({ email })
     );
 
-    return { ...response, data: { email } };
+    return {
+      ...response,
+      ...(response.success ? { data: { email } } : {}),
+    } as HandleRequestDTO<{ email: string }>;
   }
 }
