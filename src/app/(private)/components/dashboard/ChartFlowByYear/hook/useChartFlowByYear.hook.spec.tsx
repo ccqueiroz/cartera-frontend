@@ -20,6 +20,12 @@ const mockSummary = [
 describe("useChartCashFlowByYear", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(console, "error").mockImplementation((message) => {
+      if (/(not wrapped in act)/gi.test(message)) {
+        return;
+      }
+      console.warn(message);
+    });
     (service.default as jest.Mock).mockResolvedValue(mockSummary);
   });
 
