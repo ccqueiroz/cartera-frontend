@@ -23,6 +23,7 @@
     "wrap-ansi": "7.0.0"
   },
   "dependencies": {
+    "@bprogress/next": "^3.2.12",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
@@ -35,18 +36,22 @@
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.514.0",
     "next": "14.2.28",
+    "next-themes": "^0.4.6",
     "react": "^18",
     "react-day-picker": "8.10.1",
     "react-dom": "^18",
     "recharts": "^2.15.3",
+    "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "8.x",

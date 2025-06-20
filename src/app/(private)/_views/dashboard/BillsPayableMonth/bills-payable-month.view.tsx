@@ -15,7 +15,7 @@ import { DialogHeader } from "@/app/(private)/components/dashboard/DialogHeader/
 import { FormBillsPayableMonth } from "@/app/(private)/components/dashboard/FormBillsPayableMonth/form-bills-payable-month.component";
 import { updateBillPayable } from "./bills-payable-month.service";
 import { CardNotFoundData } from "@/app/(private)/components/dashboard/CardFoundData/card-not-found-data.component";
-import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
+import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.factory";
 
 const DialogContent = dynamic(
   () =>

@@ -4,7 +4,7 @@ import {
   StatusByTransactionType,
   StatusByTransactionTypeLabel,
 } from "@/domain/StatusTransaction/status-transaction.dto";
-import { convertTimeStampInDateFactory } from "@/factories/infra/infra.factories";
+import { convertTimeStampInDateFactory } from "@/factories/infra/convert-timestamp-in-date.factory";
 
 interface ModalFormRecentTransaction {
   transaction: TransactionDTO;

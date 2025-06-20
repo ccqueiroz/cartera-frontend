@@ -7,6 +7,7 @@ export class HandleRequestInfra implements HandleRequestGateway {
   async execute<T>(fn: () => Promise<T>): Promise<HandleRequestDTO<T>> {
     try {
       const data = await fn();
+
       return { success: true, data };
     } catch (error: unknown) {
       const message =
@@ -18,6 +19,7 @@ export class HandleRequestInfra implements HandleRequestGateway {
       return {
         success: false,
         error: message,
+        errorSchema: undefined,
       };
     }
   }

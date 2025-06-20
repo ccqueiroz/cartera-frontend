@@ -4,6 +4,7 @@ import { ArrowDown } from "lucide-react";
 import { FeaturesPreview } from "./components/FeaturesPreview/features-preview.components";
 import { cn } from "@/lib/cn.utils";
 import Link from "next/link";
+import { ROUTES } from "@/infra/constants/routes.contants";
 
 export default function HomeView() {
   return (
@@ -17,7 +18,7 @@ export default function HomeView() {
             "absolute -top-14 right-4 sm:-top-14 sm:right-4 md:-top-14 xl:-top-[5%] xl:right-[5%]"
           )}
         >
-          <Link href={"/"}>Entrar</Link>
+          <Link href={ROUTES.PUBLIC.login}>Entrar</Link>
         </div>
 
         <Logo size="xl" />
