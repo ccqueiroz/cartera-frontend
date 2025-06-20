@@ -67,6 +67,22 @@ export class SignInUseCase
     }
   }
 
+  private saveCookiePersonUserData(email?: string, userId?: string) {
+    if (email && userId) {
+      this.storage.save(
+        flagsCookies.PERSON_USER_AUTH,
+        { email, userId },
+        {
+          httpOnly: true,
+          sameSite: "lax",
+          path: "/",
+          secure: true,
+          maxAge: this.MAX_AGE_KEEP_SESSION,
+        }
+      );
+    }
+  }
+
   async execute({
     email,
     password,
@@ -87,6 +103,8 @@ export class SignInUseCase
     );
 
     this.saveCookieRefreshAuthSession(response?.data?.refreshToken);
+
+    this.saveCookiePersonUserData(response.data?.email, response.data?.userId);
 
     return response;
   }

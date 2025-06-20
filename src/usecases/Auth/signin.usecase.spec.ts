@@ -244,4 +244,58 @@ describe("SignInUseCase", () => {
       expect.any(Object)
     );
   });
+
+  it("should save person user auth data when login succeeds and have the email attribute and userId attribute.", async () => {
+    const successResponse = {
+      success: true,
+      data: authDTO,
+    };
+
+    handleRequestGatewayMock.execute.mockResolvedValueOnce(successResponse);
+
+    const result = await useCase.execute(input);
+
+    expect(result).toEqual(successResponse);
+
+    expect(storageMock.save).toHaveBeenCalledWith(
+      flagsCookies.PERSON_USER_AUTH,
+      { email: authDTO.email, userId: authDTO.userId },
+      expect.objectContaining({
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+        maxAge: expect.any(Number),
+      })
+    );
+  });
+
+  it("should not save person user auth data when login succeeds and dont have the email attribute and userId attribute.", async () => {
+    const successResponse = {
+      success: true,
+      data: {
+        ...authDTO,
+        email: "",
+        userId: "",
+      },
+    };
+
+    handleRequestGatewayMock.execute.mockResolvedValueOnce(successResponse);
+
+    const result = await useCase.execute(input);
+
+    expect(result).toEqual(successResponse);
+
+    expect(storageMock.save).not.toHaveBeenCalledWith(
+      flagsCookies.PERSON_USER_AUTH,
+      { email: authDTO.email, userId: authDTO.userId },
+      expect.objectContaining({
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+        maxAge: expect.any(Number),
+      })
+    );
+  });
 });
