@@ -9,7 +9,13 @@ export class HttpInfra implements HttpGateway {
   constructor(
     private readonly baseUrl: string,
     private readonly storage: CookiesGateway
-  ) {}
+  ) {
+    this.get = this.get.bind(this);
+    this.post = this.post.bind(this);
+    this.put = this.put.bind(this);
+    this.patch = this.patch.bind(this);
+    this.delete = this.delete.bind(this);
+  }
 
   private buildUrl(path: string, params?: Record<string, unknown>) {
     const url = new URL(path, this.baseUrl);
@@ -27,7 +33,6 @@ export class HttpInfra implements HttpGateway {
 
   private buildHeaders(headers?: Record<string, string>) {
     const token = this.storage.recover(flagsCookies.AUTH);
-
     return {
       "Content-Type": "application/json",
       ...headers,
@@ -63,26 +68,35 @@ export class HttpInfra implements HttpGateway {
       throw new HttpError(response.status, responseData?.message);
     }
 
-    return response?.json();
+    return responseData?.data as T;
   }
 
-  get<T>(path: string, options?: HttpOptions) {
+  get<T>(path: string, options?: Omit<HttpOptions, "body">) {
     return this.request<T>(path, "GET", options);
   }
 
-  post<T>(path: string, options?: HttpOptions) {
-    return this.request<T>(path, "POST", options);
+  post<T>(path: string, body: unknown, options?: HttpOptions) {
+    return this.request<T>(path, "POST", {
+      ...options,
+      body,
+    });
   }
 
-  put<T>(path: string, options?: HttpOptions) {
-    return this.request<T>(path, "PUT", options);
+  put<T>(path: string, body: unknown, options?: HttpOptions) {
+    return this.request<T>(path, "PUT", {
+      ...options,
+      body,
+    });
   }
 
-  patch<T>(path: string, options?: HttpOptions) {
-    return this.request<T>(path, "PATCH", options);
+  patch<T>(path: string, body: unknown, options?: HttpOptions) {
+    return this.request<T>(path, "PATCH", {
+      ...options,
+      body,
+    });
   }
 
-  delete<T>(path: string, options?: HttpOptions) {
+  delete<T>(path: string, options?: Omit<HttpOptions, "body">) {
     return this.request<T>(path, "DELETE", options);
   }
 
