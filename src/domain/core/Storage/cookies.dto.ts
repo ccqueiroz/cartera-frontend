@@ -2,5 +2,7 @@ export type CookieOptions = {
   path: string;
   httpOnly: boolean;
   maxAge: number;
-  sameSite: true | false | "lax" | "strict" | "none" | undefined;
+  sameSite: "lax" | "strict" | "none" | undefined;
+  secure: boolean;
+  expires: Date;
 };
