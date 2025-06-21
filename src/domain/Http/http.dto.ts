@@ -8,4 +8,5 @@ export type HttpOptions = {
   headers?: Record<string, string>;
   body?: unknown;
   params?: Record<string, unknown>;
+  queries?: Record<string, unknown>;
 };

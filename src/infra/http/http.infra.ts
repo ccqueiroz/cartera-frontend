@@ -17,13 +17,25 @@ export class HttpInfra implements HttpGateway {
     this.delete = this.delete.bind(this);
   }
 
-  private buildUrl(path: string, params?: Record<string, unknown>) {
-    const url = new URL(path, this.baseUrl);
-
+  private buildUrl(
+    path: string,
+    params?: Record<string, unknown>,
+    queries?: Record<string, unknown>
+  ) {
     if (params) {
       Object.entries(params).forEach(([param, value]) => {
         if (value !== undefined && value !== null) {
-          url.searchParams.append(param, String(value));
+          path = path.replace(`:${param}`, String(value));
+        }
+      });
+    }
+
+    const url = new URL(path, this.baseUrl);
+
+    if (queries) {
+      Object.entries(queries).forEach(([queries, value]) => {
+        if (value !== undefined && value !== null) {
+          url.searchParams.append(queries, String(value));
         }
       });
     }
@@ -33,6 +45,7 @@ export class HttpInfra implements HttpGateway {
 
   private buildHeaders(headers?: Record<string, string>) {
     const token = this.storage.recover(flagsCookies.AUTH);
+
     return {
       "Content-Type": "application/json",
       ...headers,
@@ -59,8 +72,12 @@ export class HttpInfra implements HttpGateway {
         tags || revalidate
           ? { ...(tags ? { tags } : {}), ...(revalidate ? { revalidate } : {}) }
           : undefined,
-      cache: cache ?? "force-cache",
+      cache: revalidate ? undefined : cache || "force-cache",
     });
+
+    if (response.status === 204) {
+      return null as T;
+    }
 
     const responseData = await response.json().catch(() => null);
 
