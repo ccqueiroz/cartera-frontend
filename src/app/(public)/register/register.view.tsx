@@ -35,8 +35,8 @@ export default function RegisterView() {
   const onSubmit: SubmitHandler<RegisterSchemaType> = async (data) => {
     const registerAction = await onRegister({ ...data });
 
-    if (!registerAction.success) {
-      toast.error(registerAction.error);
+    if (!registerAction?.success && registerAction?.error) {
+      toast.error(registerAction?.error);
       return;
     }
 

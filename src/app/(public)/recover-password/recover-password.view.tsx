@@ -32,8 +32,8 @@ export default function RecoverPasswordView() {
   const onSubmit: SubmitHandler<RecoverPasswordSchemaType> = async (data) => {
     const recover = await recoverPassword({ ...data });
 
-    if (!recover.success) {
-      toast.error(recover.error);
+    if (!recover?.success) {
+      toast.error(recover?.error);
       return;
     }
 

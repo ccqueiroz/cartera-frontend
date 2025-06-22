@@ -40,8 +40,8 @@ export default function LoginView({
   const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
     const signin = await signIn({ ...data });
 
-    if (!signin.success) {
-      toast.error(signin.error);
+    if (!signin?.success && signin?.error) {
+      toast.error(signin?.error);
       return;
     }
 
