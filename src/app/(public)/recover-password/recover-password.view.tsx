@@ -1,71 +1,69 @@
 "use client";
 
-import { Input } from "@/components/ui/Input/input";
 import Link from "next/link";
 import { ROUTES } from "@/infra/constants/routes.contants";
 import { cn } from "@/lib/cn.utils";
-import { Label } from "@/components/ui/Label/label";
 import { ManagementAccount } from "../_views/managementAccount/management-account.view";
 import { SubmitAuthButton } from "../components/SubmitAuthButton/submit-auth-button.component";
-import { HandleRequestDTO } from "@/domain/core/Api/handle-request.dto";
-import { RecoverPasswordAuthDTO } from "@/domain/Auth/auth.dto";
-import { RecoverPasswordSchemaType } from "@/infra/schemas/auth/recover-password.schema";
-import { useFormState } from "react-dom";
+import {
+  recoverPasswordSchema,
+  RecoverPasswordSchemaType,
+} from "@/infra/schemas/auth/recover-password.schema";
 import { recoverPassword } from "./recover-password.service";
-import { useTriggerToastError } from "@/hooks/useTriggerToastError";
-import { useEffect } from "react";
 import { toast } from "sonner";
 import { DomainMessageList } from "@/domain/core/Constants/domain-message-list.constants";
-
-const initialState: HandleRequestDTO<
-  RecoverPasswordAuthDTO,
-  RecoverPasswordSchemaType
-> = {
-  errorSchema: {
-    email: "",
-  },
-  error: "",
-  success: false,
-  triggerAt: 0,
-};
+import { SubmitHandler, useForm } from "react-hook-form";
+import { InputForm } from "@/components/core/InputForm/input-form.component";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function RecoverPasswordView() {
-  const [state, action] = useFormState<
-    HandleRequestDTO<RecoverPasswordAuthDTO, RecoverPasswordSchemaType>,
-    FormData
-  >(recoverPassword, initialState);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<RecoverPasswordSchemaType>({
+    defaultValues: {
+      email: "",
+    },
+    resolver: zodResolver(recoverPasswordSchema),
+  });
 
-  useTriggerToastError({ state });
+  const onSubmit: SubmitHandler<RecoverPasswordSchemaType> = async (data) => {
+    const recover = await recoverPassword({ ...data });
 
-  useEffect(() => {
-    if (state.success) {
-      const messageSuccessfull =
-        DomainMessageList.EMAIL_HAS_BEEN_SEND_TO_RECOVER_PASSWORD.replace(
-          "{complement}",
-          state?.data?.email || ""
-        );
-      toast.success(messageSuccessfull);
+    if (!recover.success) {
+      toast.error(recover.error);
+      return;
     }
-  }, [state.data?.email, state.success]);
+
+    const messageSuccessfull =
+      DomainMessageList.EMAIL_HAS_BEEN_SEND_TO_RECOVER_PASSWORD.replace(
+        "{complement}",
+        recover?.data?.email || ""
+      );
+
+    toast.success(messageSuccessfull);
+
+    reset();
+  };
 
   return (
     <ManagementAccount titlePage="Recuperar Senha">
       <form
-        action={action}
+        onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col justify-center items-center gap-5"
       >
-        <div className="w-full flex flex-col items-start justify-start gap-1">
-          <Label htmlFor="email" className="text-sm brightness-75 ml-1">
-            Digite o seu e-mail
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Digite o seu e-mail"
-          />
-        </div>
-        <SubmitAuthButton title="Recuperar" />
+        <InputForm
+          id="email"
+          label="E-mail"
+          type="email"
+          placeholder="Digite o seu e-mail"
+          autoComplete="off"
+          {...register("email", { required: true })}
+          error={errors.email?.message}
+        />
+        <SubmitAuthButton title="Recuperar" isSubmitting={isSubmitting} />
         <div className="w-full flex flex-col items-center gap-2">
           <Link
             href={ROUTES.PUBLIC.login}
