@@ -1,5 +1,9 @@
 export const InputAlertError = ({ error }: { error?: string }) => {
   return (
-    error && <span className="text-xs text-destructive italic">{error}</span>
+    error && (
+      <span role="alert" className="text-xs text-destructive italic">
+        {error}
+      </span>
+    )
   );
 };
