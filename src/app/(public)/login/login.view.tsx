@@ -7,93 +7,89 @@ import { Switch } from "@/components/ui/Switch/switch";
 import { Label } from "@/components/ui/Label/label";
 import { ManagementAccount } from "../_views/managementAccount/management-account.view";
 import { signIn } from "./login.service";
-import { useFormState } from "react-dom";
 import {
-  HandleRequestDTO,
-  isErrorResponse,
-} from "@/domain/core/Api/handle-request.dto";
-import { AuthDTO } from "@/domain/Auth/auth.dto";
-import { LoginSchemaType } from "@/infra/schemas/auth/login.schema";
+  loginSchema,
+  LoginSchemaType,
+} from "@/infra/schemas/auth/login.schema";
 import { InputForm } from "@/components/core/InputForm/input-form.component";
-import { useTriggerToastError } from "@/hooks/useTriggerToastError";
-import { useState } from "react";
 import { SubmitAuthButton } from "../components/SubmitAuthButton/submit-auth-button.component";
-
-const initialState: HandleRequestDTO<AuthDTO, LoginSchemaType> = {
-  errorSchema: {
-    email: "",
-    password: "",
-    keepSession: "",
-  },
-  error: "",
-  success: false,
-  triggerAt: 0,
-};
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
 export default function LoginView({
   keepSessionCookieValue,
 }: {
   keepSessionCookieValue: boolean;
 }) {
-  const [state, action] = useFormState<
-    HandleRequestDTO<AuthDTO, LoginSchemaType>,
-    FormData
-  >(signIn, initialState);
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginSchemaType>({
+    defaultValues: {
+      email: "",
+      password: "",
+      keepSession: keepSessionCookieValue,
+    },
+    resolver: zodResolver(loginSchema),
+  });
 
-  const [keepSession, setKeepSession] = useState(keepSessionCookieValue);
+  const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
+    const signin = await signIn({ ...data });
 
-  useTriggerToastError({ state });
+    if (!signin.success) {
+      toast.error(signin.error);
+      return;
+    }
+
+    reset();
+  };
 
   return (
     <ManagementAccount titlePage="Login">
       <form
         className="w-full flex flex-col justify-center items-center gap-5"
-        action={action}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <InputForm
           id="email"
           label="E-mail"
-          name="email"
           type="email"
           placeholder="Digite o seu e-mail"
           autoComplete="off"
-          error={
-            isErrorResponse<AuthDTO, LoginSchemaType>(state) &&
-            state.errorSchema.email
-              ? state.errorSchema.email
-              : undefined
-          }
+          {...register("email", { required: true })}
+          error={errors.email?.message}
         />
         <InputForm
           id="password"
-          name="password"
           label="Senha"
           type="password"
           placeholder="Digite a sua senha"
           autoComplete="off"
-          error={
-            isErrorResponse<AuthDTO, LoginSchemaType>(state) &&
-            state.errorSchema.password
-              ? state.errorSchema.password
-              : undefined
-          }
+          {...register("password", { required: true })}
+          error={errors.password?.message}
         />
         <div className="w-full flex flex-col items-center gap-3 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-row items-center justify-between space-x-1">
-            <Switch
-              className="scale-[0.8]"
-              id="keepSession"
-              checked={keepSession}
-              onCheckedChange={setKeepSession}
+            <Controller
+              control={control}
+              name="keepSession"
+              render={({ field: { value, onChange, ...field } }) => (
+                <Switch
+                  className="scale-[0.8]"
+                  id="keepSession"
+                  checked={value}
+                  onCheckedChange={onChange}
+                  {...field}
+                />
+              )}
             />
             <Label htmlFor="keepSession" className="text-sm brightness-75">
               Continuar conectado
             </Label>
-            <input
-              type="hidden"
-              name="keepSession"
-              value={keepSession ? 1 : 0}
-            />
           </div>
           <div>
             <Link
@@ -107,7 +103,7 @@ export default function LoginView({
             </Link>
           </div>
         </div>
-        <SubmitAuthButton title="Login" />
+        <SubmitAuthButton title="Login" isSubmitting={isSubmitting} />
         <div className="w-full flex flex-col items-center gap-2">
           <Link
             href={ROUTES.PUBLIC.register_account}
