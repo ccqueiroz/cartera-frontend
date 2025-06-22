@@ -3,12 +3,14 @@ import { MESSAGES_SCHEMA_VALIDATIONS } from "../constants/messages-validations.s
 
 export const loginSchema = z.object({
   email: z
-    .string({ required_error: MESSAGES_SCHEMA_VALIDATIONS.REQUIRED_FIELD })
+    .string()
+    .nonempty(MESSAGES_SCHEMA_VALIDATIONS.REQUIRED_FIELD)
     .email(MESSAGES_SCHEMA_VALIDATIONS.INVALID_EMAIL),
   password: z
-    .string({ required_error: MESSAGES_SCHEMA_VALIDATIONS.REQUIRED_FIELD })
+    .string()
+    .nonempty(MESSAGES_SCHEMA_VALIDATIONS.REQUIRED_FIELD)
     .min(6, MESSAGES_SCHEMA_VALIDATIONS.MIN_LENGTH_PASSWORD),
   keepSession: z.coerce.boolean(),
 });
 
-export type LoginSchemaType = Record<keyof z.infer<typeof loginSchema>, string>;
+export type LoginSchemaType = z.infer<typeof loginSchema>;

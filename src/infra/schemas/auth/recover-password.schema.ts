@@ -7,7 +7,4 @@ export const recoverPasswordSchema = z.object({
     .email(MESSAGES_SCHEMA_VALIDATIONS.INVALID_EMAIL),
 });
 
-export type RecoverPasswordSchemaType = Record<
-  keyof z.infer<typeof recoverPasswordSchema>,
-  string
->;
+export type RecoverPasswordSchemaType = z.infer<typeof recoverPasswordSchema>;
