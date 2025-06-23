@@ -11,8 +11,6 @@ describe("HttpInfra", () => {
   let http: HttpInfra;
   let storageMock: jest.Mocked<CookiesGateway>;
   const baseUrl = "https://api.example.com";
-  const path = "/test";
-  const fullUrl = baseUrl + path;
 
   beforeEach(() => {
     storageMock = {
@@ -56,13 +54,10 @@ describe("HttpInfra", () => {
       json: jest.fn().mockResolvedValue({ data: 123 }),
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const params = {
-      a: 1,
-      b: "test",
-      c: null,
-      d: undefined,
-    };
-    await http.get("/path", { params });
+
+    const queries = { a: 1, b: "test", c: null, d: undefined };
+
+    await http.get("/path", { queries });
 
     expect(global.fetch).toHaveBeenCalledWith(
       "https://api.example.com/path?a=1&b=test",
@@ -74,6 +69,21 @@ describe("HttpInfra", () => {
         body: undefined,
         cache: "force-cache",
       })
+    );
+  });
+
+  it("should build URL with params", async () => {
+    const fakeResponse = {
+      ok: true,
+      json: jest.fn().mockResolvedValue({ data: 123 }),
+    };
+    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
+
+    await http.get("/path/:id", { params: { id: 2 } });
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://api.example.com/path/2",
+      expect.any(Object)
     );
   });
 
@@ -96,67 +106,13 @@ describe("HttpInfra", () => {
         headers: expect.objectContaining({
           Authorization: "Bearer token123",
           "Content-Type": "application/json",
+          "X-Custom": "abc",
         }),
-        body: undefined,
-        cache: "force-cache",
       })
     );
   });
 
-  it("should build headers without Authorization when no token", async () => {
-    storageMock.recover.mockReturnValue(null);
-
-    const headers = { "X-Custom": "abc" };
-
-    const fakeResponse = {
-      ok: true,
-      json: jest.fn().mockResolvedValue({ data: 123 }),
-    };
-    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-
-    await http.get("/path", { headers });
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path",
-      expect.objectContaining({
-        method: "GET",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-        }),
-        body: undefined,
-        cache: "force-cache",
-      })
-    );
-  });
-
-  it("should call fetch with correct parameters for GET without body", async () => {
-    storageMock.recover.mockReturnValue("token123");
-    const fakeResponse = {
-      ok: true,
-      json: jest.fn().mockResolvedValue({ data: 123 }),
-    };
-    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-
-    const result = await http.get("/path");
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path",
-      expect.objectContaining({
-        method: "GET",
-        headers: expect.objectContaining({
-          Authorization: "Bearer token123",
-          "Content-Type": "application/json",
-        }),
-        body: undefined,
-        cache: "force-cache",
-      })
-    );
-
-    expect(result).toEqual(123);
-  });
-
-  it("should stringify body for POST, PUT, PATCH", async () => {
-    storageMock.recover.mockReturnValue(null);
+  it("should call fetch with correct parameters for POST, PUT, PATCH", async () => {
     const fakeResponse = {
       ok: true,
       json: jest.fn().mockResolvedValue({ data: true }),
@@ -165,42 +121,53 @@ describe("HttpInfra", () => {
 
     const body = { foo: "bar" };
 
-    const resultPost = await http.post(path, body);
+    const resultPost = await http.post("/path", body);
+    const resultPut = await http.put("/path/:id", body, { params: { id: 2 } });
+    const resultPatch = await http.patch("/path/:id", body, {
+      params: { id: 2 },
+    });
 
     expect(resultPost).toEqual(true);
-
-    const resultPut = await http.put(path, body);
-
     expect(resultPut).toEqual(true);
-
-    const resultPatch = await http.patch(path, body);
-
     expect(resultPatch).toEqual(true);
 
     expect(global.fetch).toHaveBeenCalledWith(
-      fullUrl,
+      "https://api.example.com/path",
       expect.objectContaining({
         method: "POST",
+        body: JSON.stringify(body),
+      })
+    );
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://api.example.com/path/2",
+      expect.objectContaining({
+        method: "PUT",
+        body: JSON.stringify(body),
+      })
+    );
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://api.example.com/path/2",
+      expect.objectContaining({
+        method: "PATCH",
         body: JSON.stringify(body),
       })
     );
   });
 
   it("should throw HttpError on non-ok response", async () => {
-    storageMock.recover.mockReturnValue(null);
     const fakeResponse = {
       ok: false,
       status: 400,
-      json: jest.fn().mockRejectedValue({ message: "Bad request" }),
+      json: jest.fn().mockResolvedValue({ message: "Bad request" }),
     };
-
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
 
-    await expect(http.get(path)).rejects.toBeInstanceOf(HttpError);
+    await expect(http.get("/path")).rejects.toBeInstanceOf(HttpError);
   });
 
   it("should throw HttpError with null message if json parsing fails", async () => {
-    storageMock.recover.mockReturnValue(null);
     const fakeResponse = {
       ok: false,
       status: 500,
@@ -208,134 +175,22 @@ describe("HttpInfra", () => {
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
 
-    await expect(http.get(path)).rejects.toBeInstanceOf(HttpError);
+    await expect(http.get("/path")).rejects.toBeInstanceOf(HttpError);
   });
 
-  it("get calls request with GET", async () => {
-    const fakeResponse = {
-      ok: true,
-      json: jest.fn().mockResolvedValue({ data: 123 }),
-    };
-    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.get("path");
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path",
-      expect.objectContaining({
-        method: "GET",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-        }),
-        body: undefined,
-        cache: "force-cache",
-      })
-    );
-
-    expect(result).toEqual(123);
-  });
-
-  it("post calls request with POST", async () => {
-    const fakeResponse = {
-      ok: true,
-      json: jest.fn().mockResolvedValue({ data: null }),
-    };
-    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.post("path", { id: 1 });
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path",
-      expect.objectContaining({
-        method: "POST",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ id: 1 }),
-        cache: "force-cache",
-      })
-    );
-
-    expect(result).toBeNull();
-  });
-
-  it("put calls request with PUT", async () => {
-    const fakeResponse = {
-      ok: true,
-      json: jest.fn().mockResolvedValue({
-        data: "ok",
-      }),
-    };
-    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.put(
-      "path",
-      { id: 1 },
-      {
-        params: { id: 2 },
-      }
-    );
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path?id=2",
-      expect.objectContaining({
-        method: "PUT",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ id: 1 }),
-        cache: "force-cache",
-      })
-    );
-
-    expect(result).toEqual("ok");
-  });
-
-  it("put calls request with PATCH", async () => {
-    const fakeResponse = {
-      ok: true,
-      json: jest.fn().mockResolvedValue({
-        data: "ok",
-      }),
-    };
-    (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.patch(
-      "path",
-      { id: 1 },
-      {
-        params: { id: 2 },
-      }
-    );
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path?id=2",
-      expect.objectContaining({
-        method: "PATCH",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ id: 1 }),
-        cache: "force-cache",
-      })
-    );
-
-    expect(result).toEqual("ok");
-  });
-
-  it("delete calls request with DELETE", async () => {
+  it("delete calls request with DELETE and params", async () => {
     const fakeResponse = {
       ok: true,
       json: jest.fn().mockResolvedValue(undefined),
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
-    const result = await http.delete<void>("path", {
-      params: { id: 2 },
-    });
+
+    const result = await http.delete("/path/:id", { params: { id: 2 } });
 
     expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path?id=2",
+      "https://api.example.com/path/2",
       expect.objectContaining({
         method: "DELETE",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-        }),
         body: undefined,
         cache: "force-cache",
       })

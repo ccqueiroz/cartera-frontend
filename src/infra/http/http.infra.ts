@@ -22,6 +22,7 @@ export class HttpInfra implements HttpGateway {
     params?: Record<string, unknown>,
     queries?: Record<string, unknown>
   ) {
+
     if (params) {
       Object.entries(params).forEach(([param, value]) => {
         if (value !== undefined && value !== null) {
@@ -58,8 +59,9 @@ export class HttpInfra implements HttpGateway {
     method: HttpMethod,
     options: HttpOptions = {}
   ): Promise<T> {
-    const { body, cache, headers, tags, params, signal, revalidate } = options;
-    const buildurl = this.buildUrl(path, params);
+    const { body, cache, headers, tags, params, signal, revalidate, queries } =
+      options;
+    const buildurl = this.buildUrl(path, params, queries);
 
     const response = await fetch(buildurl, {
       method,
