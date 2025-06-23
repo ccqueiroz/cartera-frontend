@@ -8,7 +8,7 @@ const currentDate = new Date().toLocaleDateString("pt-BR", {
   year: "numeric",
 });
 
-export const GreetingComponent = () => {
+export const GreetingComponent = ({ name }: { name: string }) => {
   const [currentTime, setCurrentTime] = useState("00:00:00");
 
   const getGreeting = () => {
@@ -37,7 +37,7 @@ export const GreetingComponent = () => {
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div className="flex flex-col">
         <h2 className="text-xl md:text-2xl font-semibold text-white animate-fade-in-up">
-          {getGreeting()}, <span className="text-neon-blue">Caio Queiroz</span>
+          {getGreeting()}, <span className="text-neon-blue">{name}</span>
         </h2>
         <div className="flex gap-2 items-center">
           <span
