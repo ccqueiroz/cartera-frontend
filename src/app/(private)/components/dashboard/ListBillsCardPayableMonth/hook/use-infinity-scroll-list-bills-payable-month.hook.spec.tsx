@@ -7,6 +7,15 @@ jest.mock("@tanstack/react-virtual");
 const mockedUseVirtualizer = virtualizer.useVirtualizer as jest.Mock;
 
 describe("useInfinityScrollListBillsPayableMonth", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.spyOn(console, "error").mockImplementation((message) => {
+      if (/(not wrapped in act)/gi.test(message)) {
+        return;
+      }
+      console.warn(message);
+    });
+  });
   const initialData: BillsPayableMonthListDTO = {
     content: [
       {
@@ -170,7 +179,6 @@ describe("useInfinityScrollListBillsPayableMonth", () => {
     await waitFor(() => {
       expect(getBillsPayableMonthMock).toHaveBeenCalled();
     });
-
 
     expect(result.current.content).toEqual(initialData.content);
   });
