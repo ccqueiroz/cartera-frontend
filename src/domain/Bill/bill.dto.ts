@@ -1,4 +1,6 @@
 import { BaseDto } from "../core/BaseDto/base-dto.dto";
+import { PaginationParams } from "../core/ListParams/list-params.dto";
+import { ResponseListDTO } from "../core/ResponseListDto/response-list.dto";
 import { StatusTransaction } from "../StatusTransaction/status-transaction.dto";
 
 export type BillDTO = {
@@ -42,3 +44,12 @@ export type BillsPayableMonthOutPutDTO = {
   categoryDescription: string;
   status: (typeof StatusTransaction)[keyof typeof StatusTransaction];
 };
+
+export type InputGetBillsPayableMonth =
+  PaginationParams<BillsPayableMonthOutPutDTO> & {
+    initialDate: number;
+    finalDate: number;
+  };
+
+export type BillsPayableMonthListDTO =
+  ResponseListDTO<BillsPayableMonthOutPutDTO>;
