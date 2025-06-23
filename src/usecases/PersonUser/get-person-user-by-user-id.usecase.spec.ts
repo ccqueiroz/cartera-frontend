@@ -80,9 +80,9 @@ describe("GetPersonUserByUserIdUseCase", () => {
     });
 
     getPersonUserByUseridServiceMock.execute.mockResolvedValue(fakePersonUser);
-
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     handleRequestGatewayMock.execute.mockImplementation((fn) =>
-      Promise.resolve(fn()).then((result) => ({
+      Promise.resolve(fn()).then((_) => ({
         success: false,
         error: "Not Found",
       }))
