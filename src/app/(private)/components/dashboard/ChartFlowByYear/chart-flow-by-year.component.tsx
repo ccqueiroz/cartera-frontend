@@ -24,7 +24,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useChartCashFlowByYear } from "./hook/useChartFlowByYear.hook";
+import { useChartCashFlowByYear } from "./hook/use-chart-flow-by-year.hook";
 
 const chartConfig = {
   paid: {
