@@ -112,7 +112,7 @@
   }
 
   .card-hover {
-    @apply transition-all duration-150 hover:scale-[1.03] hover:shadow-lg hover:border-white-15;
+    @apply transition-all duration-150 hover:scale-[1.015] hover:shadow-lg hover:border-white-15;
   }
 
   .hide-scrollbar::-webkit-scrollbar {
