@@ -30,7 +30,10 @@ const sizeStyles = {
 } as const;
 
 export const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
-  ({ variant = "blue", size = "md", className, children, ...props }, ref) => {
+  (
+    { variant = "blue", size = "md", className, children, isLoading, ...props },
+    ref
+  ) => {
     const applyVariant = props.disabled
       ? variantStyles[variant].replace(/hover:[^ ]+/g, "")
       : variantStyles[variant];
@@ -41,7 +44,7 @@ export const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
         className={cn(baseStyles, applyVariant, sizeStyles[size], className)}
         {...props}
       >
-        {props.isLoading ? (
+        {isLoading ? (
           <div className="w-7 h-7 flex items-center justify-center opacity-85">
             <NeonSpinner />
           </div>
