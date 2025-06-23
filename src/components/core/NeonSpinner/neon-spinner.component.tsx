@@ -8,14 +8,14 @@ export const NeonSpinner = () => {
     >
       <defs>
         <linearGradient id="grad" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#7DF9FF" />
-          <stop offset="50%" stop-color="#C084FC" />
-          <stop offset="100%" stop-color="#7DF9FF" />
+          <stop offset="0%" stopColor="#7DF9FF" />
+          <stop offset="50%" stopColor="#C084FC" />
+          <stop offset="100%" stopColor="#7DF9FF" />
         </linearGradient>
         <radialGradient id="centerGlow">
-          <stop offset="30%" stop-color="#7DF9FF" stop-opacity="0.08" />
-          <stop offset="60%" stop-color="#C084FC" stop-opacity="0.08" />
-          <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+          <stop offset="30%" stopColor="#7DF9FF" stopOpacity="0.08" />
+          <stop offset="60%" stopColor="#C084FC" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="transparent" stopOpacity="0" />
         </radialGradient>
         <mask id="cutout">
           <rect width="100%" height="100%" fill="white" />
@@ -29,10 +29,10 @@ export const NeonSpinner = () => {
           r="20"
           fill="none"
           stroke="url(#grad)"
-          stroke-width="6"
-          stroke-linecap="round"
-          stroke-dasharray="80"
-          stroke-dashoffset="20"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeDasharray="80"
+          strokeDashoffset="20"
         >
           <animateTransform
             attributeName="transform"
