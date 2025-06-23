@@ -3,8 +3,13 @@ import { cn } from "@/lib/cn.utils";
 import { Avatar } from "../../components/core/Avatar/avatar.component";
 import { NotificationsButtons } from "../../components/core/NotificationsButton/notifications-button.component";
 import { GreetingComponent } from "../../components/core/GreetingComponent/greeting-component.component";
+import { getDataPersonUser } from "./header.service";
 
-export function HeaderPrivate() {
+export async function HeaderPrivate() {
+  const personUser = await getDataPersonUser();
+
+  const personUserData = personUser.success ? personUser.data : null;
+
   return (
     <header
       aria-label="Header da página"
@@ -16,11 +21,11 @@ export function HeaderPrivate() {
         </div>
         <div className="flex items-center gap-5">
           <NotificationsButtons />
-          <Avatar src="https://avatars.githubusercontent.com/u/61844259?s=96&v=4" />
+          <Avatar src={personUserData?.image ?? ""} />
         </div>
       </div>
       <div>
-        <GreetingComponent />
+        <GreetingComponent name={personUserData?.fullName ?? ""} />
       </div>
     </header>
   );
