@@ -1,26 +1,126 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+@import "@bprogress/core/css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 100%;
+    --popover-solid: 270 4% 22%;
+
+    --primary: 192 96% 73%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 94% 93%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 100%;
+    --muted-foreground: 0 0% 100%;
+
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 192 96% 73%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 192 96% 73%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 270 94% 93%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100%;
+    --sidebar-ring: 192 96% 73%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-dark text-foreground font-sans overflow-x-hidden;
+    font-family: "Inter", sans-serif;
+    background-image: radial-gradient(
+        circle at 50% 10%,
+        rgba(125, 249, 255, 0.1),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 85% 20%,
+        rgba(192, 132, 252, 0.1),
+        transparent 30%
+      );
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-glass-light backdrop-blur-[15px] border border-white-8 shadow-lg;
+  }
+
+  .glass-light {
+    @apply bg-glass-lighter backdrop-blur-[10px] border border-white-5;
+  }
+
+  .neon-shadow-blue {
+    box-shadow: 0 0 12px rgba(125, 249, 255, 0.4);
+  }
+
+  .neon-shadow-purple {
+    box-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
+  }
+
+  .neon-shadow-blue-attenuated {
+    box-shadow: 0 0 12px rgba(125, 249, 255, 0.13);
+  }
+
+  .neon-shadow-purple-attenuated {
+    box-shadow: 0 0 12px rgba(192, 132, 252, 0.13);
+  }
+
+  .neon-border {
+    @apply border border-neon-blue/50;
+  }
+
+  .neon-border-purple {
+    @apply border border-neon-purple/50;
+  }
+
+  .digital {
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  .card-hover {
+    @apply transition-all duration-150 hover:scale-[1.015] hover:shadow-lg hover:border-white-15;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
