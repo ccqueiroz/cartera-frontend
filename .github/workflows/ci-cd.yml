@@ -1,0 +1,64 @@
+name: Cartera-Frontend CI-CD
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    name: "🚀 Build & Test"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: true
+    outputs:
+      tests-passed: ${{ steps.unit-tests.outcome == 'success' }}
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Check PR Origins
+        run: |
+          echo BASE_BRANCH: "${{ github.base_ref }}"
+          echo HEAD_BRANCH: "${{ github.head_ref }}"
+
+          if [[ "${{ github.base_ref }}" == "main" && "${{ github.head_ref }}" != "dev" ]]; then
+            echo "Error: Only can be accpets PRs to branch MAIN from branch DEV."
+            exit 1
+          fi
+
+        shell: bash
+        continue-on-error: false
+
+      - name: Node Config ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+
+      - name: yarn.lock Removal
+        run: rm -rf yarn.lock
+
+      - name: node_modules Removal
+        run: rm -rf node_modules
+
+      - name: Installing deps
+        run: yarn install --frozen-lockfile
+
+      - name: Checking Lint
+        run: yarn lint
+        continue-on-error: false
+
+      - name: Clean Up of the Jest Cache
+        run: npx jest --clearCache
+
+      - name: Analizying Unit Tests
+        id: unit-tests
+        run: yarn test:unit
+        continue-on-error: false
