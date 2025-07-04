@@ -10,7 +10,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "jest:config": "jest --colors --runInBand",
+    "test": "yarn jest:config",
+    "test:unit": "yarn test --watch",
+    "test:coverage": "yarn test --coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "resolutions": {
     "string-width": "4.2.3",
