@@ -14,7 +14,12 @@ export const ManagementAccount = ({
 }) => {
   return (
     <LayoutPublic>
-      <div className={cn("max-w-xl mx-auto text-center", className)}>
+      <div
+        className={cn(
+          "max-w-xl mx-auto text-center  animate-fade-in-up",
+          className
+        )}
+      >
         <GlassCard variant="purple" animatePulse>
           <div className="p-6 pt-8">
             <Logo size="lg" />
