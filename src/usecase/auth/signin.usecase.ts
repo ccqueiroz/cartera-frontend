@@ -1,7 +1,7 @@
-import { HandleRequestDTO } from "@/domain/core/api/handleRequest.dto";
+import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { Usecase } from "../usecase";
 import { AuthDTO } from "@/domain/auth/auth.dto";
-import { HandleRequestGateway } from "@/domain/core/api/handleRequest.gateway";
+import { HandleResponseGateway } from "@/domain/core/api/handleResponse.gateway";
 import { SignInService } from "@/service/auth/signin.service";
 import { CookiesGateway } from "@/domain/core/storage/cookies.gateway";
 import { flagsCookies } from "@/domain/core/storage/flagsCookies.constants";
@@ -9,13 +9,13 @@ import { flagsCookies } from "@/domain/core/storage/flagsCookies.constants";
 type InputDTO = { email: string; password: string; keepSession: boolean };
 
 export class SignInUseCase
-  implements Usecase<InputDTO, Promise<HandleRequestDTO<AuthDTO>>>
+  implements Usecase<InputDTO, Promise<HandleResponseDTO<AuthDTO>>>
 {
   private MAX_AGE_KEEP_SESSION = 60 * 60 * 24 * 7;
   private MAX_AGE_REFRESH_SESSION = 60 * 60 * 24 * 7;
 
   constructor(
-    private readonly handleRequestGateway: HandleRequestGateway,
+    private readonly HandleResponseGateway: HandleResponseGateway,
     private readonly signInService: SignInService,
     private readonly storage: CookiesGateway
   ) {}
@@ -87,8 +87,8 @@ export class SignInUseCase
     email,
     password,
     keepSession,
-  }: InputDTO): Promise<HandleRequestDTO<AuthDTO>> {
-    const response = await this.handleRequestGateway.execute(() =>
+  }: InputDTO): Promise<HandleResponseDTO<AuthDTO>> {
+    const response = await this.HandleResponseGateway.execute(() =>
       this.signInService.execute({ email, password })
     );
 

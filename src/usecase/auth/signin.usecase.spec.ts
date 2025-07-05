@@ -1,14 +1,14 @@
-import { HandleRequestGateway } from "@/domain/core/api/handleRequest.gateway";
+import { HandleResponseGateway } from "@/domain/core/api/handleResponse.gateway";
 import { CookiesGateway } from "@/domain/core/storage/cookies.gateway";
 import { HttpGateway } from "@/domain/http/http.gateway";
 import { SignInUseCase } from "./signin.usecase";
 import { AuthDTO } from "@/domain/auth/auth.dto";
 import { SignInService } from "@/service/auth/signin.service";
-import { HandleRequestDTO } from "@/domain/core/api/handleRequest.dto";
+import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { flagsCookies } from "@/domain/core/storage/flagsCookies.constants";
 
 describe("SignInUseCase", () => {
-  const handleRequestGatewayMock: jest.Mocked<HandleRequestGateway> = {
+  const HandleResponseGatewayMock: jest.Mocked<HandleResponseGateway> = {
     execute: jest.fn(),
   };
 
@@ -49,19 +49,19 @@ describe("SignInUseCase", () => {
     const siginService = new SignInService(httpInfraMock.post);
 
     useCase = new SignInUseCase(
-      handleRequestGatewayMock,
+      HandleResponseGatewayMock,
       siginService,
       storageMock
     );
   });
 
   it("should return error response when login fails", async () => {
-    const errorResponse: HandleRequestDTO<AuthDTO> = {
+    const errorResponse: HandleResponseDTO<AuthDTO> = {
       success: false,
       error: "Invalid credentials",
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(errorResponse);
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(errorResponse);
 
     const result = await useCase.execute(input);
 
@@ -71,12 +71,12 @@ describe("SignInUseCase", () => {
   });
 
   it("should save cookies and return success when login succeeds with keepSession true", async () => {
-    const successResponse: HandleRequestDTO<AuthDTO> = {
+    const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: authDTO,
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(successResponse);
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
 
     const result = await useCase.execute(input);
 
@@ -120,12 +120,12 @@ describe("SignInUseCase", () => {
   });
 
   it("should not save keepSession cookie if keepSession is false", async () => {
-    const successResponse: HandleRequestDTO<AuthDTO> = {
+    const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: authDTO,
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(successResponse);
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
 
     const result = await useCase.execute({ ...input, keepSession: false });
 
@@ -151,7 +151,7 @@ describe("SignInUseCase", () => {
   });
 
   it("should save auth cookie without expires if expirationTime is undefined", async () => {
-    const responseWithoutExpiration: HandleRequestDTO<AuthDTO> = {
+    const responseWithoutExpiration: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: {
         ...authDTO,
@@ -159,7 +159,7 @@ describe("SignInUseCase", () => {
       },
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(
       responseWithoutExpiration
     );
 
@@ -175,7 +175,7 @@ describe("SignInUseCase", () => {
   });
 
   it("should not save auth cookie if accessToken is undefined", async () => {
-    const responseWithoutAccessToken: HandleRequestDTO<AuthDTO> = {
+    const responseWithoutAccessToken: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: {
         ...authDTO,
@@ -183,7 +183,7 @@ describe("SignInUseCase", () => {
       },
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(
       responseWithoutAccessToken
     );
 
@@ -209,7 +209,7 @@ describe("SignInUseCase", () => {
   });
 
   it("should not save refresh cookie if refreshToken is undefined", async () => {
-    const responseWithoutRefreshToken: HandleRequestDTO<AuthDTO> = {
+    const responseWithoutRefreshToken: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: {
         ...authDTO,
@@ -217,7 +217,7 @@ describe("SignInUseCase", () => {
       },
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(
       responseWithoutRefreshToken
     );
 
@@ -245,12 +245,12 @@ describe("SignInUseCase", () => {
   });
 
   it("should save person user auth data when login succeeds and have the email attribute and userId attribute.", async () => {
-    const successResponse: HandleRequestDTO<AuthDTO> = {
+    const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: authDTO,
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(successResponse);
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
 
     const result = await useCase.execute(input);
 
@@ -270,7 +270,7 @@ describe("SignInUseCase", () => {
   });
 
   it("should not save person user auth data when login succeeds and dont have the email attribute and userId attribute.", async () => {
-    const successResponse: HandleRequestDTO<AuthDTO> = {
+    const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: {
         ...authDTO,
@@ -279,7 +279,7 @@ describe("SignInUseCase", () => {
       },
     };
 
-    handleRequestGatewayMock.execute.mockResolvedValueOnce(successResponse);
+    HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
 
     const result = await useCase.execute(input);
 
