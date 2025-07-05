@@ -1,9 +1,9 @@
 import { CookieOptions } from "@/domain/core/storage/cookies.dto";
 import { CookiesGateway } from "@/domain/core/storage/cookies.gateway";
-import { cookies as nextCookies } from "next/headers";
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 export class CookieServerStorage implements CookiesGateway {
-  constructor(private readonly cookies = nextCookies()) {}
+  constructor(private readonly cookies: ReadonlyRequestCookies) {}
 
   private parseStringToRequiredType<T>(value: string) {
     try {
