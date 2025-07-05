@@ -4,7 +4,7 @@ import { cn } from "@/app/lib/cn.utils";
 import Link from "next/link";
 import { ROUTES } from "@/infra/constants/routes.constants";
 import { Logo } from "@/app/components/core/logo/logo.component";
-import { FeaturesPreview } from "./components/FeaturesPreview/features-preview.components";
+import { FeaturesPreview } from "./components/FeaturesPreview/featuresPreview.components";
 
 export default function HomeView() {
   return (
