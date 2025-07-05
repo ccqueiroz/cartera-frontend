@@ -60,5 +60,5 @@ jobs:
 
       - name: Analizying Unit Tests
         id: unit-tests
-        run: yarn test:unit
+        run: yarn test
         continue-on-error: false
