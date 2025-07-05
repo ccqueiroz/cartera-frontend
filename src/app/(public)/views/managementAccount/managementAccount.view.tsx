@@ -18,10 +18,7 @@ export const ManagementAccount = ({
         <GlassCard variant="purple" animatePulse>
           <div className="p-6 pt-8">
             <Logo size="lg" />
-            <h1
-              className="text-2xl md:text-4xl font-bold text-white mb-6 animate-fade-in-up"
-              style={{ animationDelay: "200ms" }}
-            >
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-6 animate-fade-in-up">
               Sua carteira digital
               <br />
               <span className="bg-gradient-neon bg-clip-text text-transparent bg-200% animate-gradient-flow">

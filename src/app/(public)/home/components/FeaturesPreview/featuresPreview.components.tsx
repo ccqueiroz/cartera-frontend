@@ -21,7 +21,6 @@ export const FeaturesPreview = () => {
   return (
     <div
       className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 animate-fade-in-up"
-      style={{ animationDelay: "800ms" }}
     >
       {featuresPreview.map((f, i) => (
         <GlassCard

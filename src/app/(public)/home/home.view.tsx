@@ -32,10 +32,7 @@ export default function HomeView() {
             inteligente
           </span>
         </h1>
-        <p
-          className="text-xl md:text-2xl text-white/70 mb-10 max-w-2xl mx-auto animate-fade-in-up"
-          style={{ animationDelay: "400ms" }}
-        >
+        <p className="text-xl md:text-2xl text-white/70 mb-10 max-w-2xl mx-auto animate-fade-in-up">
           Gerencie suas finanças com tecnologia de ponta. Dashboard moderno,
           controle total e insights em tempo real.
         </p>
@@ -43,8 +40,7 @@ export default function HomeView() {
         <FeaturesPreview />
 
         <div
-          className="animate-bounce animate-fade-in-up"
-          style={{ animationDelay: "1200ms" }}
+          className="animate-fade-in-up"
         >
           <ArrowDown className="mx-auto text-white/50" size={24} />
           <p className="text-white/50 text-sm mt-2 underline">
