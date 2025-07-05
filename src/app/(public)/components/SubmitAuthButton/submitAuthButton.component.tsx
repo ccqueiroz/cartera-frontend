@@ -8,7 +8,7 @@ export const SubmitAuthButton = ({
   isSubmitting: boolean;
 }) => {
   return (
-    <div className="w-full max-w-60 mx-auto">
+    <div className="w-full max-w-60 mx-auto animate-fade-in-up">
       <NeonButton
         type="submit"
         className="w-full"
