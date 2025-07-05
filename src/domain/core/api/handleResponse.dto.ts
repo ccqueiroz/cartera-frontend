@@ -1,4 +1,4 @@
-export type HandleRequestDTO<T> =
+export type HandleResponseDTO<T> =
   | { success: true; data: T }
   | {
       success: false;
