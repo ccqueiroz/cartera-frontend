@@ -14,8 +14,11 @@ export class HandleResponseInfra implements HandleResponseGateway {
         error instanceof HttpError
           ? error.message
           : error instanceof Error
-          ? error.message
+          ? error.message === "fetch failed"
+            ? DomainMessageList.UNKNOWN_ERROR
+            : error.message
           : DomainMessageList.UNKNOWN_ERROR;
+
       return {
         success: false,
         error: message,
