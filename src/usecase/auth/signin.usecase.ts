@@ -27,9 +27,9 @@ export class SignInUseCase
     return keepSession && expirationTime ? new Date(expirationTime) : undefined;
   }
 
-  private async saveCookieKeepSession(keepSession: boolean) {
+  private saveCookieKeepSession(keepSession: boolean) {
     if (keepSession) {
-      await this.storage.save(flagsCookies.KEEP_SESSION, keepSession, {
+      this.storage.save(flagsCookies.KEEP_SESSION, keepSession, {
         httpOnly: true,
         sameSite: "lax",
         path: "/",
@@ -39,13 +39,13 @@ export class SignInUseCase
     }
   }
 
-  private async saveCookieAuthSession(
+  private saveCookieAuthSession(
     accessToken: string | undefined,
     keepSession: boolean,
     expirationTime?: number
   ) {
     if (accessToken) {
-      await this.storage.save(flagsCookies.AUTH, accessToken, {
+      this.storage.save(flagsCookies.AUTH, accessToken, {
         httpOnly: true,
         sameSite: "lax",
         path: "/",
@@ -55,9 +55,9 @@ export class SignInUseCase
     }
   }
 
-  private async saveCookieRefreshAuthSession(refreshToken: string | undefined) {
+  private saveCookieRefreshAuthSession(refreshToken: string | undefined) {
     if (refreshToken) {
-      await this.storage.save(flagsCookies.REFRESH_AUTH, refreshToken, {
+      this.storage.save(flagsCookies.REFRESH_AUTH, refreshToken, {
         httpOnly: true,
         sameSite: "strict",
         path: "/auth/refresh",
@@ -67,9 +67,9 @@ export class SignInUseCase
     }
   }
 
-  private async saveCookiePersonUserData(email?: string, userId?: string) {
+  private saveCookiePersonUserData(email?: string, userId?: string) {
     if (email && userId) {
-      await this.storage.save(
+      this.storage.save(
         flagsCookies.PERSON_USER_AUTH,
         { email, userId },
         {
@@ -94,7 +94,7 @@ export class SignInUseCase
 
     if (!response.success) return response;
 
-    await Promise.allSettled([
+    Promise.allSettled([
       this.saveCookieKeepSession(keepSession),
       this.saveCookieAuthSession(
         response.data?.accessToken,
