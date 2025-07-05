@@ -5,6 +5,6 @@ const RegisterContainer = dynamic(() =>
   import("./register.container").then((mod) => mod.default)
 );
 
-export default async function Login() {
+export default async function Register() {
   return <RegisterContainer registerServer={register} />;
 }
