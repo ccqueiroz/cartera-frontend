@@ -130,12 +130,17 @@ export default {
         "fade-in-up": {
           "0%": {
             opacity: "0",
-            transform: "translateY(10px)",
+            transform: "translateY(20px)",
           },
           "100%": {
             opacity: "1",
             transform: "translateY(0)",
           },
+        },
+        shine: {
+          "0%": { transform: "translateY(-100%) skewY(-20deg)", opacity: "0" },
+          "50%": { opacity: "1" },
+          "100%": { transform: "translateY(100%) skewY(-20deg)", opacity: "0" },
         },
         "gradient-flow": {
           "0%": { backgroundPosition: "0% 50%" },
@@ -148,8 +153,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-neon": "pulse-neon 3s ease-in-out infinite",
         "pulse-neon-card": "pulse-neon-card 4s ease-in-out infinite",
-        "fade-in-up": "fade-in-up 0.15s ease-out",
+        "fade-in-up": "fade-in-up 1s ease-out",
         "gradient-flow": "gradient-flow 8s ease infinite",
+        shine: "shine 1s ease-in-out forwards",
+        "shine-delay": "shine 1s ease-in-out forwards 0.15s",
       },
       backgroundImage: {
         "gradient-neon": "linear-gradient(90deg, #7DF9FF, #C084FC, #7DF9FF)",
