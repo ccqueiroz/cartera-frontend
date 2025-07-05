@@ -1,0 +1,113 @@
+import { HandleRequestDTO } from "@/domain/core/api/handleRequest.dto";
+import { Usecase } from "../usecase";
+import { AuthDTO } from "@/domain/auth/auth.dto";
+import { HandleRequestGateway } from "@/domain/core/api/handleRequest.gateway";
+import { SignInService } from "@/service/auth/signin.service";
+import { CookiesGateway } from "@/domain/core/storage/cookies.gateway";
+import { flagsCookies } from "@/domain/core/storage/flagsCookies.constants";
+
+type InputDTO = { email: string; password: string; keepSession: boolean };
+
+export class SignInUseCase
+  implements Usecase<InputDTO, Promise<HandleRequestDTO<AuthDTO>>>
+{
+  private MAX_AGE_KEEP_SESSION = 60 * 60 * 24 * 7;
+  private MAX_AGE_REFRESH_SESSION = 60 * 60 * 24 * 7;
+
+  constructor(
+    private readonly handleRequestGateway: HandleRequestGateway,
+    private readonly signInService: SignInService,
+    private readonly storage: CookiesGateway
+  ) {}
+
+  private defineExpiresAuthCookie(
+    keepSession: boolean,
+    expirationTime?: number
+  ) {
+    return keepSession && expirationTime ? new Date(expirationTime) : undefined;
+  }
+
+  private async saveCookieKeepSession(keepSession: boolean) {
+    if (keepSession) {
+      await this.storage.save(flagsCookies.KEEP_SESSION, keepSession, {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+        ...(keepSession ? { maxAge: this.MAX_AGE_KEEP_SESSION } : {}),
+      });
+    }
+  }
+
+  private async saveCookieAuthSession(
+    accessToken: string | undefined,
+    keepSession: boolean,
+    expirationTime?: number
+  ) {
+    if (accessToken) {
+      await this.storage.save(flagsCookies.AUTH, accessToken, {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        expires: this.defineExpiresAuthCookie(keepSession, expirationTime),
+      });
+    }
+  }
+
+  private async saveCookieRefreshAuthSession(refreshToken: string | undefined) {
+    if (refreshToken) {
+      await this.storage.save(flagsCookies.REFRESH_AUTH, refreshToken, {
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/auth/refresh",
+        secure: true,
+        maxAge: this.MAX_AGE_REFRESH_SESSION,
+      });
+    }
+  }
+
+  private async saveCookiePersonUserData(email?: string, userId?: string) {
+    if (email && userId) {
+      await this.storage.save(
+        flagsCookies.PERSON_USER_AUTH,
+        { email, userId },
+        {
+          httpOnly: true,
+          sameSite: "lax",
+          path: "/",
+          secure: true,
+          maxAge: this.MAX_AGE_KEEP_SESSION,
+        }
+      );
+    }
+  }
+
+  async execute({
+    email,
+    password,
+    keepSession,
+  }: InputDTO): Promise<HandleRequestDTO<AuthDTO>> {
+    const response = await this.handleRequestGateway.execute(() =>
+      this.signInService.execute({ email, password })
+    );
+
+    if (!response.success) return response;
+
+    await Promise.allSettled([
+      this.saveCookieKeepSession(keepSession),
+      this.saveCookieAuthSession(
+        response.data?.accessToken,
+        keepSession,
+        response?.data?.expirationTime
+      ),
+      this.saveCookieRefreshAuthSession(response?.data?.refreshToken),
+      this.saveCookiePersonUserData(
+        response.data?.email,
+        response.data?.userId
+      ),
+    ]);
+
+    return response;
+  }
+}
