@@ -43,8 +43,8 @@ export class HttpInfra implements HttpGateway {
     return url.toString();
   }
 
-  private async buildHeaders(headers?: Record<string, string>) {
-    const token = await this.storage.recover(flagsCookies.AUTH);
+  private buildHeaders(headers?: Record<string, string>) {
+    const token = this.storage.recover(flagsCookies.AUTH);
 
     return {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export class HttpInfra implements HttpGateway {
       body: ["POST", "PUT", "PATCH"].includes(method)
         ? JSON.stringify(body)
         : undefined,
-      headers: await this.buildHeaders(headers),
+      headers: this.buildHeaders(headers),
       signal,
       next:
         tags || revalidate
