@@ -1,5 +1,5 @@
 import { HttpGateway } from "@/domain/http/http.gateway";
-import { PersonUserDTO } from "@/domain/personUser/person-user.dto";
+import { PersonUserDTO } from "@/domain/personUser/personUser.dto";
 import { BASE_API_PATHS } from "@/infra/constants/baseApiPaths.constants";
 import { Service } from "../service";
 

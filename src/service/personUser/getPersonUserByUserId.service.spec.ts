@@ -1,7 +1,7 @@
 import { GetPersonUserByUserIdService } from "./getPersonUserByUserId.service";
 import { HttpGateway } from "@/domain/http/http.gateway";
 import { BASE_API_PATHS } from "@/infra/constants/baseApiPaths.constants";
-import { PersonUserDTO } from "@/domain/personUser/person-user.dto";
+import { PersonUserDTO } from "@/domain/personUser/personUser.dto";
 
 describe("GetPersonUserByUserIdService", () => {
   let service: GetPersonUserByUserIdService;
