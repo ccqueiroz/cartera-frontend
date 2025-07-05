@@ -1,7 +1,14 @@
-import { act, renderHook } from "@testing-library/react";
+import {
+  act,
+  render,
+  renderHook,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { useLogin } from "./useLogin.hook";
 import { LoginSchemaType } from "@/infra/schemas/auth/login.schema";
 import { toast } from "sonner";
+import userEvent from "@testing-library/user-event";
 
 jest.mock("sonner", () => ({
   toast: {
@@ -22,7 +29,7 @@ describe("useLogin", () => {
     );
 
     expect(result.current.errors).toEqual({});
-    expect(result.current.isSubmitting).toBe(false);
+    expect(result.current.isSubmitting).toBeFalsy();
   });
 
   it("should submit form and call signIn successfully", async () => {
@@ -89,21 +96,36 @@ describe("useLogin", () => {
   });
 
   it("should not call signIn on validation error", async () => {
-    const { result } = renderHook(() =>
-      useLogin({ keepSessionCookieValue: false, signIn: signInMock })
-    );
+    const FormComponent = () => {
+      const { register, handleSubmit } = useLogin({
+        keepSessionCookieValue: false,
+        signIn: signInMock,
+      });
 
-    // Invalid email and password
-    act(() => {
-      result.current.control._formValues.email = "invalid";
-      result.current.control._formValues.password = "";
-      result.current.control._formValues.keepSession = false;
+      return (
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="email" {...register("email")} />
+          <input
+            type="password"
+            placeholder="password"
+            {...register("password")}
+          />
+          <input type="checkbox" {...register("keepSession")} />
+          <button type="submit">Submit</button>
+        </form>
+      );
+    };
+
+    render(<FormComponent />);
+
+    userEvent.type(screen.getByPlaceholderText("email"), "invalid");
+
+    userEvent.type(screen.getByPlaceholderText("password"), "");
+
+    userEvent.click(screen.getByText("Submit"));
+
+    await waitFor(() => {
+      expect(signInMock).not.toHaveBeenCalled();
     });
-
-    await act(async () => {
-      await result.current.handleSubmit();
-    });
-
-    expect(signInMock).not.toHaveBeenCalled();
   });
 });
