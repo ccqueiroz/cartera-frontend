@@ -88,7 +88,7 @@ describe("HttpInfra", () => {
   });
 
   it("should build headers with Authorization when token exists", async () => {
-    storageMock.recover.mockResolvedValue("token123");
+    storageMock.recover.mockReturnValue("token123");
     const headers = { "X-Custom": "abc" };
 
     const fakeResponse = {
