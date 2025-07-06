@@ -12,15 +12,15 @@ const fontSizes = {
 } as const;
 
 const sizes = {
-  md: "w-8 h-8 sm:w-10 sm:h-10",
-  lg: "w-10 h-10 sm:w-12 sm:h-12",
-  xl: "w-12 h-12 sm:w-16 sm:h-16",
+  md: "w-10 h-10",
+  lg: "w-12 h-12",
+  xl: "w-16 h-16",
 } as const;
 
 const sizesSVG = {
-  md: "w-4 h-4 sm:w-6 sm:h-6",
-  lg: "w-6 h-6 sm:w-7 sm:h-7'",
-  xl: "w-7 h-7 sm:w-9 sm:h-9",
+  md: "w-8 h-8",
+  lg: "w-10 h-10",
+  xl: "w-14 h-14",
 } as const;
 
 export const Logo = ({ size = "md", className }: LogoProps) => {
