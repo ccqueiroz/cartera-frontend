@@ -49,7 +49,6 @@ export const LoginView = ({
               name="keepSession"
               render={({ field: { value, onChange, ...field } }) => (
                 <Switch
-                  className="scale-[0.8]"
                   id="keepSession"
                   checked={value}
                   onCheckedChange={onChange}
