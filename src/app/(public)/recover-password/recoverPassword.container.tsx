@@ -1,3 +1,5 @@
+"use client";
+
 import { useRecoverPassword } from "./hook/useRecoverPassword.hook";
 import { RecoverPasswordProps } from "./recoverPassword.types";
 import { RecoverPasswordView } from "./recoverPassword.view";
