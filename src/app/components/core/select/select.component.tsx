@@ -50,18 +50,20 @@ export const Select = ({
         value={value}
         {...props}
       >
-        <SelectTrigger
-          onReset={onReset}
-          className={cn(classNameSelectTrigger)}
-          onBlur={onBlur}
-          id={id}
-        >
-          <SelectValue
-            placeholder={placeholder}
-            aria-label={value}
-            defaultValue={defaultValue}
-          />
-        </SelectTrigger>
+        <div className="gradient-border-input p-[2px] rounded-md flex justify-center items-center">
+          <SelectTrigger
+            onReset={onReset}
+            className={cn(classNameSelectTrigger)}
+            onBlur={onBlur}
+            id={id}
+          >
+            <SelectValue
+              placeholder={placeholder}
+              aria-label={value}
+              defaultValue={defaultValue}
+            />
+          </SelectTrigger>
+        </div>
         <SelectContent className={cn(classNameSelectContent)}>
           {items.map((item, index) => (
             <SelectItem key={`${item.value}-${index}`} value={item.value}>
