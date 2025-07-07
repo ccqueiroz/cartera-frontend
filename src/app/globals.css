@@ -106,6 +106,10 @@
     @apply border border-neon-purple/50;
   }
 
+  .gradient-border-input {
+    @apply bg-gradient-to-r from-[#7df9ff66] via-[#ebc4f4] to-[#c084fc66];
+  }
+
   .digital {
     font-family: "IBM Plex Mono", monospace;
   }
