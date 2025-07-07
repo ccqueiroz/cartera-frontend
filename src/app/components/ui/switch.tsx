@@ -20,7 +20,7 @@ const Switch = React.forwardRef<
     <SwitchPrimitives.Root
       className={cn(
         "w-[42px] h-[22px] peer inline-flex items-center shrink-0",
-        "bg-background broder-2",
+        "bg-background border-2",
         "rounded-full border-transparen",
         "cursor-pointer transition-colors",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
