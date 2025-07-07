@@ -2,7 +2,7 @@
 
 import { ProgressProvider } from "@bprogress/next/app";
 
-export const ProgressBar = ({ children }: { children: React.ReactNode }) => {
+export const ProgressBarProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProgressProvider
       height="4px"
