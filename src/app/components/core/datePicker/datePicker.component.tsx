@@ -2,7 +2,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { ButtonUi } from "../../ui/button";
 import { DateRange } from "react-day-picker";
 import { Calendar, CalendarProps } from "../../ui/calendar";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useDatePicker } from "./hook/useDatePicker.hook";
 import { DatePickerProps } from "./datePicker.types";

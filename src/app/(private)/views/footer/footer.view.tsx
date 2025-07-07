@@ -1,7 +1,7 @@
 "use client";
 
 import { NeonButton } from "@/app/components/core/neonButton/neonButton.component";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import {
   CreditCard,
   Home,

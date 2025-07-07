@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { NeonSpinner } from "../neonSpinner/neonSpinner.component";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 
 interface NeonButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

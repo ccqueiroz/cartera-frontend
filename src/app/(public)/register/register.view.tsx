@@ -3,7 +3,7 @@ import { UseRegisterReturn } from "./register.types";
 import { SubmitAuthButton } from "../components/SubmitAuthButton/submitAuthButton.component";
 import Link from "next/link";
 import { ROUTES } from "@/infra/constants/routes.constants";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import { ManagementAccount } from "../views/managementAccount/managementAccount.view";
 
 type RegisterViewProps = UseRegisterReturn;

@@ -1,4 +1,4 @@
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import { LayoutPublic } from "../layout/layout.view";
 import { GlassCard } from "@/app/components/core/glassCard/glassCard.component";
 import { Logo } from "@/app/components/core/logo/logo.component";

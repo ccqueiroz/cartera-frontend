@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Tooltip, TooltipProvider, TooltipTrigger } from "../../ui/tooltip";
 import { Content as TooltipContentPrimitive } from "@radix-ui/react-tooltip";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 
 const variantClasses = {
   solid: "bg-popover-solid text-popover-foreground",

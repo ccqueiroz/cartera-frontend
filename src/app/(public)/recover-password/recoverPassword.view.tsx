@@ -1,6 +1,6 @@
 import { ROUTES } from "@/infra/constants/routes.constants";
 import { UseRecoverPasswordReturn } from "./recoverPassword.types";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import Link from "next/link";
 import { SubmitAuthButton } from "../components/SubmitAuthButton/submitAuthButton.component";
 import { InputForm } from "@/app/components/core/inputForm/inputForm.component";

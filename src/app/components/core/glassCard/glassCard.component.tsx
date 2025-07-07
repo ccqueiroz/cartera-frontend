@@ -1,4 +1,4 @@
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import { memo } from "react";
 
 export type VariantGlassType = "default" | "light" | "dark" | "blue" | "purple";

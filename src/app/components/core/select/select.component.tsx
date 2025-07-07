@@ -8,7 +8,7 @@ import {
   SelectItem,
 } from "../../ui/select";
 import { SelectProps as SelectPrimitiveProps } from "@radix-ui/react-select";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 
 export type SelectItemsType = {
   value: string;
