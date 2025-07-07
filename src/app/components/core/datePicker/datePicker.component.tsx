@@ -46,7 +46,7 @@ const DatePicker = memo(
     return (
       <Popover open={open && !disabled} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <div className="w-[246px] h-10 gradient-border-input p-[2px] rounded-md flex justify-center items-center">
+          <div className="h-10 gradient-border-input p-[2px] rounded-md flex justify-center items-center">
             <ButtonUi
               disabled={disabled}
               variant={"outline"}
