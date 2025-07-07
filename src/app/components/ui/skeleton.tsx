@@ -1,4 +1,4 @@
-import { cn } from "@/app/lib/cn.utils.ts"
+import { cn } from "@/app/lib/cn.utils";
 
 function Skeleton({
   className,
@@ -9,7 +9,7 @@ function Skeleton({
       className={cn("animate-pulse rounded-md bg-muted", className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Skeleton }
+export { Skeleton };
