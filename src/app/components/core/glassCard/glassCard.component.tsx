@@ -16,7 +16,7 @@ const baseStyles = "rounded-xl shadow-lg backdrop-blur-[15px] border";
 const variantStyles = {
   default: "bg-glass-light border-white/8",
   light: "bg-glass-lighter border-white/5",
-  dark: "bg-glass-dark border-white/5",
+  dark: "bg-background border-white/5",
   blue: "bg-neon-blue/10",
   purple: "bg-neon-purple/10",
 } as const;
