@@ -6,7 +6,10 @@ import {
 import { HttpGateway } from "@/domain/http/http.gateway";
 import { BASE_API_PATHS } from "@/infra/constants/baseApiPaths.constants";
 
-type InputDTO = InputGetBillsPayableMonth;
+type InputDTO = {
+  queries: InputGetBillsPayableMonth;
+  signal?: AbortSignal | undefined;
+};
 
 export class GetBillsPayableMonthService
   implements Service<InputDTO, Promise<BillsPayableMonthListDTO>>
@@ -14,13 +17,20 @@ export class GetBillsPayableMonthService
   constructor(private readonly http: HttpGateway["get"]) {}
 
   async execute({
-    initialDate,
-    finalDate,
-    ...rest
+    queries: { initialDate, finalDate, ...rest },
+    signal,
   }: InputDTO): Promise<BillsPayableMonthListDTO> {
     const response = await this.http<BillsPayableMonthListDTO>(
       BASE_API_PATHS.BILL.by_month_status,
-      { queries: { ...rest, initialDate, finalDate }, cache: "no-store" }
+      {
+        queries: {
+          ...rest,
+          initialDate,
+          finalDate,
+        },
+        cache: "no-store",
+        signal,
+      }
     );
 
     return response;

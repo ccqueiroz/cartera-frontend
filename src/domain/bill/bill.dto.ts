@@ -1,7 +1,7 @@
 import { ResponseListDTO } from "../core/api/responseList.dto";
 import { BaseDto } from "../core/baseDto/baseDto.dto";
 import { PaginationParams } from "../core/listParams/listParams.dto";
-import { StatusTransaction } from "../statusTransaction/status-transaction.dto";
+import { StatusTransaction } from "../statusTransaction/statusTransaction.dto";
 
 export type BillDTO = {
   id?: string;
@@ -53,3 +53,9 @@ export type InputGetBillsPayableMonth =
 
 export type BillsPayableMonthListDTO =
   ResponseListDTO<BillsPayableMonthOutPutDTO>;
+
+export type BillsPayableMonthListDTOAdpatedToPresentation =
+  BillsPayableMonthOutPutDTO & {
+    amountFormated?: string;
+    billDateFormated?: string;
+  };

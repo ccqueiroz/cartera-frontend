@@ -13,6 +13,7 @@ export type DatePickerProps = {
   maxDate?: Date;
   placeholder?: string;
   disabled?: boolean;
+  id?: string;
 } & Omit<CalendarProps, "mode" | "selected" | "onSelect">;
 
 export type UseDatePickerProps = Pick<

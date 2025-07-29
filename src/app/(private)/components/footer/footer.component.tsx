@@ -23,37 +23,37 @@ const menuItems = [
   },
   {
     label: "Cartões",
-    url: "#",
+    url: "#1",
     icon: CreditCard,
   },
   {
     label: "Pagamentos",
-    url: "#",
+    url: "#2",
     icon: BanknoteArrowUp,
   },
   {
     label: "Recebimentos",
-    url: "#",
+    url: "#3",
     icon: BanknoteArrowDown,
   },
   {
     label: "Planejamentos",
-    url: "#",
+    url: "#4",
     icon: PiggyBank,
   },
   {
     label: "Lista de Compras",
-    url: "#",
+    url: "#5",
     icon: ShoppingCart,
   },
   {
     label: "Conversor de Moedas",
-    url: "#",
+    url: "#6",
     icon: BadgeDollarSign,
   },
   {
     label: "Settings",
-    url: "#",
+    url: "#7",
     icon: Settings,
   },
 ] as const;

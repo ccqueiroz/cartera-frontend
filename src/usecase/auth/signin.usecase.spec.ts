@@ -112,7 +112,7 @@ describe("SignInUseCase", () => {
       expect.objectContaining({
         httpOnly: true,
         sameSite: "strict",
-        path: "/auth/refresh",
+        path: "/auth/refresh-token",
         secure: true,
         maxAge: expect.any(Number),
       })

@@ -1,8 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRecoverPassword } from "./hook/useRecoverPassword.hook";
 import { RecoverPasswordProps } from "./recoverPassword.types";
-import { RecoverPasswordView } from "./recoverPassword.view";
+
+const RecoverPasswordView = dynamic(
+  () => import("./recoverPassword.view").then((mod) => mod.RecoverPasswordView),
+  {
+    ssr: false,
+  }
+);
 
 export default function RecoverPasswordContainer({
   recoverPassword,

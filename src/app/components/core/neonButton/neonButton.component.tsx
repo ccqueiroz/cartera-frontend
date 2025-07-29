@@ -53,7 +53,7 @@ const NeonButton = memo(
           {...props}
         >
           {isLoading ? (
-            <div className="w-7 h-7 flex items-center justify-center opacity-85">
+            <div className="w-6 h-6 flex items-center justify-center opacity-85">
               <NeonSpinner />
             </div>
           ) : (

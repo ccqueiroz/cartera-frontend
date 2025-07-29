@@ -18,11 +18,7 @@ export async function signIn({
   const service = new SignInService((await httpInfraFactory()).post);
   const storage = await cookiesFactory();
 
-  const usecase = new SignInUseCase(
-    handleResponseFactory,
-    service,
-    storage
-  );
+  const usecase = new SignInUseCase(handleResponseFactory, service, storage);
 
   const signin = await usecase.execute({
     email,

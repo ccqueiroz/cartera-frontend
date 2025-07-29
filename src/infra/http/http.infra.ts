@@ -73,7 +73,7 @@ export class HttpInfra implements HttpGateway {
         tags || revalidate
           ? { ...(tags ? { tags } : {}), ...(revalidate ? { revalidate } : {}) }
           : undefined,
-      cache: revalidate ? undefined : cache || "force-cache",
+      cache: cache ?? (revalidate ? undefined : "force-cache"),
     });
 
     if (response.status === 204) {

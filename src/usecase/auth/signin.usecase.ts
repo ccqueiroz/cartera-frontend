@@ -49,7 +49,7 @@ export class SignInUseCase
         httpOnly: true,
         sameSite: "lax",
         path: "/",
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         expires: this.defineExpiresAuthCookie(keepSession, expirationTime),
       });
     }
@@ -60,7 +60,7 @@ export class SignInUseCase
       this.storage.save(flagsCookies.REFRESH_AUTH, refreshToken, {
         httpOnly: true,
         sameSite: "strict",
-        path: "/auth/refresh",
+        path: "/auth/refresh-token",
         secure: true,
         maxAge: this.MAX_AGE_REFRESH_SESSION,
       });
@@ -94,7 +94,7 @@ export class SignInUseCase
 
     if (!response.success) return response;
 
-    Promise.allSettled([
+    await Promise.allSettled([
       this.saveCookieKeepSession(keepSession),
       this.saveCookieAuthSession(
         response.data?.accessToken,

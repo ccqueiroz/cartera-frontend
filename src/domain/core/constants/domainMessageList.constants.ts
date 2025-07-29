@@ -4,5 +4,6 @@ export const DomainMessageList = {
   NEXT_PUBLIC_API_URL_NOT_FOUND: "Erro! NEXT_PUBLIC_API_URL não está definida!",
   EMAIL_HAS_BEEN_SEND_TO_RECOVER_PASSWORD:
     "Um e-mail foi enviado para {complement}.",
-  COOKIES_NOT_DEFINED: 'Cookies Store não está definida!'
+  COOKIES_NOT_DEFINED: "Cookies Store não está definida!",
+  OPERATION_SUCCESS: "Operação realizada com sucesso!",
 } as const;

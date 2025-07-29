@@ -14,6 +14,6 @@ export class GetValueKeepSessionUseCase
   async execute(): OutputDTO {
     const keepSession = await this.storage.recover(flagsCookies.KEEP_SESSION);
 
-    return keepSession === "true";
+    return !!keepSession;
   }
 }
