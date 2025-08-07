@@ -10,13 +10,18 @@ type InputDTO = {
   payload: InputPayload;
 };
 
+type OutputDTO = {
+  data: BillDTO;
+  status: number;
+};
+
 export class UpdateBillPayableMonthService
-  implements Service<InputDTO, Promise<BillDTO>>
+  implements Service<InputDTO, Promise<OutputDTO>>
 {
   constructor(private readonly http: HttpGateway["put"]) {}
 
-  async execute({ payload, signal }: InputDTO): Promise<BillDTO> {
-    const response = await this.http<BillDTO>(
+  async execute({ payload, signal }: InputDTO): Promise<OutputDTO> {
+    const response = await this.http<OutputDTO>(
       BASE_API_PATHS.BILL.edit,
       {
         payload,
