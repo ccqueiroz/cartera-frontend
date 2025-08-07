@@ -6,6 +6,8 @@ import {
   BillsPayableMonthListDTO,
   InputGetBillsPayableMonth,
 } from "@/domain/bill/bill.dto";
+import { CategoryDescriptionEnum } from "@/domain/transaction/enum/categoryDescription.enum";
+import { CategoryGroupEnum } from "@/domain/transaction/enum/categoryGroup.enum";
 
 describe("GetBillsPayableMonthUseCase", () => {
   const mockHandleResponseGateway: jest.Mocked<HandleResponseGateway> = {
@@ -29,28 +31,34 @@ describe("GetBillsPayableMonthUseCase", () => {
     size: 10,
   };
 
-  const billsResponse: BillsPayableMonthListDTO = {
-    content: [
-      {
-        id: "1",
-        amount: 100,
-        descriptionBill: "Internet Bill",
-        billDate: 1748746800000,
-        categoryId: "cat1",
-        categoryDescription: "Utilities",
-        status: "PENDING",
-      },
-    ],
-    page: 0,
-    size: 10,
-    totalElements: 1,
-    totalPages: 1,
-    ordering: null,
+  const billsResponse: { data: BillsPayableMonthListDTO; status: number } = {
+    data: {
+      content: [
+        {
+          id: "1",
+          amount: 100,
+          descriptionBill: "Internet Bill",
+          billDate: 1748746800000,
+          categoryId: "cat1",
+          categoryDescription: "Utilities",
+          categoryDescriptionEnum: CategoryDescriptionEnum.SUPERMARKET,
+          categoryGroup: CategoryGroupEnum.SHOPPING,
+          status: "TO_PAY",
+        },
+      ],
+      page: 0,
+      size: 10,
+      totalElements: 1,
+      totalPages: 1,
+      ordering: null,
+    },
+    status: 200,
   };
 
   const handleRequestResponse: HandleResponseDTO<BillsPayableMonthListDTO> = {
-    data: billsResponse,
+    data: billsResponse.data,
     success: true,
+    status: billsResponse.status,
   };
 
   beforeEach(() => {
@@ -62,7 +70,7 @@ describe("GetBillsPayableMonthUseCase", () => {
       handleRequestResponse
     );
 
-    const result = await useCase.execute(input);
+    const result = await useCase.execute({ queries: input });
 
     expect(mockHandleResponseGateway.execute).toHaveBeenCalledTimes(1);
     expect(mockHandleResponseGateway.execute).toHaveBeenCalledWith(
@@ -75,7 +83,9 @@ describe("GetBillsPayableMonthUseCase", () => {
     );
     const serviceResult = await callFn();
 
-    expect(mockGetBillsPayableMonthService.execute).toHaveBeenCalledWith(input);
+    expect(mockGetBillsPayableMonthService.execute).toHaveBeenCalledWith({
+      queries: input,
+    });
     expect(serviceResult).toEqual(billsResponse);
 
     expect(result).toEqual(handleRequestResponse);
@@ -85,7 +95,9 @@ describe("GetBillsPayableMonthUseCase", () => {
     const error = new Error("Request failed");
     mockHandleResponseGateway.execute.mockRejectedValueOnce(error);
 
-    await expect(useCase.execute(input)).rejects.toThrow("Request failed");
+    await expect(useCase.execute({ queries: input })).rejects.toThrow(
+      "Request failed"
+    );
 
     expect(mockHandleResponseGateway.execute).toHaveBeenCalledTimes(1);
     expect(mockHandleResponseGateway.execute).toHaveBeenCalledWith(

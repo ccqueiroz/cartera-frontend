@@ -1,40 +1,43 @@
 "use server";
 
-import { ROUTES } from "@/infra/constants/routes.constants";
+import { HandleProxy } from "@/app/actions/handleProxy/handleProxy.service";
+import { AuthDTO } from "@/domain/auth/auth.dto";
+import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { handleResponseFactory } from "@/infra/factories/handleResponse/handleReponse.factory";
 import { httpInfraFactory } from "@/infra/factories/http/http.factory";
 import { cookiesFactory } from "@/infra/factories/storage/cookies.factory";
 import { LoginSchemaType } from "@/infra/schemas/auth/login.schema";
+import { CookieServerStorage } from "@/infra/storage/cookies.server.storage.infra";
 import { SignInService } from "@/service/auth/signin.service";
 import { GetValueKeepSessionUseCase } from "@/usecase/auth/getValueKeepSession.usecase";
 import { SignInUseCase } from "@/usecase/auth/signin.usecase";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export async function signIn({
   email,
   password,
   keepSession,
 }: LoginSchemaType) {
-  const service = new SignInService((await httpInfraFactory()).post);
-  const storage = await cookiesFactory();
+  const storage = new CookieServerStorage(await cookies());
 
-  const usecase = new SignInUseCase(
-    handleResponseFactory,
-    service,
-    storage
-  );
+  const service = new SignInService((await httpInfraFactory(storage)).post);
 
-  const signin = await usecase.execute({
-    email,
-    password,
-    keepSession,
+  const usecase = new SignInUseCase(handleResponseFactory, service, storage);
+
+  const response = await HandleProxy({
+    request: () =>
+      usecase.execute({
+        email,
+        password,
+        keepSession,
+      }),
+    isAuthService: true,
+    storage,
   });
 
-  if (!signin.success) {
-    return signin;
-  }
+  const responseJson = (await response?.json()) as HandleResponseDTO<AuthDTO>;
 
-  redirect(ROUTES.PRIVATE.dashboard);
+  return responseJson;
 }
 
 export async function getValueKeepSession() {

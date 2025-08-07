@@ -7,7 +7,10 @@ import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { HandleResponseGateway } from "@/domain/core/api/handleResponse.gateway";
 import { GetBillsPayableMonthService } from "@/service/bill/getBillsPayableMonth.service";
 
-type InputDTO = InputGetBillsPayableMonth;
+type InputDTO = {
+  queries: InputGetBillsPayableMonth;
+  signal?: AbortSignal | undefined;
+};
 
 export class GetBillsPayableMonthUseCase
   implements
@@ -19,16 +22,11 @@ export class GetBillsPayableMonthUseCase
   ) {}
 
   async execute({
-    initialDate,
-    finalDate,
-    ...rest
+    queries,
+    signal,
   }: InputDTO): Promise<HandleResponseDTO<BillsPayableMonthListDTO>> {
     const response = await this.handleResponseGateway.execute(() =>
-      this.getBillsPayableMonthService.execute({
-        initialDate,
-        finalDate,
-        ...rest,
-      })
+      this.getBillsPayableMonthService.execute({ queries, signal })
     );
 
     return response;

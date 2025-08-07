@@ -5,5 +5,7 @@ export const MESSAGES_SCHEMA_VALIDATIONS = {
   INVALID_EMAIL: "E-mail inválido.",
   CONFIRM_PASSWORD_MUST_TO_BE_EQUAL_TO_PASSWORD:
     "A confirmação de senha deve ser igual à senha.",
-  ONLY_LETTERS_ARE_ALLOWED: 'Apenas letras são permitidas.'
+  ONLY_LETTERS_ARE_ALLOWED: "Apenas letras são permitidas.",
+  ONLY_ADD_PAYMENT_DATE_SELECT_INCLUDE_PAYMENT_OPTION:
+    'Para adiconar data de pagamento, selecione a opção "Incluir Pagamento"',
 };

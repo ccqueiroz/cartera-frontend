@@ -6,10 +6,15 @@ import {
   registerSchema,
   RegisterSchemaType,
 } from "@/infra/schemas/auth/register.schema";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/infra/constants/routes.constants";
+import { DomainMessageList } from "@/domain/core/constants/domainMessageList.constants";
 
 type useRegisterProps = RegisterProps;
 
 export const useRegister = ({ registerServer }: useRegisterProps) => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -34,6 +39,10 @@ export const useRegister = ({ registerServer }: useRegisterProps) => {
       toast.error(response?.error);
       return;
     }
+
+    toast.success(DomainMessageList.SUCCESS_REGISTERED_ACCOUNT);
+
+    router.push(ROUTES.PRIVATE.dashboard);
 
     reset();
   };

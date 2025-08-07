@@ -1,4 +1,4 @@
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import { LayoutPublic } from "../layout/layout.view";
 import { GlassCard } from "@/app/components/core/glassCard/glassCard.component";
 import { Logo } from "@/app/components/core/logo/logo.component";
@@ -16,7 +16,7 @@ export const ManagementAccount = ({
     <LayoutPublic>
       <div
         className={cn(
-          "max-w-xl mx-auto text-center  animate-fade-in-up",
+          "max-w-xl mx-auto text-center animate-fade-in-up",
           className
         )}
       >
@@ -31,7 +31,8 @@ export const ManagementAccount = ({
               </span>
             </h1>
           </div>
-          <GlassCard variant="blue" className="w-full rounded-t-none">
+          <div className="w-full h-[1px] gradient-border-input opacity-25" />
+          <GlassCard variant="dark" className="w-full rounded-t-none">
             <div className="w-full max-w-[95%] p-6 flex flex-col justify-center items-center gap-4 mx-auto sm:max-w-[75%]">
               <h2 className="w-full text-left text-2xl font-bold bg-gradient-neon bg-clip-text text-transparent bg-35%">
                 {titlePage}

@@ -10,11 +10,14 @@ describe("HandleResponseInfra", () => {
   });
 
   it("should return success true with data when the function resolves", async () => {
-    const result = await handleResponse.execute(() => Promise.resolve("data"));
+    const result = await handleResponse.execute(() =>
+      Promise.resolve({ data: "data", status: 200 })
+    );
 
     expect(result).toEqual({
       success: true,
       data: "data",
+      status: 200,
     });
   });
 
@@ -28,6 +31,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: "Not Found",
+      status: 404,
     });
   });
 
@@ -41,6 +45,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: "Generic Error",
+      status: 500,
     });
   });
 
@@ -52,6 +57,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: DomainMessageList.UNKNOWN_ERROR,
+      status: 500,
     });
   });
 
@@ -63,6 +69,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: DomainMessageList.UNKNOWN_ERROR,
+      status: 500,
     });
   });
 
@@ -74,6 +81,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: DomainMessageList.UNKNOWN_ERROR,
+      status: 500,
     });
   });
 
@@ -85,6 +93,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: DomainMessageList.UNKNOWN_ERROR,
+      status: 500,
     });
   });
 
@@ -96,6 +105,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: "Rejected Error",
+      status: 500,
     });
   });
 
@@ -107,6 +117,7 @@ describe("HandleResponseInfra", () => {
     expect(result).toEqual({
       success: false,
       error: "Server Error",
+      status: 500,
     });
   });
 });

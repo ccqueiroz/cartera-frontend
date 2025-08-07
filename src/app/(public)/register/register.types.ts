@@ -1,11 +1,12 @@
+import { AuthDTO } from "@/domain/auth/auth.dto";
+import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { RegisterSchemaType } from "@/infra/schemas/auth/register.schema";
 import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 
 export type RegisterProps = {
-  registerServer: (input: RegisterSchemaType) => Promise<{
-    success: false;
-    error: string;
-  }>;
+  registerServer: (
+    input: RegisterSchemaType
+  ) => Promise<HandleResponseDTO<AuthDTO>>;
 };
 
 export type UseRegisterReturn = {

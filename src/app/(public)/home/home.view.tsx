@@ -1,6 +1,6 @@
 import { ArrowDown } from "lucide-react";
 import { LayoutPublic } from "../views/layout/layout.view";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import Link from "next/link";
 import { ROUTES } from "@/infra/constants/routes.constants";
 import { Logo } from "@/app/components/core/logo/logo.component";
@@ -39,9 +39,7 @@ export default function HomeView() {
 
         <FeaturesPreview />
 
-        <div
-          className="animate-fade-in-up"
-        >
+        <div className="animate-fade-in-up">
           <ArrowDown className="mx-auto text-white/50" size={24} />
           <p className="text-white/50 text-sm mt-2 underline">
             Click aqui para Entrar

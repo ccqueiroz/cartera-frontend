@@ -38,7 +38,11 @@ describe("GetPersonUserByUserIdUseCase", () => {
     getPersonUserByUseridServiceMock.execute.mockResolvedValue(fakePersonUser);
 
     HandleResponseGatewayMock.execute.mockImplementation((fn) =>
-      Promise.resolve(fn()).then((result) => ({ success: true, data: result }))
+      Promise.resolve(fn()).then((result) => ({
+        success: true,
+        data: result,
+        status: 200,
+      }))
     );
 
     const result = await usecase.execute({
@@ -55,6 +59,7 @@ describe("GetPersonUserByUserIdUseCase", () => {
     expect(result).toEqual({
       success: true,
       data: fakePersonUser,
+      status: 200,
     });
   });
 
@@ -77,6 +82,7 @@ describe("GetPersonUserByUserIdUseCase", () => {
     HandleResponseGatewayMock.execute.mockResolvedValue({
       success: false,
       error: "Not Found",
+      status: 404,
     });
 
     getPersonUserByUseridServiceMock.execute.mockResolvedValue(fakePersonUser);
@@ -85,6 +91,7 @@ describe("GetPersonUserByUserIdUseCase", () => {
       Promise.resolve(fn()).then((_) => ({
         success: false,
         error: "Not Found",
+        status: 404,
       }))
     );
 
@@ -101,6 +108,7 @@ describe("GetPersonUserByUserIdUseCase", () => {
     expect(result).toEqual({
       success: false,
       error: "Not Found",
+      status: 404,
     });
   });
 });

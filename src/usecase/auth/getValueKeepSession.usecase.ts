@@ -4,16 +4,16 @@ import { flagsCookies } from "@/domain/core/storage/flagsCookies.constants";
 
 type InputDTO = void;
 
-type OutputDTO = Promise<boolean>;
+type OutputDTO = boolean;
 
 export class GetValueKeepSessionUseCase
   implements Usecase<InputDTO, OutputDTO>
 {
   constructor(private readonly storage: CookiesGateway) {}
 
-  async execute(): OutputDTO {
-    const keepSession = await this.storage.recover(flagsCookies.KEEP_SESSION);
+  execute(): OutputDTO {
+    const keepSession = this.storage.recover(flagsCookies.KEEP_SESSION);
 
-    return keepSession === "true";
+    return keepSession === "true" || keepSession === true;
   }
 }
