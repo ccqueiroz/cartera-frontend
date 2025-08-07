@@ -12,7 +12,7 @@ export class SignInUseCase
   implements Usecase<InputDTO, Promise<HandleResponseDTO<AuthDTO>>>
 {
   private MAX_AGE_KEEP_SESSION = 60 * 60 * 24 * 7;
-  private MAX_AGE_REFRESH_SESSION = 60 * 60 * 24 * 7;
+  private MAX_AGE_REFRESH_SESSION = 60 * 60 * 24;
 
   constructor(
     private readonly HandleResponseGateway: HandleResponseGateway,
@@ -20,20 +20,11 @@ export class SignInUseCase
     private readonly storage: CookiesGateway
   ) {}
 
-  private defineExpiresAuthCookie(
-    keepSession: boolean,
-    expirationTime?: number
-  ) {
-    return keepSession && expirationTime ? new Date(expirationTime) : undefined;
-  }
-
   private saveCookieKeepSession(keepSession: boolean) {
     if (keepSession) {
       this.storage.save(flagsCookies.KEEP_SESSION, keepSession, {
         httpOnly: true,
-        sameSite: "lax",
         path: "/",
-        secure: true,
         ...(keepSession ? { maxAge: this.MAX_AGE_KEEP_SESSION } : {}),
       });
     }
@@ -42,7 +33,7 @@ export class SignInUseCase
   private saveCookieAuthSession(
     accessToken: string | undefined,
     keepSession: boolean,
-    expirationTime?: number
+    expirationTime: number
   ) {
     if (accessToken) {
       this.storage.save(flagsCookies.AUTH, accessToken, {
@@ -50,7 +41,7 @@ export class SignInUseCase
         sameSite: "lax",
         path: "/",
         secure: true,
-        expires: this.defineExpiresAuthCookie(keepSession, expirationTime),
+        maxAge: expirationTime,
       });
     }
   }
@@ -59,8 +50,8 @@ export class SignInUseCase
     if (refreshToken) {
       this.storage.save(flagsCookies.REFRESH_AUTH, refreshToken, {
         httpOnly: true,
-        sameSite: "strict",
-        path: "/auth/refresh-token",
+        sameSite: "lax",
+        path: "/",
         secure: true,
         maxAge: this.MAX_AGE_REFRESH_SESSION,
       });
