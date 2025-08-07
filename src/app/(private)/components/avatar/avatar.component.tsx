@@ -25,7 +25,7 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarCoreProps>(
             )}
           >
             <AvatarUi ref={ref} {...props} className="w-10 h-10">
-              <AvatarImage src={props.src} />
+              {props.src && <AvatarImage src={props.src} />}
               <AvatarFallback>
                 <div
                   className={cn(
