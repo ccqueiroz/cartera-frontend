@@ -6,4 +6,8 @@ export const DomainMessageList = {
     "Um e-mail foi enviado para {complement}.",
   COOKIES_NOT_DEFINED: "Cookies Store não está definida!",
   OPERATION_SUCCESS: "Operação realizada com sucesso!",
+  TOKEN_MISSING: "Token de autorização inexistente!",
+  ERROR_RENEWING_SESSION: "Erro ao renovar a autorização! Faça login novamente!",
+  FAILED_TO_REFRESH_SESSION: "Falha ao revalidar a autorização!",
+  SUCCESS_REGISTERED_ACCOUNT: 'Conta criada com sucesso!'
 } as const;
