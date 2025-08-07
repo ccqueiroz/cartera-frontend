@@ -26,8 +26,9 @@ export const useInfiniteQueryBillsPayableMonth = ({
       queryFn: async ({ pageParam }) => await getBillsPayableMonth(pageParam),
       getNextPageParam: (lastPage, allPages) =>
         getNextPageParam(lastPage, allPages, initialDate, finalDate),
-      staleTime: 30_000,
+      staleTime: 60_000,
       refetchOnWindowFocus: true,
+      enabled: !!initialDate && !!finalDate,
     });
 
   const dataBillsPayableMonth = useMemo(() => {
