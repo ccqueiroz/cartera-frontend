@@ -1,6 +1,8 @@
 import { GetBillsPayableMonthService } from "./getBillsPayableMonth.service";
 import { BASE_API_PATHS } from "@/infra/constants/baseApiPaths.constants";
 import { BillsPayableMonthListDTO } from "@/domain/bill/bill.dto";
+import { CategoryDescriptionEnum } from "@/domain/transaction/enum/categoryDescription.enum";
+import { CategoryGroupEnum } from "@/domain/transaction/enum/categoryGroup.enum";
 
 describe("GetBillsPayableMonthService", () => {
   const mockHttpGet = jest.fn();
@@ -22,7 +24,9 @@ describe("GetBillsPayableMonthService", () => {
         billDate: 1748746800000,
         categoryId: "cat1",
         categoryDescription: "Utilities",
-        status: "PENDING",
+        categoryDescriptionEnum: CategoryDescriptionEnum.SUPERMARKET,
+        categoryGroup: CategoryGroupEnum.SHOPPING,
+        status: "TO_PAY",
       },
     ],
     page: 0,

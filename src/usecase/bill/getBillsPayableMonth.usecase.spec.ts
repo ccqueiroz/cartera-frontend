@@ -6,6 +6,8 @@ import {
   BillsPayableMonthListDTO,
   InputGetBillsPayableMonth,
 } from "@/domain/bill/bill.dto";
+import { CategoryDescriptionEnum } from "@/domain/transaction/enum/categoryDescription.enum";
+import { CategoryGroupEnum } from "@/domain/transaction/enum/categoryGroup.enum";
 
 describe("GetBillsPayableMonthUseCase", () => {
   const mockHandleResponseGateway: jest.Mocked<HandleResponseGateway> = {
@@ -39,7 +41,9 @@ describe("GetBillsPayableMonthUseCase", () => {
           billDate: 1748746800000,
           categoryId: "cat1",
           categoryDescription: "Utilities",
-          status: "PENDING",
+          categoryDescriptionEnum: CategoryDescriptionEnum.SUPERMARKET,
+          categoryGroup: CategoryGroupEnum.SHOPPING,
+          status: "TO_PAY",
         },
       ],
       page: 0,
