@@ -1,3 +1,5 @@
+"use server";
+
 import { CookieServerStorage } from "@/infra/storage/cookies.server.storage.infra";
 import { cookies } from "next/headers";
 
