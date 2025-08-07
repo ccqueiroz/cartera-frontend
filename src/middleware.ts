@@ -1,6 +1,7 @@
 import { MiddlewareConfig, NextRequest, NextResponse } from "next/server";
 import { ROUTES } from "./infra/constants/routes.constants";
 import { flagsCookies } from "./domain/core/storage/flagsCookies.constants";
+import { deleteCookiesWhenRedirected } from "./app/utils/deleteCookies.utils";
 
 type PublicRoutes = {
   path: string;
@@ -32,7 +33,11 @@ export async function middleware(request: NextRequest) {
 
     redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED;
 
-    return NextResponse.redirect(redirectUrl);
+    const nextRedirect = NextResponse.redirect(redirectUrl);
+
+    deleteCookiesWhenRedirected(nextRedirect.cookies);
+
+    return nextRedirect;
   }
 
   if (authToken && publicRoute && publicRoute.whenAthenticated === "redirect") {
@@ -52,6 +57,6 @@ export async function middleware(request: NextRequest) {
 
 export const config: MiddlewareConfig = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|api).*)",
   ],
 };
