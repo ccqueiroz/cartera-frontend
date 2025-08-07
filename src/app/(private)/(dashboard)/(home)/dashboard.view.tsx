@@ -2,7 +2,7 @@ import { cn } from "@/app/utils/cn.utils";
 import { FilterSearchReportsByPeriod } from "../../components/filterSearchReportsByPeriod/filterSearchReportsByPeriod.component";
 import { BillsPayableMonth } from "../../components/billsPayableMonth/billsPayableMonth.component";
 
-export default async function DashboardView() {
+export default function DashboardView() {
   return (
     <section className="container mx-auto p-4">
       <div className="flex flex-col sm:flex-row items-center gap-3 mt-3 justify-between">
