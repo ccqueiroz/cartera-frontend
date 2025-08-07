@@ -1,6 +1,4 @@
-import { BaseDto } from "../core/baseDto/baseDto.dto";
-
-export const ICON_SLUGS = {
+export const CATEGORY_ICON_SLUGS = {
   default: "default",
   "restaurantes-e-alimentacao": "restaurantes-e-alimentacao",
   supermercado: "supermercado",
@@ -40,17 +38,3 @@ export const ICON_SLUGS = {
   "aposentadorias-e-pensoes": "aposentadorias-e-pensoes",
   "receitas-diversas": "receitas-diversas",
 } as const;
-
-export type IconSlug = (typeof ICON_SLUGS)[keyof typeof ICON_SLUGS];
-
-export enum CategoryType {
-  BILLS = "BILLS",
-  RECEIVABLE = "RECEIVABLE",
-}
-
-export type CategoryDTO = {
-  id: string;
-  description: string;
-  type: CategoryType;
-  iconSlug: IconSlug;
-} & BaseDto;

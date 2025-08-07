@@ -1,17 +1,21 @@
 export const StatusTransaction = {
-  PENDING: "PENDING",
+  PAID: "PAID",
+  RECEIVED: "RECEIVED",
+  TO_PAY: "TO_PAY",
+  TO_RECEIVE: "TO_RECEIVE",
   DUE_SOON: "DUE_SOON",
   DUE_DAY: "DUE_DAY",
   OVERDUE: "OVERDUE",
-  PAID: "PAID",
 } as const;
 
 export const StatusTransactionLabel = {
-  PENDING: "Pendente",
-  DUE_SOON: "Próximo ao vencimento",
-  DUE_DAY: "Dia do vencimento",
+  DUE_SOON: "Próximo ao Vencimento",
+  DUE_DAY: "Dia do Vencimento",
   OVERDUE: "Atrasado",
+  RECEIVED: 'Recebido',
   PAID: "Pago",
+  TO_PAY: "Pendente",
+  TO_RECEIVE: "Pendente",
 } as const;
 
 export const StatusByTransactionType = {
