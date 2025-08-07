@@ -3,7 +3,7 @@ import { resolveStatusColor } from "./badgeStatusPayable.service";
 import {
   StatusTransaction,
   StatusTransactionLabel,
-} from "@/domain/statusTransaction/statusTransaction.dto";
+} from "@/domain/transaction/enum/status.dto";
 
 export const BadgeStatusPayable = ({
   status,

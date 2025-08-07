@@ -1,4 +1,4 @@
-import { StatusTransaction } from "@/domain/statusTransaction/statusTransaction.dto";
+import { StatusTransaction } from "@/domain/transaction/enum/status.dto";
 import { resolveStatusColor } from "./badgeStatusPayable.service";
 
 describe("resolveStatusColor", () => {
@@ -27,7 +27,7 @@ describe("resolveStatusColor", () => {
   });
 
   it("should return the correct color for PENDING", () => {
-    expect(resolveStatusColor(StatusTransaction.PENDING)).toBe(
+    expect(resolveStatusColor(StatusTransaction.TO_PAY)).toBe(
       "bg-neon-purple/40 text-neon-white"
     );
   });

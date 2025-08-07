@@ -1,7 +1,7 @@
 import { BillsPayableMonthListDTOAdpatedToPresentation } from "@/domain/bill/bill.dto";
 import { UseFormBillPayableMonthReturnProps } from "./formBillPayableMonth.types";
 import { resolveIcon } from "@/app/(private)/components/iconSlugCategoriesMap/iconSlugCategoriesMap.component";
-import { StatusTransactionLabel } from "@/domain/statusTransaction/statusTransaction.dto";
+import { StatusTransactionLabel } from "@/domain/transaction/enum/status.dto";
 import { Controller } from "react-hook-form";
 import { CheckboxForm } from "@/app/components/core/checkboxForm/checkboxForm.component";
 import { DatePickerForm } from "@/app/components/core/datePickerForm/datePickerForm.component";
