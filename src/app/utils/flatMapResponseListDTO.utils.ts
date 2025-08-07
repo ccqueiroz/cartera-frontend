@@ -19,7 +19,7 @@ export const flatMapResponseListDTO = <T>(
   });
 
   return {
-    content: dataFormated as Array<T>,
+    content: (dataFormated || []) as Array<T>,
     totalElements,
     totalPages,
   };
