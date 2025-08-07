@@ -9,11 +9,21 @@ import { useLogin } from "./useLogin.hook";
 import { LoginSchemaType } from "@/infra/schemas/auth/login.schema";
 import { toast } from "sonner";
 import userEvent from "@testing-library/user-event";
+import { ROUTES } from "@/infra/constants/routes.constants";
 
 jest.mock("sonner", () => ({
   toast: {
     error: jest.fn(),
+    success: jest.fn(),
   },
+}));
+
+const pushMock = jest.fn();
+
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: pushMock,
+  }),
 }));
 
 describe("useLogin", () => {
@@ -63,6 +73,8 @@ describe("useLogin", () => {
 
     expect(signInMock).toHaveBeenCalledWith(formData);
     expect(toast.error).not.toHaveBeenCalled();
+    expect(pushMock).toHaveBeenCalled();
+    expect(pushMock).toHaveBeenCalledWith(ROUTES.PRIVATE.dashboard);
   });
 
   it("should show toast on failed signIn", async () => {
@@ -93,6 +105,7 @@ describe("useLogin", () => {
 
     expect(signInMock).toHaveBeenCalledWith(formData);
     expect(toast.error).toHaveBeenCalledWith("Invalid credentials");
+    expect(pushMock).not.toHaveBeenCalled();
   });
 
   it("should not call signIn on validation error", async () => {
