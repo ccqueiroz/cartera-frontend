@@ -11,16 +11,18 @@ type InputDTO = {
   signal?: AbortSignal | undefined;
 };
 
+type OutputDTO = { data: BillsPayableMonthListDTO; status: number };
+
 export class GetBillsPayableMonthService
-  implements Service<InputDTO, Promise<BillsPayableMonthListDTO>>
+  implements Service<InputDTO, Promise<OutputDTO>>
 {
   constructor(private readonly http: HttpGateway["get"]) {}
 
   async execute({
     queries: { initialDate, finalDate, ...rest },
     signal,
-  }: InputDTO): Promise<BillsPayableMonthListDTO> {
-    const response = await this.http<BillsPayableMonthListDTO>(
+  }: InputDTO): Promise<OutputDTO> {
+    const response = await this.http<OutputDTO>(
       BASE_API_PATHS.BILL.by_month_status,
       {
         queries: {
