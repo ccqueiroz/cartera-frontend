@@ -39,7 +39,7 @@ describe("GetBillsPayableMonthService", () => {
   it("should call http.get with correct parameters and return data", async () => {
     mockHttpGet.mockResolvedValueOnce(mockResponse);
 
-    const result = await service.execute(input);
+    const result = await service.execute({ queries: input });
 
     expect(mockHttpGet).toHaveBeenCalledWith(
       BASE_API_PATHS.BILL.by_month_status,
@@ -58,7 +58,9 @@ describe("GetBillsPayableMonthService", () => {
     const error = new Error("Network error");
     mockHttpGet.mockRejectedValueOnce(error);
 
-    await expect(service.execute(input)).rejects.toThrow("Network error");
+    await expect(service.execute({ queries: input })).rejects.toThrow(
+      "Network error"
+    );
 
     expect(mockHttpGet).toHaveBeenCalledWith(
       BASE_API_PATHS.BILL.by_month_status,
