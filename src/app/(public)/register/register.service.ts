@@ -1,15 +1,17 @@
 "use server";
 
-import { ROUTES } from "@/infra/constants/routes.constants";
+import { HandleProxy } from "@/app/actions/handleProxy/handleProxy.service";
+import { AuthDTO, RegisterAuthDTO } from "@/domain/auth/auth.dto";
+import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { handleResponseFactory } from "@/infra/factories/handleResponse/handleReponse.factory";
 import { httpInfraFactory } from "@/infra/factories/http/http.factory";
-import { cookiesFactory } from "@/infra/factories/storage/cookies.factory";
 import { RegisterSchemaType } from "@/infra/schemas/auth/register.schema";
+import { CookieServerStorage } from "@/infra/storage/cookies.server.storage.infra";
 import { RegisterService } from "@/service/auth/register.service";
 import { SignInService } from "@/service/auth/signin.service";
 import { RegisterUseCase } from "@/usecase/auth/register.usecase";
 import { SignInUseCase } from "@/usecase/auth/signin.usecase";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export async function register({
   email,
@@ -18,39 +20,55 @@ export async function register({
   firstName,
   lastName,
 }: RegisterSchemaType) {
-  const http = await httpInfraFactory();
-  const service = new RegisterService(http.post);
+  const storage = new CookieServerStorage(await cookies());
+
+  const service = new RegisterService((await httpInfraFactory(storage)).post);
+
   const usecase = new RegisterUseCase(handleResponseFactory, service);
 
-  const registerAccount = await usecase.execute({
-    email,
-    password,
-    confirmPassword,
-    firstName,
-    lastName,
+  const response = await HandleProxy({
+    request: () =>
+      usecase.execute({
+        email,
+        password,
+        confirmPassword,
+        firstName,
+        lastName,
+      }),
+    isAuthService: true,
+    storage,
   });
+
+  const registerAccount =
+    (await response?.json()) as HandleResponseDTO<RegisterAuthDTO>;
 
   if (!registerAccount.success) {
     return registerAccount;
   }
 
-  const serviceLogin = new SignInService(http.post);
-  const storage = await cookiesFactory();
+  const serviceLogin = new SignInService(
+    (await httpInfraFactory(storage)).post
+  );
+
   const usecaseLogin = new SignInUseCase(
     handleResponseFactory,
     serviceLogin,
     storage
   );
 
-  const signin = await usecaseLogin.execute({
-    email,
-    password,
-    keepSession: false,
+  const signin = await HandleProxy({
+    request: () =>
+      usecaseLogin.execute({
+        email,
+        password,
+        keepSession: false,
+      }),
+    isAuthService: true,
+    storage,
   });
 
-  if (!signin.success) {
-    return signin;
-  }
+  const responseSiginJson =
+    (await signin?.json()) as HandleResponseDTO<AuthDTO>;
 
-  redirect(ROUTES.PRIVATE.dashboard);
+  return responseSiginJson;
 }

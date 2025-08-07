@@ -55,6 +55,7 @@ describe("RegisterUseCase", () => {
     const errorResponse: HandleResponseDTO<RegisterAuthDTO> = {
       success: false,
       error: "User already exists",
+      status: 400,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(errorResponse);
@@ -68,6 +69,7 @@ describe("RegisterUseCase", () => {
     const successResponse: HandleResponseDTO<RegisterAuthDTO> = {
       success: true,
       data: registerAuthDTO,
+      status: 201,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);

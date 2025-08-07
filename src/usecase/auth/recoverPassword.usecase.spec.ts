@@ -46,6 +46,7 @@ describe("RecoverPasswordUseCase", () => {
     const errorResponse: HandleResponseDTO<RecoverPasswordAuthDTO> = {
       success: false,
       error: "E-mail not found",
+      status: 404,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(errorResponse);
@@ -59,6 +60,7 @@ describe("RecoverPasswordUseCase", () => {
     const successResponse: HandleResponseDTO<RecoverPasswordAuthDTO> = {
       success: true,
       data: recoverPasswordhDTO,
+      status: 204,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);

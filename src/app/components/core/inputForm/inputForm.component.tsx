@@ -1,4 +1,4 @@
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import React, { memo } from "react";
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";

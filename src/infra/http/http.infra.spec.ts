@@ -99,23 +99,26 @@ describe("HttpInfra", () => {
 
     await http.get("/path", { headers });
 
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://api.example.com/path",
-      expect.objectContaining({
-        method: "GET",
-        headers: expect.objectContaining({
-          Authorization: "Bearer token123",
-          "Content-Type": "application/json",
-          "X-Custom": "abc",
-        }),
-      })
-    );
+    expect(global.fetch).toHaveBeenCalledWith("https://api.example.com/path", {
+      body: undefined,
+      cache: "force-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: "session=token123",
+        "X-Custom": "abc",
+      },
+      method: "GET",
+      next: undefined,
+      signal: undefined,
+    });
   });
 
   it("should call fetch with correct parameters for POST, PUT, PATCH", async () => {
     const fakeResponse = {
       ok: true,
       json: jest.fn().mockResolvedValue({ data: true }),
+      status: 200,
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
 
@@ -127,9 +130,9 @@ describe("HttpInfra", () => {
       params: { id: 2 },
     });
 
-    expect(resultPost).toEqual(true);
-    expect(resultPut).toEqual(true);
-    expect(resultPatch).toEqual(true);
+    expect(resultPost).toEqual({ data: true, status: 200 });
+    expect(resultPut).toEqual({ data: true, status: 200 });
+    expect(resultPatch).toEqual({ data: true, status: 200 });
 
     expect(global.fetch).toHaveBeenCalledWith(
       "https://api.example.com/path",
@@ -182,6 +185,7 @@ describe("HttpInfra", () => {
     const fakeResponse = {
       ok: true,
       json: jest.fn().mockResolvedValue(undefined),
+      status: 204,
     };
     (global.fetch as jest.Mock).mockResolvedValue(fakeResponse);
 
@@ -196,7 +200,7 @@ describe("HttpInfra", () => {
       })
     );
 
-    expect(result).toBeUndefined();
+    expect(result).toEqual({ data: null, status: 204 });
   });
 
   it("should call revalidateTag with the correct tag", async () => {

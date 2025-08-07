@@ -49,7 +49,7 @@ export class HttpInfra implements HttpGateway {
     return {
       "Content-Type": "application/json",
       ...headers,
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(token ? { Cookie: `session=${token}` } : {}),
     };
   }
 
@@ -67,17 +67,18 @@ export class HttpInfra implements HttpGateway {
       body: ["POST", "PUT", "PATCH"].includes(method)
         ? JSON.stringify(body)
         : undefined,
+      credentials: "include",
       headers: this.buildHeaders(headers),
       signal,
       next:
         tags || revalidate
           ? { ...(tags ? { tags } : {}), ...(revalidate ? { revalidate } : {}) }
           : undefined,
-      cache: revalidate ? undefined : cache || "force-cache",
+      cache: cache ?? (revalidate ? undefined : "force-cache"),
     });
 
     if (response.status === 204) {
-      return null as T;
+      return { data: null, status: 204 } as T;
     }
 
     const responseData = await response.json().catch(() => null);
@@ -86,7 +87,7 @@ export class HttpInfra implements HttpGateway {
       throw new HttpError(response.status, responseData?.message);
     }
 
-    return responseData?.data as T;
+    return { data: responseData?.data, status: response.status } as T;
   }
 
   get<T>(path: string, options?: Omit<HttpOptions, "body">) {

@@ -1,12 +1,11 @@
+import { AuthDTO } from "@/domain/auth/auth.dto";
+import { HandleResponseDTO } from "@/domain/core/api/handleResponse.dto";
 import { LoginSchemaType } from "@/infra/schemas/auth/login.schema";
 import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 
 export type LoginProps = {
   keepSessionCookieValue: boolean;
-  signIn: (input: LoginSchemaType) => Promise<{
-    success: false;
-    error: string;
-  }>;
+  signIn: (input: LoginSchemaType) => Promise<HandleResponseDTO<AuthDTO>>;
 };
 
 export type UseLoginReturn = {

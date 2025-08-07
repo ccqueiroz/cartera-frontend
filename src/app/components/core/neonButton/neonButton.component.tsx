@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { NeonSpinner } from "../neonSpinner/neonSpinner.component";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 
 interface NeonButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -53,7 +53,7 @@ const NeonButton = memo(
           {...props}
         >
           {isLoading ? (
-            <div className="w-7 h-7 flex items-center justify-center opacity-85">
+            <div className="w-6 h-6 flex items-center justify-center opacity-85">
               <NeonSpinner />
             </div>
           ) : (

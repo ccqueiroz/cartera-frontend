@@ -6,7 +6,7 @@ import { Switch } from "@/app/components/ui/switch";
 import { Label } from "@/app/components/ui/label";
 import Link from "next/link";
 import { ROUTES } from "@/infra/constants/routes.constants";
-import { cn } from "@/app/lib/cn.utils";
+import { cn } from "@/app/utils/cn.utils";
 import { SubmitAuthButton } from "../components/SubmitAuthButton/submitAuthButton.component";
 
 type LoginViewProps = UseLoginReturn;
@@ -49,7 +49,6 @@ export const LoginView = ({
               name="keepSession"
               render={({ field: { value, onChange, ...field } }) => (
                 <Switch
-                  className="scale-[0.8]"
                   id="keepSession"
                   checked={value}
                   onCheckedChange={onChange}

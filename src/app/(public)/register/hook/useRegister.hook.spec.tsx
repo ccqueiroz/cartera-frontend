@@ -10,11 +10,22 @@ import { useRegister } from "./useRegister.hook";
 import { RegisterSchemaType } from "@/infra/schemas/auth/register.schema";
 import { toast } from "sonner";
 import userEvent from "@testing-library/user-event";
+import { ROUTES } from "@/infra/constants/routes.constants";
+import { DomainMessageList } from "@/domain/core/constants/domainMessageList.constants";
 
 jest.mock("sonner", () => ({
   toast: {
     error: jest.fn(),
+    success: jest.fn(),
   },
+}));
+
+const pushMock = jest.fn();
+
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: pushMock,
+  }),
 }));
 
 describe("useRegister", () => {
@@ -75,6 +86,12 @@ describe("useRegister", () => {
 
     expect(registerMock).toHaveBeenCalledWith(formData);
     expect(toast.error).not.toHaveBeenCalled();
+    expect(toast.success).toHaveBeenCalled();
+    expect(toast.success).toHaveBeenCalledWith(
+      DomainMessageList.SUCCESS_REGISTERED_ACCOUNT
+    );
+    expect(pushMock).toHaveBeenCalled();
+    expect(pushMock).toHaveBeenCalledWith(ROUTES.PRIVATE.dashboard);
   });
 
   it("should show toast on failed registerServer", async () => {
@@ -110,6 +127,7 @@ describe("useRegister", () => {
 
     expect(registerMock).toHaveBeenCalledWith(formData);
     expect(toast.error).toHaveBeenCalledWith("Invalid credentials");
+    expect(pushMock).not.toHaveBeenCalled();
   });
 
   it("should not call signIn on validation error", async () => {
@@ -152,6 +170,7 @@ describe("useRegister", () => {
 
     await waitFor(() => {
       expect(registerMock).not.toHaveBeenCalled();
+      expect(pushMock).not.toHaveBeenCalled();
     });
   });
 });

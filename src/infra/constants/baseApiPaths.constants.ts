@@ -4,6 +4,7 @@ export const BASE_API_PATHS = {
     signout: "auth/signout",
     recovery_password: "auth/recovery-password",
     register_account: "auth/register-account",
+    revalidate_session: 'auth/refresh-token'
   },
   PERSON_USER: {
     edit: "person-user/edit/:id",

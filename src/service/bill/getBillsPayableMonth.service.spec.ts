@@ -1,6 +1,8 @@
 import { GetBillsPayableMonthService } from "./getBillsPayableMonth.service";
 import { BASE_API_PATHS } from "@/infra/constants/baseApiPaths.constants";
 import { BillsPayableMonthListDTO } from "@/domain/bill/bill.dto";
+import { CategoryDescriptionEnum } from "@/domain/transaction/enum/categoryDescription.enum";
+import { CategoryGroupEnum } from "@/domain/transaction/enum/categoryGroup.enum";
 
 describe("GetBillsPayableMonthService", () => {
   const mockHttpGet = jest.fn();
@@ -22,7 +24,9 @@ describe("GetBillsPayableMonthService", () => {
         billDate: 1748746800000,
         categoryId: "cat1",
         categoryDescription: "Utilities",
-        status: "PENDING",
+        categoryDescriptionEnum: CategoryDescriptionEnum.SUPERMARKET,
+        categoryGroup: CategoryGroupEnum.SHOPPING,
+        status: "TO_PAY",
       },
     ],
     page: 0,
@@ -39,7 +43,7 @@ describe("GetBillsPayableMonthService", () => {
   it("should call http.get with correct parameters and return data", async () => {
     mockHttpGet.mockResolvedValueOnce(mockResponse);
 
-    const result = await service.execute(input);
+    const result = await service.execute({ queries: input });
 
     expect(mockHttpGet).toHaveBeenCalledWith(
       BASE_API_PATHS.BILL.by_month_status,
@@ -58,7 +62,9 @@ describe("GetBillsPayableMonthService", () => {
     const error = new Error("Network error");
     mockHttpGet.mockRejectedValueOnce(error);
 
-    await expect(service.execute(input)).rejects.toThrow("Network error");
+    await expect(service.execute({ queries: input })).rejects.toThrow(
+      "Network error"
+    );
 
     expect(mockHttpGet).toHaveBeenCalledWith(
       BASE_API_PATHS.BILL.by_month_status,
