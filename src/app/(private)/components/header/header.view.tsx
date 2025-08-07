@@ -21,7 +21,7 @@ export async function HeaderPrivate() {
         </div>
         <div className="flex items-center gap-5">
           <NotificationsButtons />
-          {/* <Avatar src={personUserData?.image ?? ""} /> */}
+          <Avatar src={personUserData?.image || undefined} />
         </div>
       </div>
       <div>
