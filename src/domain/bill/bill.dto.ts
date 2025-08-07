@@ -1,7 +1,7 @@
 import { ResponseListDTO } from "../core/api/responseList.dto";
 import { BaseDto } from "../core/baseDto/baseDto.dto";
 import { PaginationParams } from "../core/listParams/listParams.dto";
-import { StatusTransaction } from "../statusTransaction/statusTransaction.dto";
+import { StatusTransaction } from "../transaction/enum/status.dto";
 
 export type BillDTO = {
   id?: string;
@@ -14,12 +14,14 @@ export type BillDTO = {
   payOut: boolean;
   icon: string | null;
   amount: number;
-  paymentStatusId: string;
-  paymentStatusDescription: string;
+  paymentStatus: string;
   categoryId: string;
   categoryDescription: string;
-  paymentMethodId: string;
-  paymentMethodDescription: string;
+  categoryDescriptionEnum: string;
+  categoryGroup: string;
+  paymentMethodId?: string;
+  paymentMethodDescription?: string;
+  paymentMethodDescriptionEnum?: string;
   isPaymentCardBill: boolean;
   invoiceCardData?: InvoiceCardData;
   isShoppingListBill: boolean;
@@ -42,6 +44,8 @@ export type BillsPayableMonthOutPutDTO = {
   billDate: number;
   categoryId: string;
   categoryDescription: string;
+  categoryDescriptionEnum: string;
+  categoryGroup: string;
   status: (typeof StatusTransaction)[keyof typeof StatusTransaction];
 };
 
