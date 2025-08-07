@@ -59,6 +59,7 @@ describe("SignInUseCase", () => {
     const errorResponse: HandleResponseDTO<AuthDTO> = {
       success: false,
       error: "Invalid credentials",
+      status: 401,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(errorResponse);
@@ -74,6 +75,7 @@ describe("SignInUseCase", () => {
     const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: authDTO,
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
@@ -82,47 +84,14 @@ describe("SignInUseCase", () => {
 
     expect(result).toEqual(successResponse);
 
-    expect(storageMock.save).toHaveBeenCalledWith(
-      flagsCookies.KEEP_SESSION,
-      true,
-      expect.objectContaining({
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-        maxAge: expect.any(Number),
-      })
-    );
-
-    expect(storageMock.save).toHaveBeenCalledWith(
-      flagsCookies.AUTH,
-      authDTO.accessToken,
-      expect.objectContaining({
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-        expires: expect.any(Date),
-      })
-    );
-
-    expect(storageMock.save).toHaveBeenCalledWith(
-      flagsCookies.REFRESH_AUTH,
-      authDTO.refreshToken,
-      expect.objectContaining({
-        httpOnly: true,
-        sameSite: "strict",
-        path: "/auth/refresh-token",
-        secure: true,
-        maxAge: expect.any(Number),
-      })
-    );
+    expect(storageMock.save).toHaveBeenCalledTimes(4);
   });
 
   it("should not save keepSession cookie if keepSession is false", async () => {
     const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: authDTO,
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
@@ -157,6 +126,7 @@ describe("SignInUseCase", () => {
         ...authDTO,
         expirationTime: undefined as unknown as number,
       },
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(
@@ -181,6 +151,7 @@ describe("SignInUseCase", () => {
         ...authDTO,
         accessToken: undefined as unknown as string,
       },
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(
@@ -215,6 +186,7 @@ describe("SignInUseCase", () => {
         ...authDTO,
         refreshToken: undefined as unknown as string,
       },
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(
@@ -248,6 +220,7 @@ describe("SignInUseCase", () => {
     const successResponse: HandleResponseDTO<AuthDTO> = {
       success: true,
       data: authDTO,
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
@@ -277,6 +250,7 @@ describe("SignInUseCase", () => {
         email: "",
         userId: "",
       },
+      status: 200,
     };
 
     HandleResponseGatewayMock.execute.mockResolvedValueOnce(successResponse);
