@@ -5,11 +5,13 @@ import { BASE_API_PATHS } from "@/infra/constants/baseApiPaths.constants";
 
 type InputDTO = { email: string; password: string };
 
-export class SignInService implements Service<InputDTO, Promise<AuthDTO>> {
+type OutputDTO = { data: AuthDTO; status: number };
+
+export class SignInService implements Service<InputDTO, Promise<OutputDTO>> {
   constructor(private readonly http: HttpGateway["post"]) {}
 
-  async execute({ email, password }: InputDTO): Promise<AuthDTO> {
-    const response = await this.http<AuthDTO>(
+  async execute({ email, password }: InputDTO): Promise<OutputDTO> {
+    const response = await this.http<OutputDTO>(
       BASE_API_PATHS.AUTH.login,
       {
         email,
