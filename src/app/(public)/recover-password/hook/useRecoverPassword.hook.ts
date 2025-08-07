@@ -6,6 +6,7 @@ import { RecoverPasswordProps } from "../recoverPassword.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { DomainMessageList } from "@/domain/core/constants/domainMessageList.constants";
 
 type UseRecoverPassword = RecoverPasswordProps;
 
@@ -29,6 +30,15 @@ export const useRecoverPassword = ({ recoverPassword }: UseRecoverPassword) => {
     if (!response?.success && response?.error) {
       toast.error(response?.error);
       return;
+    }
+
+    if (response.success && response.data?.email) {
+      toast.success(
+        DomainMessageList.EMAIL_HAS_BEEN_SEND_TO_RECOVER_PASSWORD.replace(
+          "{complement}",
+          response.data.email
+        )
+      );
     }
 
     reset();
