@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CardAnalysisTypeAmountPercent } from "./cardAnalysisTypeAmountPercent.component";
-import { TrendingDown, TrendingUp } from "lucide-react";
+import { TrendingDown } from "lucide-react";
 
 const meta: Meta<typeof CardAnalysisTypeAmountPercent> = {
   component: CardAnalysisTypeAmountPercent,

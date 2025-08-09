@@ -34,8 +34,8 @@ const TotalBalanceComponent = React.memo(
   }
 );
 
-const TotalBalance = TotalBalanceComponent;
+TotalBalanceComponent.displayName = "TotalBalance";
 
-TotalBalance.displayName = "TotalBalance";
+const TotalBalance = TotalBalanceComponent;
 
 export { TotalBalance };

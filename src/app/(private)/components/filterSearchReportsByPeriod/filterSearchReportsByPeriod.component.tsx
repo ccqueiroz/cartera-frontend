@@ -1,5 +1,3 @@
-import { DatePicker } from "@/app/components/core/datePicker/datePicker.component";
-import { NeonButton } from "@/app/components/core/neonButton/neonButton.component";
 import { AnalysisPeriod } from "./components/analysisPeriod/analysisPeriod.component";
 import { Calendar } from "lucide-react";
 

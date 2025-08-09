@@ -1,4 +1,3 @@
-import { GlassCard } from "@/app/components/core/glassCard/glassCard.component";
 import { Skeleton } from "@/app/components/ui/skeleton";
 
 export const CardAnalysisTypeAmountPercentSkeleton = () => {
