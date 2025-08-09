@@ -1,5 +1,5 @@
 import { adapterCategoryToSlugDescription } from "@/app/utils/adapterCategoryToSlugDescription.utils";
-import { adapterNumberToNumberCurrencyFormated } from "@/app/utils/adapterNumberToNumberCurrencyFormated.utils";
+import { adapterNumberToNumberFormated } from "@/app/utils/adapterNumberToNumberFormated.utils";
 import {
   BillsPayableMonthListDTOAdpatedToPresentation,
   BillsPayableMonthOutPutDTO,
@@ -18,7 +18,7 @@ export const adapterBillsToPresentation = (
       categoryDescription: adapterCategoryToSlugDescription(
         bill.categoryDescription
       ),
-      amountFormated: adapterNumberToNumberCurrencyFormated(bill.amount),
+      amountFormated: adapterNumberToNumberFormated(bill.amount),
       billDateFormated: convertHelper.execute(bill.billDate, "DD/MM/AAAA"),
     });
   }
