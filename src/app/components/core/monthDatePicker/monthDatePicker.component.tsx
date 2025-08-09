@@ -165,7 +165,7 @@ const MonthDatePick = ({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <div className="h-10 gradient-border-input p-[2px] rounded-md flex justify-center items-center">
+        <div className="h-10 bg-gradient-neon p-[2px] rounded-md flex justify-center items-center">
           <ButtonUi
             variant="outline"
             className={cn(
@@ -184,7 +184,7 @@ const MonthDatePick = ({
           </ButtonUi>
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-background" {...props}>
+      <PopoverContent className="w-auto p-0 bg-gradient-dark" {...props}>
         <div className={cn("min-w-[200px] w-[246px] p-3", className)}>
           <div className="space-y-4">
             <MonthCalendar

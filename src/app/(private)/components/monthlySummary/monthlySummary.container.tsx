@@ -31,24 +31,24 @@ const MonthlySummaryContainer = observer(() => {
       >
         <CardTypeMonthlySummary isLoading={isFetching} color="success">
           <div className="inline-flex items-center justify-center">
-            <TrendingUp className="h-6 w-6 text-success" />
+            <TrendingUp className="h-6 w-6 text-neon-green" />
           </div>
           <h3 className="text-sm font-medium text-muted-foreground/90 mb-1">
             Receitas {storeDashboardAnalysisPeriod.currentMonth}
           </h3>
-          <p className="text-xl font-mono-digital font-bold text-success">
+          <p className="text-xl font-mono-digital font-bold text-neon-green">
             {dataMonthlySummary.totalInvoicesFormated}
           </p>
         </CardTypeMonthlySummary>
 
         <CardTypeMonthlySummary isLoading={isFetching} color="danger">
           <div className="inline-flex items-center justify-center">
-            <TrendingUp className="h-6 w-6 text-danger rotate-180" />
+            <TrendingUp className="h-6 w-6 text-neon-red rotate-180" />
           </div>
           <h3 className="text-sm font-medium text-muted-foreground/90 mb-1">
             Despesas {storeDashboardAnalysisPeriod.currentMonth}
           </h3>
-          <p className="text-xl font-mono-digital font-bold text-danger">
+          <p className="text-xl font-mono-digital font-bold text-neon-red">
             {dataMonthlySummary.totalExpensesFormated}
           </p>
         </CardTypeMonthlySummary>

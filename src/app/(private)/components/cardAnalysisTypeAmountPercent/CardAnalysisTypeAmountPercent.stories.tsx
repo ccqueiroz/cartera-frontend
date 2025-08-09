@@ -33,6 +33,6 @@ export const Playground: Story = {
     totalAmount: 7000.73,
     color: "success",
     icon: TrendingDown,
-    isLoading: false,
+    isLoading: true,
   },
 };

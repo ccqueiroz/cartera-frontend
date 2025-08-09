@@ -21,7 +21,12 @@ const TotalBalanceComponent = React.memo(
         )}
       >
         <span className="text-xs text-muted-foreground/60">{title}</span>
-        <span className={cn("text-md md:text-xl font-bold", `text-${color}`)}>
+        <span
+          className={cn("text-md md:text-xl font-bold", {
+            "text-neon-green": color === "success",
+            "text-neon-red": color === "danger",
+          })}
+        >
           {amount}
         </span>
       </div>

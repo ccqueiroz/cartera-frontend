@@ -46,7 +46,7 @@ export const CardAnalysisTypeAmountPercent = React.memo(
 
     return (
       <GlassCard
-        className="w-full h-max border border-neon-lavender/20 py-2 px-3"
+        className="w-full h-max border border-neon-lavender/30 py-2 px-3"
         variant="dark"
       >
         <div className="w-full h-full flex justify-between">
@@ -62,7 +62,14 @@ export const CardAnalysisTypeAmountPercent = React.memo(
                 }
               )}
             >
-              <Icon className={cn("h-5 w-5", `text-${color}`)} />
+              <Icon
+                className={cn("h-5 w-5", {
+                  "text-neon-green": color === "success",
+                  "text-neon-red": color === "danger",
+                  "text-neon-blue": color === "info",
+                  "text-neon-yellow": color === "warning",
+                })}
+              />
             </div>
             <div className="flex flex-col">
               <span>{type}</span>
@@ -73,7 +80,14 @@ export const CardAnalysisTypeAmountPercent = React.memo(
           </div>
           <div className="w-full h-full flex gap-2 items-center justify-end">
             <div className="flex flex-col items-end">
-              <span className={cn(`text-${color}`)}>
+              <span
+                className={cn({
+                  "text-neon-green": color === "success",
+                  "text-neon-red": color === "danger",
+                  "text-neon-blue": color === "info",
+                  "text-neon-yellow": color === "warning",
+                })}
+              >
                 {valuesAmountFormated.amount}
               </span>
               <span className="text-xs text-muted-foreground/60">
