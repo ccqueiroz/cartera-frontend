@@ -6,7 +6,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
-const geistSans = Inter({
+const interSans = Inter({
   variable: "--font-inter-sans",
   subsets: ["latin"],
 });
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${geistSans.variable} antialiased`}>
+      <body className={`${interSans.variable} antialiased`}>
         <MainProvider>{children}</MainProvider>
       </body>
     </html>

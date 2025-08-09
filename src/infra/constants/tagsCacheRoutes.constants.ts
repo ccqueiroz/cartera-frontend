@@ -28,5 +28,6 @@ export const TAGS_CACHE_ROUTES = {
   },
   CASH_FLOW: {
     get_summary_year: "get_summary_year",
+    get_monthly_summary: "get_monthly_summary",
   },
 } as const;

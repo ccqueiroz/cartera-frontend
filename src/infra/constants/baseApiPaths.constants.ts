@@ -4,7 +4,7 @@ export const BASE_API_PATHS = {
     signout: "auth/signout",
     recovery_password: "auth/recovery-password",
     register_account: "auth/register-account",
-    revalidate_session: 'auth/refresh-token'
+    revalidate_session: "auth/refresh-token",
   },
   PERSON_USER: {
     edit: "person-user/edit/:id",
@@ -39,5 +39,6 @@ export const BASE_API_PATHS = {
   },
   CASH_FLOW: {
     summary_year: "cash-flow/summary/:year",
+    monthly_summary: "cash-flow/monthly-summary/:month/:year",
   },
 } as const;
