@@ -136,7 +136,7 @@ describe("CashFlowSummaryByYearService", () => {
   });
 
   it("should call the HTTP client with correct URL, params, and tags", async () => {
-    mockHttp.mockResolvedValue(CashFlowByYearList);
+    mockHttp.mockResolvedValue({ data: CashFlowByYearList, status: 200 });
 
     const input = { year: 2025 };
 
@@ -155,15 +155,18 @@ describe("CashFlowSummaryByYearService", () => {
       }
     );
 
-    expect(result).toEqual(CashFlowByYearList);
+    expect(result).toEqual({
+      data: CashFlowByYearList,
+      status: 200,
+    });
   });
 
   it("should return an empty array when API response is empty", async () => {
-    mockHttp.mockResolvedValue([]);
+    mockHttp.mockResolvedValue({ data: [], status: 200 });
 
     const result = await service.execute({ year: 2025 });
 
-    expect(result).toEqual([]);
+    expect(result).toEqual({ data: [], status: 200 });
   });
 
   it("should throw if HTTP client throws an error", async () => {
