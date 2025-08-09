@@ -1,11 +1,13 @@
 "use client";
 
+import { Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const currentDate = new Date().toLocaleDateString("pt-BR", {
-  day: "2-digit",
-  month: "2-digit",
-  year: "numeric",
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 
 export const GreetingComponent = ({ name }: { name: string }) => {
@@ -36,18 +38,19 @@ export const GreetingComponent = ({ name }: { name: string }) => {
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div className="flex flex-col">
-        <h2 className="text-xl md:text-2xl font-semibold text-white animate-fade-in-up">
+        <h2 className="text-xl md:text-2xl font-semibold text-neon-white animate-fade-in-up">
           {getGreeting()}, <span className="text-neon-blue">{name}</span>
         </h2>
         <div className="flex gap-2 items-center">
+          <Calendar className="h-4 w-4 text-white/70 mb-1" />
           <span
-            className="text-white/70 digital animate-fade-in-up"
+            className="text-white/70 digital animate-fade-in-up text-md"
             style={{ animationDelay: "50ms" }}
           >
             {currentDate}
           </span>
           <span>-</span>
-          <span className="digital text-neon-blue text-lg font-medium">
+          <span className="digital text-neon-blue text-md font-medium">
             {currentTime}
           </span>
         </div>

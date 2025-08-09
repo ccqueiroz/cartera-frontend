@@ -30,3 +30,20 @@ export type CashFlowByYearDTOSumary = {
   expenses: number;
   paid: number;
 };
+
+export type GetMonthlySummaryCashFlowInputDTO = {
+  month: number;
+  year: number;
+  userId: string;
+  paid?: boolean;
+};
+
+export type MonthlySummaryCashFlowOutputDTO = {
+  fixedIncome: number;
+  variableRevenue: number;
+  fixedExpenses: number;
+  variableExpenses: number;
+  totalInvoices: number;
+  totalExpenses: number;
+  totalBalance: number;
+};

@@ -1,9 +1,12 @@
-import { CashFlowByYear, CashFlowByYearDTOSumary, typeComparisonCashFlow } from "@/domain/cashFlow/cashFlow.dto";
+import {
+  CashFlowByYear,
+  CashFlowByYearDTOSumary,
+  typeComparisonCashFlow,
+} from "@/domain/cashFlow/cashFlow.dto";
 import { CashFLowSummaryByYearUseCase } from "./cashFlowSummaryByYear.usecase";
 import { TransformCashFlowByYearToSummaryUseCase } from "./transformCashFlowByYearToSummary.usecase";
 import { HandleResponseGateway } from "@/domain/core/api/handleResponse.gateway";
 import { CashFlowSummaryByYearService } from "@/service/cashFlow/cashFlowSummaryByYear.service";
-
 
 describe("CashFLowSummaryByYearUseCase", () => {
   const CashFlowByYearList: Array<CashFlowByYear> = [
@@ -167,6 +170,7 @@ describe("CashFLowSummaryByYearUseCase", () => {
     mockHandleResponseGateway.execute.mockResolvedValue({
       success: true,
       data: CashFlowByYearList,
+      status: 200,
     });
 
     mockTransformCashFlowByYearToSummaryUseCase.execute.mockReturnValue(
@@ -200,6 +204,7 @@ describe("CashFLowSummaryByYearUseCase", () => {
     mockHandleResponseGateway.execute.mockResolvedValue({
       success: false,
       error: "Network error",
+      status: 500,
     });
 
     const result = await useCase.execute({

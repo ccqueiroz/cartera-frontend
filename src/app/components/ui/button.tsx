@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/app/utils/cn.utils";
 
 const styleBase = cn(
-  "inline-flex items-center justify-center gap-2 ",
+  "inline-flex items-center justify-center gap-2",
   "whitespace-nowrap rounded-md",
   "text-sm font-medium ring-offset-background",
   "transition-colors",
